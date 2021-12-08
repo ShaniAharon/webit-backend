@@ -1,0 +1,2163 @@
+{
+  "isPublic": true,
+  "name": "Feliciano",
+  "imgUrl": "",
+  "createdBy": {"_id": "", "username": ""},
+  "usersData": {
+    "contacts": [
+      {"email": "user@user.com", "msg": "Please send me stuff", "at": 123}
+    ],
+    "signups": [{"email": "user@user.com", "at": 123}]
+  },
+  "theme": "feliciano-main",
+  "cmps": [
+    {
+      "id": "9ROS",
+      "type": "wap-container",
+      "info": {
+        "dir": "column",
+        "cmps": [
+          {
+            "id": "TVzy",
+            "type": "wap-header",
+            "info": {
+              "title": "",
+              "subtitle": "",
+              "logo": {
+                "type": "txt",
+                "txt": "Feliciano",
+                "style": {
+                  "background": "url()",
+                  "color": "",
+                  "backgroundColor": "",
+                  "fontSize": "20",
+                  "paddingRight": "",
+                  "paddingTop": "",
+                  "paddingBottom": "",
+                  "paddingLeft": "",
+                  "lineHeight": "",
+                  "fontFamily": "Poppins",
+                  "fontStyle": ""
+                }
+              },
+              "navBar": [
+                {
+                  "id": "cTs0SH",
+                  "txt": "Home",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "tEDZzx",
+                  "txt": "About",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "AtMMOq",
+                  "txt": "Menu",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "D9Y3JN",
+                  "txt": "Stories",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "xHGmri",
+                  "txt": "Contact",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "j8CJBX",
+                  "txt": "Book a table",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontSize": "18",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-header-feliciano",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "bJPd",
+            "type": "wap-text",
+            "info": {
+              "title": [
+                {
+                  "id": "MxpF",
+                  "txt": "Feliciano",
+                  "style": {
+                    "background": "",
+                    "color": "#c8a97e",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "GreatVibes",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "MIWY",
+                  "txt": "Notorious and Tasty",
+                  "style": {
+                    "background": "",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Arial",
+                    "fontStyle": "50px"
+                  }
+                }
+              ]
+            },
+            "theme": "landing-feliciano",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "RGVh",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "mrOn",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "18",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "2IKr",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "14",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "oRb4",
+                  "url": "feliciano-imgs/dish-1-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "card-dish",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "3sYd",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "Bfzo",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "18",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "FCwh",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "14",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "KepA",
+                  "url": "feliciano-imgs/dish-2-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "card-dish",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "bIWT",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "r8A0",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "18",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "MrF5",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "14",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "R9U1",
+                  "url": "feliciano-imgs/dish-3-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "card-dish",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "Z1sk",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "pXrM",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "18",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "YtCH",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "14",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "j1cM",
+                  "url": "feliciano-imgs/dish-4-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "card-dish",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          }
+        ]
+      },
+      "theme": "feliciano-landing-page",
+      "style": {
+        "background": "url(../../imgs/main-header-feliciano.jpg)",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "fontFamily": "",
+        "height": ""
+      }
+    },
+    {
+      "id": "7Azr",
+      "type": "wap-container",
+      "info": {
+        "dir": "row",
+        "cmps": [
+          {
+            "id": "jb3z",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "mr5D",
+                  "url": "feliciano-imgs/chef-salting.jpg",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "A3MS",
+                  "url": "feliciano-imgs/chef-cleaning-salt.jpg",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-feliciano",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "3Dgk",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "A5tr",
+                  "txt": "Feliciano Restaurant",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "EyHt",
+                  "txt": "A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "b3hL",
+                  "txt": "Mon - Fri 8 AM - 11 PM",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                },
+                {
+                  "id": "aGYT",
+                  "txt": "+ 1-978-123-4567",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-card-default",
+            "style": {
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          }
+        ]
+      },
+      "theme": "wap-feliciano-detail-card wap-container-flex",
+      "style": {
+        "background": "url()",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "fVfm",
+      "type": "wap-text",
+      "info": {
+        "title": [
+          {
+            "id": "r6uM",
+            "txt": "Catering Services",
+            "style": {
+              "background": "",
+              "color": "",
+              "fontFamily": "Poppins",
+              "fontStyle": "50px"
+            }
+          }
+        ],
+        "subtitle": [
+          {
+            "id": "U7kO",
+            "txt": "Catering Services",
+            "style": {
+              "background": "",
+              "color": "#c8a97e",
+              "fontFamily": "GreatVibes",
+              "fontStyle": ""
+            }
+          }
+        ]
+      },
+      "theme": "wap-feliciano-catering",
+      "style": {
+        "background": "",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "paddingRight": "",
+        "paddingTop": "",
+        "paddingBottom": "",
+        "paddingLeft": "",
+        "lineHeight": "",
+        "fontFamily": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "KowE",
+      "type": "wap-container",
+      "info": {
+        "dir": "row",
+        "cmps": [
+          {
+            "id": "zD30",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "oHW4",
+                  "txt": "Birthday Party",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "jyek",
+                  "url": "feliciano-imgs/catering-logo-1.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "Cq3c",
+                  "txt": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-catering-preview",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "8E33",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "aYB8",
+                  "txt": "Business Meetings",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "q5Oh",
+                  "url": "feliciano-imgs/catering-logo-2.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "lQUw",
+                  "txt": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-catering-preview",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "Yd2w",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "dKnU",
+                  "txt": "Wedding Party",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "kk0t",
+                  "url": "feliciano-imgs/catering-logo-3.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "4XA3",
+                  "txt": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-catering-preview",
+            "style": {"background": "url()", "color": ""}
+          }
+        ]
+      },
+      "theme": "wap-container-flex",
+      "style": {
+        "background": "url()",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "ycqm",
+      "type": "wap-container",
+      "info": {
+        "dir": "row",
+        "cmps": [
+          {
+            "id": "HCsk",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "ruud",
+                  "url": "feliciano-imgs/dish-1-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-menu",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "E2vX",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "UBto",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "yFrU",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "uDTS",
+                  "txt": "Order now",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-menu-card",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "098y",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "PFDv",
+                  "url": "feliciano-imgs/dish-3-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-menu",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "fFHr",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "csRR",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "zqzg",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "UiP1",
+                  "txt": "Order now",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-menu-card",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "W2it",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "iT17",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "eVva",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "sPNh",
+                  "txt": "Order now",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-menu-card",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "88SY",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "L9Qp",
+                  "url": "feliciano-imgs/dish-3-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-menu",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "De9d",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "cufb",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "PocX",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "xGeq",
+                  "txt": "Order now",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-menu-card",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "uk7G",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "DpNF",
+                  "url": "feliciano-imgs/dish-4-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-menu",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "avPW",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "TeXQ",
+                  "url": "feliciano-imgs/dish-4-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-menu",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "w5B0",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "gjnL",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "akEO",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "H0uC",
+                  "txt": "Order now",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-menu-card",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "Hz1K",
+            "type": "wap-img",
+            "info": {
+              "imgs": [
+                {
+                  "id": "UEjO",
+                  "url": "feliciano-imgs/dish-1-feliciano.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-img-menu",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "Uwrf",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "ws1l",
+                  "txt": "Grilled Beef with potatoes",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "J6P3",
+                  "txt": "Meat, Potatoes, Rice, Tomatoe",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "z9NI",
+                  "txt": "Order now",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-menu-card",
+            "style": {"background": "url()", "color": ""}
+          }
+        ]
+      },
+      "theme": "feliciano-menu-gallery",
+      "style": {
+        "background": "url()",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "paddingRight": "",
+        "paddingTop": "",
+        "paddingBottom": "",
+        "paddingLeft": "",
+        "lineHeight": "",
+        "fontFamily": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "7uCK",
+      "type": "wap-text",
+      "info": {
+        "title": [
+          {
+            "id": "9bXc",
+            "txt": "Our Master Chefs",
+            "style": {
+              "background": "",
+              "color": "",
+              "fontFamily": "Poppins",
+              "fontStyle": "50px"
+            }
+          }
+        ]
+      },
+      "theme": "basic-title wap-feliciano-chef-text",
+      "style": {
+        "background": "",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "paddingRight": "",
+        "paddingTop": "",
+        "paddingBottom": "",
+        "paddingLeft": "",
+        "lineHeight": "",
+        "fontFamily": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "vltD",
+      "type": "wap-container",
+      "info": {
+        "dir": "row",
+        "cmps": [
+          {
+            "id": "AU87",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "m03S",
+                  "txt": "John Smooth",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "CKln",
+                  "url": "feliciano-imgs/chef-1.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "8sD5",
+                  "txt": "Restaurant Owner",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "4gF1",
+                  "txt": "Contact the chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-chef-preview",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "1ESa",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "4x2u",
+                  "txt": "Becky Welson",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "XiBc",
+                  "url": "feliciano-imgs/chef-2.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "wlr6",
+                  "txt": "Head Chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "Bg5p",
+                  "txt": "Contact the chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-chef-preview",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "HdrW",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "cnI1",
+                  "txt": "Kharl Branyt",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "NVYS",
+                  "url": "feliciano-imgs/chef-3.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "LxxF",
+                  "txt": "Chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "Te2i",
+                  "txt": "Contact the chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-chef-preview",
+            "style": {"background": "url()", "color": ""}
+          },
+          {
+            "id": "HAnK",
+            "type": "wap-card",
+            "info": {
+              "title": [
+                {
+                  "id": "rU8q",
+                  "txt": "Luke Simon",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "imgs": [
+                {
+                  "id": "Fhvn",
+                  "url": "feliciano-imgs/chef-4.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins"
+                  }
+                }
+              ],
+              "subtitle": [
+                {
+                  "id": "WAQV",
+                  "txt": "Chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "Mpvc",
+                  "txt": "Contact the chef",
+                  "style": {
+                    "background": "url()",
+                    "color": "white",
+                    "backgroundColor": "#c8a97e",
+                    "fontFamily": "Poppins",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "wap-chef-preview",
+            "style": {"background": "url()", "color": ""}
+          }
+        ]
+      },
+      "theme": "wap-container-flex",
+      "style": {
+        "background": "url()",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "uuZY",
+      "type": "wap-text",
+      "info": {
+        "title": [
+          {
+            "id": "0qbT",
+            "txt": "Happy Customer",
+            "style": {
+              "background": "",
+              "color": "",
+              "fontFamily": "Poppins",
+              "fontStyle": "50px"
+            }
+          }
+        ],
+        "subtitle": [
+          {
+            "id": "2I3m",
+            "txt": "Happy Customer",
+            "style": {
+              "background": "",
+              "color": "#c8a97e",
+              "fontFamily": "GreatVibes",
+              "fontStyle": ""
+            }
+          }
+        ]
+      },
+      "theme": "wap-feliciano-catering",
+      "style": {
+        "background": "",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "paddingRight": "",
+        "paddingTop": "",
+        "paddingBottom": "",
+        "paddingLeft": "",
+        "lineHeight": "",
+        "fontFamily": "",
+        "fontStyle": ""
+      }
+    },
+    {
+      "id": "xIfE",
+      "type": "wap-container",
+      "info": {
+        "dir": "row",
+        "cmps": [
+          {
+            "id": "hAQp",
+            "type": "wap-review",
+            "info": {
+              "txt": [
+                {
+                  "id": "q7J4",
+                  "txt": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "id": "VHt8",
+                  "txt": "Yarden M.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "title": [
+                {
+                  "id": "41Og",
+                  "txt": "CEO & Head of lunch",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "avatar": [
+                {
+                  "id": "JXVZ",
+                  "url": "feliciano-imgs/yarden-review.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "feliciano-review",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "lU9V",
+            "type": "wap-review",
+            "info": {
+              "txt": [
+                {
+                  "id": "KXPu",
+                  "txt": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "id": "gIxh",
+                  "txt": "Rotem Bublil",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "title": [
+                {
+                  "id": "llH6",
+                  "txt": "CEO & Head of lunch",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "avatar": [
+                {
+                  "id": "7jom",
+                  "url": "feliciano-imgs/rotem-review.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "feliciano-review",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "GDBY",
+            "type": "wap-review",
+            "info": {
+              "txt": [
+                {
+                  "id": "xazL",
+                  "txt": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "id": "cinA",
+                  "txt": "Matan Lasry",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "title": [
+                {
+                  "id": "pHPD",
+                  "txt": "Chief ",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "avatar": [
+                {
+                  "id": "wtLC",
+                  "url": "feliciano-imgs/matan-review.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "feliciano-review",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          },
+          {
+            "id": "SGcT",
+            "type": "wap-review",
+            "info": {
+              "txt": [
+                {
+                  "id": "HQQP",
+                  "txt": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "id": "Bdqj",
+                  "txt": "Shani Aharon",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "title": [
+                {
+                  "id": "l8pk",
+                  "txt": "CEO & Head of lunch",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ],
+              "avatar": [
+                {
+                  "id": "lSHL",
+                  "url": "feliciano-imgs/shani-review.png",
+                  "style": {
+                    "background": "url()",
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontSize": "",
+                    "paddingRight": "",
+                    "paddingTop": "",
+                    "paddingBottom": "",
+                    "paddingLeft": "",
+                    "lineHeight": "",
+                    "fontFamily": "",
+                    "fontStyle": ""
+                  }
+                }
+              ]
+            },
+            "theme": "feliciano-review",
+            "style": {
+              "background": "url()",
+              "color": "",
+              "backgroundColor": "",
+              "fontSize": "",
+              "paddingRight": "",
+              "paddingTop": "",
+              "paddingBottom": "",
+              "paddingLeft": "",
+              "lineHeight": "",
+              "fontFamily": "",
+              "fontStyle": ""
+            }
+          }
+        ]
+      },
+      "theme": "feliciano-review-container",
+      "style": {
+        "background": "url()",
+        "color": "",
+        "backgroundColor": "",
+        "fontSize": "",
+        "paddingRight": "",
+        "paddingTop": "",
+        "paddingBottom": "",
+        "paddingLeft": "",
+        "lineHeight": "",
+        "fontFamily": "",
+        "fontStyle": ""
+      }
+    }
+  ]
+}
