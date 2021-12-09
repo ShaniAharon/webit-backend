@@ -28,6 +28,7 @@ async function query(filterBy) {
 }
 
 async function getById(wapId) {
+  console.log('\n\n\n\ngetById ~ wapId', wapId)
   try {
     const collection = await dbService.getCollection('wap')
     const wap = collection.findOne({ _id: ObjectId(wapId) })
@@ -57,6 +58,10 @@ async function remove(wapId) {
 async function update(wap) {
   console.log('UPDATED')
   try {
+    // let newWap = { ...wap } /// remember to come back to this
+    // delete newWap.wapHistory
+    // wap.wapHistory.push(newWap)
+
     // console.log('wap', wap); // dont change the database
     const copyWapId = wap._id //return the changes to  the store
     var id = ObjectId(wap._id)
@@ -74,11 +79,17 @@ async function update(wap) {
   }
 }
 
-async function add(wap) {
+async function add(wap, user) {
   try {
     const collection = await dbService.getCollection('wap')
     // console.log('23478 collection', collection);
-    const addedWap = await collection.insertOne(wap)
+    const newWap = {
+      ...wap,
+      _id: null,
+      createdAt: Date.now(),
+      createdBy: user,
+    }
+    const addedWap = await collection.insertOne(newWap)
     // console.log('addedWap:', addedWap)
     return wap
   } catch (err) {
