@@ -44,7 +44,7 @@ async function addWap(req, res) {
 async function updateWap(req, res) {
   try {
     const wap = req.body;
-    console.log("wap to update from store",wap);
+    // console.log("wap to update from store",wap);
     const updatedWap = await wapService.update(wap);
     res.json(updatedWap);
   } catch (err) {

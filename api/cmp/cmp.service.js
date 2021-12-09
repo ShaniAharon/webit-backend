@@ -8,7 +8,7 @@ async function query(filterBy) {
 
   const collection = await dbService.getCollection('cmp');
   var cmps = await collection.find(criteria).toArray();
-  console.log(cmps);
+  // console.log(cmps);
   return cmps;
 }
 

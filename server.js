@@ -4,7 +4,6 @@ const cors = require('cors');
 const utilService = require('./utilServiceJson');
 const path = require('path');
 const expressSession = require('express-session');
-
 const app = express();
 const http = require('http').createServer(app);
 
