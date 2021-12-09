@@ -4,7 +4,6 @@ const cors = require('cors')
 const utilService = require('./utilServiceJson')
 const path = require('path')
 const expressSession = require('express-session')
-
 const app = express()
 const http = require('http').createServer(app)
 
@@ -22,6 +21,8 @@ const authRoutes = require('./api/auth/auth.routes')
 const userRoutes = require('./api/user/user.routes')
 const cmpRoutes = require('./api/cmp/cmp.routes')
 const wapRoutes = require('./api/wap/wap.routes')
+const templatesRoute = require('./api/templates/templates.routes')
+
 const { connectSockets } = require('./services/socket.service')
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.resolve(__dirname, 'public')))
@@ -47,6 +48,8 @@ app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
 app.use('/api/wap', wapRoutes)
 app.use('/api/cmp', cmpRoutes)
+app.use('/api/template', templatesRoute)
+
 connectSockets(http, session)
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with
@@ -63,6 +66,352 @@ http.listen(port, () => {
 })
 
 let gCmps = [
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'pexels-photo-12211.jpeg',
+    category: 'Footers',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Feliciano',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-footer-text',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Open Hours',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                // 1
+                id: utilService.makeId(4),
+                txt: 'Monday 9:00 - 24:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                // 2
+                id: utilService.makeId(4),
+                txt: 'Tuesday 9:00 - 24:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                //3
+                id: utilService.makeId(4),
+                txt: 'Wednesday 9:00 - 24:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                // 4
+                id: utilService.makeId(4),
+                txt: 'Thursday 9:00 - 24:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                //5
+                id: utilService.makeId(4),
+                txt: 'Friday 9:00 - 02:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                //6
+                id: utilService.makeId(4),
+                txt: 'Saturday 9:00 - 02:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                //7
+                id: utilService.makeId(4),
+                txt: 'Sunday 9:00 - 02:00',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-footer-hours',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-signup',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Newsletter',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Far far away, behind the word mountains, far from the countries.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            input: [
+              {
+                id: utilService.makeId(4),
+                txt: '',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Subscribe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-signup',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'feliciano-footer',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
   {
     id: utilService.makeId(4),
     type: 'wap-header',
@@ -10871,6 +11220,353 @@ const wap_feliciano = {
 // }
 // gCmps = custom();
 //can genarate json for a wap
-fs.writeFile('testcmp.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
+
+const footer = {
+  id: utilService.makeId(4),
+  type: 'wap-container',
+  screenshotImg: 'pexels-photo-12211.jpeg',
+  category: 'Footers',
+  info: {
+    dir: 'row',
+    cmps: [
+      {
+        id: utilService.makeId(4),
+        type: 'wap-text',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Feliciano',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          subtitle: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-footer-text',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-text',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Open Hours',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          subtitle: [
+            {
+              // 1
+              id: utilService.makeId(4),
+              txt: 'Monday 9:00 - 24:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              // 2
+              id: utilService.makeId(4),
+              txt: 'Tuesday 9:00 - 24:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              //3
+              id: utilService.makeId(4),
+              txt: 'Wednesday 9:00 - 24:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              // 4
+              id: utilService.makeId(4),
+              txt: 'Thursday 9:00 - 24:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              //5
+              id: utilService.makeId(4),
+              txt: 'Friday 9:00 - 02:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              //6
+              id: utilService.makeId(4),
+              txt: 'Saturday 9:00 - 02:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              //7
+              id: utilService.makeId(4),
+              txt: 'Sunday 9:00 - 02:00',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-footer-hours',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-signup',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Newsletter',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          subtitle: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Far far away, behind the word mountains, far from the countries.',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          input: [
+            {
+              id: utilService.makeId(4),
+              txt: '',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          buttons: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Subscribe',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-signup',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+    ],
+  },
+  theme: 'feliciano-footer',
+  style: {
+    background: 'url()',
+    color: '',
+    backgroundColor: '',
+    fontSize: '',
+    paddingRight: '',
+    paddingTop: '',
+    paddingBottom: '',
+    paddingLeft: '',
+    lineHeight: '',
+    fontFamily: '',
+    fontStyle: '',
+  },
+}
+fs.writeFile('testcmp.json', JSON.stringify(wap_architecture), 'utf-8', () => {
   console.log('success')
 })

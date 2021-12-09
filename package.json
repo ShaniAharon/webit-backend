@@ -1,5 +1,9 @@
 {
   "name": "server",
+  "nodemonConfig": {
+    "ignore": ["logs/*"],
+    "delay": 2500
+  },
   "version": "1.0.0",
   "description": "production ready server",
   "main": "server.js",

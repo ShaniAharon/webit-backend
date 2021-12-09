@@ -1,6 +1,7 @@
 const asyncLocalStorage = require('./als.service')
 const logger = require('./logger.service')
 var sharedsession = require('express-socket.io-session')
+const wapService = require('../api/wap/wap-service')
 var gIo = null
 
 function connectSockets(http, session) {
@@ -20,37 +21,38 @@ function connectSockets(http, session) {
     socket.on('disconnect', socket => {
       console.log('Someone disconnected')
     })
-    socket.on('chat topic', topic => {
-      if (socket.myTopic === topic) return
-      if (socket.myTopic) {
-        socket.leave(socket.myTopic)
+    socket.on('wap id', wapId => {
+      console.log('Joining room:', wapId)
+      if (socket.wapId === wapId) return
+      if (socket.wapId) {
+        socket.leave(socket.wapId)
       }
-      socket.join(topic)
-      socket.myTopic = topic
+      socket.join(wapId)
+      socket.wapId = wapId
     })
-    socket.on('typing', user => {
-      gIo.to(socket.myTopic).emit('typing', user)
+    socket.on('wap updated', async wap => {
+      console.log('WAP UPDATED', wap._id)
+      try {
+        const updatedWap = await wapService.update(wap)
+        socket.broadcast.to(socket.wapId).emit('wap updated', updatedWap)
+      } catch (err) {
+        console.log(err)
+      }
     })
-    socket.on('stop typing', user => {
-      gIo.to(socket.myTopic).emit('stop typing', user)
+
+    socket.on('mousemove', async wap => {
+      socket.broadcast.to(socket.wapId).emit('mousemove', updatedWap)
     })
-    socket.on('chat newMsg', msg => {
-      console.log('Emitting Chat msg', msg)
-      // emits to all sockets:
-      // gIo.emit('chat addMsg', msg)
-      // emits only to sockets in the same room
-      gIo.to(socket.myTopic).emit('chat addMsg', msg)
-    })
-    socket.on('user-watch', userId => {
-      socket.join('watching:' + userId)
-    })
-    socket.on('set-user-socket', userId => {
-      logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`)
-      socket.userId = userId
-    })
-    socket.on('unset-user-socket', () => {
-      delete socket.userId
-    })
+    // socket.on('user-watch', (userId) => {
+    //   socket.join('watching:' + userId);
+    // });
+    // socket.on('set-user-socket', (userId) => {
+    //   logger.debug(`Setting (${socket.id}) socket.userId = ${userId}`);
+    //   socket.userId = userId;
+    // });
+    // socket.on('unset-user-socket', () => {
+    //   delete socket.userId;
+    // });
   })
 }
 
