@@ -1,30 +1,29 @@
-const express = require('express')
-const fs = require('fs')
-const cors = require('cors')
-const utilService = require('./utilServiceJson')
-const path = require('path')
-const expressSession = require('express-session')
-
-const app = express()
-const http = require('http').createServer(app)
+const express = require('express');
+const fs = require('fs');
+const cors = require('cors');
+const utilService = require('./utilServiceJson');
+const path = require('path');
+const expressSession = require('express-session');
+const app = express();
+const http = require('http').createServer(app);
 
 // Express App Config
 const session = expressSession({
   secret: 'coding is amazing',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false },
-})
-app.use(express.json())
-app.use(session)
+  cookie: {secure: false},
+});
+app.use(express.json());
+app.use(session);
 
-const authRoutes = require('./api/auth/auth.routes')
-const userRoutes = require('./api/user/user.routes')
-const cmpRoutes = require('./api/cmp/cmp.routes')
-const wapRoutes = require('./api/wap/wap.routes')
-const { connectSockets } = require('./services/socket.service')
+const authRoutes = require('./api/auth/auth.routes');
+const userRoutes = require('./api/user/user.routes');
+const cmpRoutes = require('./api/cmp/cmp.routes');
+const wapRoutes = require('./api/wap/wap.routes');
+const {connectSockets} = require('./services/socket.service');
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'public')))
+  app.use(express.static(path.resolve(__dirname, 'public')));
 } else {
   // app.use(express.static(path.resolve(__dirname, 'public')))
   const corsOptions = {
@@ -35,32 +34,32 @@ if (process.env.NODE_ENV === 'production') {
       'http://localhost:3000',
     ],
     credentials: true,
-  }
-  app.use(cors(corsOptions))
+  };
+  app.use(cors(corsOptions));
 }
 
 // routes
-const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
-app.all('*', setupAsyncLocalStorage)
+const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware');
+app.all('*', setupAsyncLocalStorage);
 
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
-app.use('/api/wap', wapRoutes)
-app.use('/api/cmp', cmpRoutes)
-connectSockets(http, session)
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/wap', wapRoutes);
+app.use('/api/cmp', cmpRoutes);
+connectSockets(http, session);
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 
 app.get('/**', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
-const logger = require('./services/logger.service')
-const port = process.env.PORT || 3000
+const logger = require('./services/logger.service');
+const port = process.env.PORT || 3000;
 http.listen(port, () => {
-  logger.info('Server is running on port: ' + port)
-})
+  logger.info('Server is running on port: ' + port);
+});
 
 let gCmps = [
   {
@@ -5420,7 +5419,7 @@ let gCmps = [
       fontStyle: '',
     },
   },
-]
+];
 const wap_architecture = {
   // _id: 'aaaaa12',
   name: 'Architecture',
@@ -5431,10 +5430,8 @@ const wap_architecture = {
     username: 'Hekro Special',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
 
   cmps: [
@@ -6029,7 +6026,7 @@ const wap_architecture = {
     },
   ],
   isPublic: true,
-}
+};
 
 const wap_fylo = {
   isPublic: true,
@@ -6041,10 +6038,8 @@ const wap_fylo = {
     username: '',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
   theme: 'fylo-main',
 
@@ -7193,7 +7188,7 @@ const wap_fylo = {
       },
     },
   ],
-}
+};
 
 const wap_sunnyside = {
   isPublic: true,
@@ -7204,10 +7199,8 @@ const wap_sunnyside = {
     username: '',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
   theme: 'sunnyside-main',
   cmps: [
@@ -8577,7 +8570,7 @@ const wap_sunnyside = {
       },
     },
   ],
-}
+};
 
 const wap_feliciano = {
   isPublic: true,
@@ -8588,10 +8581,8 @@ const wap_feliciano = {
     username: '',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
   theme: 'feliciano-main',
   cmps: [
@@ -10860,7 +10851,7 @@ const wap_feliciano = {
 
     //CHEF-IMGS
   ],
-}
+};
 // function custom() {
 //   const cmps = gCmps;
 //   let str = '';
@@ -10872,5 +10863,5 @@ const wap_feliciano = {
 // gCmps = custom();
 //can genarate json for a wap
 fs.writeFile('testcmp.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
-  console.log('success')
-})
+  console.log('success');
+});

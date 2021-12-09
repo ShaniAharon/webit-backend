@@ -43,7 +43,7 @@ async function getById(wapId) {
 }
 
 async function remove(wapId) {
-  console.log('FROM service', wapId)
+  // console.log('FROM service', wapId);
   try {
     const collection = await dbService.getCollection('wap')
     await collection.deleteOne({ _id: ObjectId(wapId) })
@@ -77,7 +77,7 @@ async function update(wap) {
 async function add(wap) {
   try {
     const collection = await dbService.getCollection('wap')
-    console.log('23478 collection', collection)
+    // console.log('23478 collection', collection);
     const addedWap = await collection.insertOne(wap)
     // console.log('addedWap:', addedWap)
     return wap
@@ -105,7 +105,7 @@ function filterWaps(filterBy, wapsToShow) {
     wap => filterBy.selectOpt === 'All' || wap.inStock === isInStock
   )
 
-  console.log(wapsToShow.length)
+  // console.log(wapsToShow.length);
   if (!filterBy.labels) return wapsToShow
 
   wapsToShow = wapsToShow.filter(wap => {

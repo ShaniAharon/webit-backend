@@ -50,7 +50,7 @@ async function getCmpById(req, res) {
 async function addCmp(req, res) {
   try {
     const cmp = req.body;
-    console.log(cmp);
+    // console.log(cmp);
     const addedCmp = await cmpService.add(cmp);
     res.json(addedCmp);
   } catch (err) {
