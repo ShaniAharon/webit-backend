@@ -27,3 +27,23 @@
 09/12/2021, 14:27:03 - INFO - Server is running on port: 3000 
 >>>>>>> 66ecefc3809c25c988ef5e78be0bbe83420fafee
 >>>>>>> 836e3135be558f38d8b133a1fd67b59dc267c81e
+9.12.2021, 16:53:18 - INFO - Server is running on port: 3000 
+9.12.2021, 16:53:38 - DEBUG - auth.service - signup with username: admin, fullname: admin (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:53:39 - DEBUG - auth.route - new account created: {"username":"admin","password":"$2b$10$oEm5Buz6p.2pXJPvsMylJ.P6Sw6kSepYJqTKPNKGQOH2gRgKeb46W","fullname":"admin","score":100,"_id":"61b21873c47b8a1f9c6a4c1c"} (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:53:39 - DEBUG - auth.service - login with username: admin (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:56:32 - INFO - Req from: admin (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:56:45 - DEBUG - auth.service - signup with username: admin, fullname: admin (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:56:45 - DEBUG - auth.route - new account created: {"username":"admin","password":"$2b$10$ZrnC6TG86vO0/nRCY.r1VOfKDANJFCXb95.efgim8ejR8Ymr5ie0C","fullname":"admin","score":100,"_id":"61b2192dc47b8a1f9c6a4c1d"} (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:56:45 - DEBUG - auth.service - login with username: admin (sid: NbC2r9jIOzqIkdw3676eog0UfPcphCNr)
+9.12.2021, 16:58:49 - INFO - Server is running on port: 3000 
+9.12.2021, 16:59:37 - DEBUG - auth.service - signup with username: admin, fullname: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 16:59:37 - DEBUG - auth.route - new account created: {"username":"admin","password":"$2b$10$0WpTG2GPK1KLuDPFFr3wz.d.BmNOfr.bhd0P4gh1BvCfA3GwWf4M6","fullname":"admin","_id":"61b219d92911871ff42af102"} (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 16:59:37 - DEBUG - auth.service - login with username: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 17:11:31 - INFO - Req from: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 17:34:12 - DEBUG - auth.service - login with username: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 17:56:58 - DEBUG - auth.service - login with username: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 18:03:49 - DEBUG - auth.service - login with username: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 18:04:21 - DEBUG - auth.service - login with username: admin (sid: 459JXXJwK1uJT3uxHOoz6Gixme4crqDQ)
+9.12.2021, 18:18:57 - INFO - Server is running on port: 3000 
+9.12.2021, 18:20:56 - DEBUG - auth.service - login with username: admin (sid: c0Pv5vW8iZvi3_OVFeMv_w7PNFhKKwtI)
+9.12.2021, 18:22:09 - DEBUG - auth.service - login with username: admin (sid: c0Pv5vW8iZvi3_OVFeMv_w7PNFhKKwtI)
