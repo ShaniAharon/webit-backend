@@ -1,30 +1,30 @@
-const express = require('express');
-const fs = require('fs');
-const cors = require('cors');
-const utilService = require('./utilServiceJson');
-const path = require('path');
-const expressSession = require('express-session');
+const express = require('express')
+const fs = require('fs')
+const cors = require('cors')
+const utilService = require('./utilServiceJson')
+const path = require('path')
+const expressSession = require('express-session')
 
-const app = express();
-const http = require('http').createServer(app);
+const app = express()
+const http = require('http').createServer(app)
 
 // Express App Config
 const session = expressSession({
   secret: 'coding is amazing',
   resave: false,
   saveUninitialized: true,
-  cookie: {secure: false},
-});
-app.use(express.json());
-app.use(session);
+  cookie: { secure: false },
+})
+app.use(express.json())
+app.use(session)
 
-const authRoutes = require('./api/auth/auth.routes');
-const userRoutes = require('./api/user/user.routes');
-const cmpRoutes = require('./api/cmp/cmp.routes');
-const wapRoutes = require('./api/wap/wap.routes');
-const {connectSockets} = require('./services/socket.service');
+const authRoutes = require('./api/auth/auth.routes')
+const userRoutes = require('./api/user/user.routes')
+const cmpRoutes = require('./api/cmp/cmp.routes')
+const wapRoutes = require('./api/wap/wap.routes')
+const { connectSockets } = require('./services/socket.service')
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'public')));
+  app.use(express.static(path.resolve(__dirname, 'public')))
 } else {
   // app.use(express.static(path.resolve(__dirname, 'public')))
   const corsOptions = {
@@ -35,38 +35,39 @@ if (process.env.NODE_ENV === 'production') {
       'http://localhost:3000',
     ],
     credentials: true,
-  };
-  app.use(cors(corsOptions));
+  }
+  app.use(cors(corsOptions))
 }
 
 // routes
-const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware');
-app.all('*', setupAsyncLocalStorage);
+const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
+app.all('*', setupAsyncLocalStorage)
 
-app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/wap', wapRoutes);
-app.use('/api/cmp', cmpRoutes);
-connectSockets(http, session);
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/wap', wapRoutes)
+app.use('/api/cmp', cmpRoutes)
+connectSockets(http, session)
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 
 app.get('/**', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
-const logger = require('./services/logger.service');
-const port = process.env.PORT || 3000;
+const logger = require('./services/logger.service')
+const port = process.env.PORT || 3000
 http.listen(port, () => {
-  logger.info('Server is running on port: ' + port);
-});
+  logger.info('Server is running on port: ' + port)
+})
 
 let gCmps = [
   {
     id: utilService.makeId(4),
     type: 'wap-header',
     screenshotImg: 'archi-examples/theme-header-architecture.png',
+    category: 'Headers',
     info: {
       title: '',
       subtitle: '',
@@ -194,6 +195,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-card',
     screenshotImg: 'archi-examples/card-archi.png',
+    category: 'Cards',
     info: {
       title: [
         {
@@ -218,7 +220,7 @@ let gCmps = [
       imgs: [
         {
           id: utilService.makeId(4),
-          url: 'building1.jpg',
+          url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047582/k6uufj8vqob5zmeqqguz.jpg',
           style: {
             background: 'url()',
             color: '',
@@ -241,7 +243,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '693.350',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -255,6 +256,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-text',
     screenshotImg: 'archi-examples/text-archi.png',
+    category: 'Text',
     info: {
       title: [
         {
@@ -301,7 +303,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '220.100',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -315,6 +316,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-container',
     screenshotImg: 'archi-examples/gallery-archi.png',
+    category: 'Galleries',
     info: {
       dir: 'row',
       cmps: [
@@ -345,7 +347,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'proj1.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/z37wb0ptsbys73axascc.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -404,7 +406,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'proj2.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047584/divy2h23e5uzapcqpqup.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -463,7 +465,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'proj3.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/cb0vpto1vvxblurhj3rf.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -522,7 +524,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'proj4.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047585/uywwyuledud6ctzctxit.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -562,7 +564,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '647.050',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -576,6 +577,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-contact',
     screenshotImg: 'archi-examples/contact-archi.png',
+    category: 'Contacts',
     info: {
       title: [
         {
@@ -599,7 +601,7 @@ let gCmps = [
       subtitle: [
         {
           id: utilService.makeId(6),
-          txt: 'We’re always looking for new opportunities and are comfortable working internationally. Please get in touch and one of our project managers will contact you about beginning the proposal process.',
+          txt: "We're always looking for new opportunities and are comfortable working internationally. Please get in touch and one of our project managers will contact you about beginning the proposal process.",
           style: {
             background: 'url()',
             color: '',
@@ -641,7 +643,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '199.600',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -655,12 +656,13 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-header',
     screenshotImg: 'fylo-examples/fylo-header.png',
+    category: 'Headers',
     info: {
       title: '',
       subtitle: '',
       logo: {
         type: 'img',
-        url: 'fylo-imgs/logo.svg',
+        url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046911/y8xzjmh6sikx4iaxsjoy.svg',
         txt: '',
         style: {
           background: 'url()',
@@ -750,6 +752,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-container',
     screenshotImg: 'fylo-examples/fylo-card-v1.png',
+    category: 'Landings',
     info: {
       dir: 'row',
       cmps: [
@@ -760,7 +763,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/illustration-intro.png',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/nwynylnvzz3cl5rtsmdo.png',
                 style: {
                   background: 'url()',
                   color: '',
@@ -900,7 +903,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '648.675',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -914,6 +916,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-container',
     screenshotImg: 'fylo-examples/fylo-gallery.png',
+    category: 'Cards',
     info: {
       dir: 'row',
       cmps: [
@@ -962,7 +965,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/icon-access-anywhere.svg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/hdxrb2fjvotkfjrglqkb.svg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1039,7 +1042,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/icon-security.svg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046802/z1cwegkmiv9qawbmmwad.svg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1116,7 +1119,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/icon-collaboration.svg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046825/g1weljwqgxhryicacme3.svg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1193,7 +1196,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/icon-any-file.svg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/lq0ngmmk0ciulsowcdb0.svg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1233,7 +1236,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '848.013',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -1247,6 +1249,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-container',
     screenshotImg: 'fylo-examples/fylo-card-v2.png',
+    category: 'Cards',
     info: {
       dir: 'row',
       cmps: [
@@ -1257,7 +1260,7 @@ let gCmps = [
             imgs: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/illustration-stay-productive.png',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/so8bjwwlzcl4eikovxgr.png',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1372,7 +1375,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '649.438',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -1386,6 +1388,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-container',
     screenshotImg: 'fylo-examples/fylo-review.png',
+    category: 'Reviews',
     info: {
       dir: 'row',
       cmps: [
@@ -1453,7 +1456,7 @@ let gCmps = [
             avatar: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/profile-1.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/tcrmtyvjpse0llvh7r45.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1549,7 +1552,7 @@ let gCmps = [
             avatar: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/profile-2.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/ongddbdwdh9wjmscaydh.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1645,7 +1648,7 @@ let gCmps = [
             avatar: [
               {
                 id: utilService.makeId(4),
-                url: 'fylo-imgs/profile-3.jpg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/j4wfnxxodyuxlayfvjno.jpg',
                 style: {
                   background: 'url()',
                   color: '',
@@ -1685,7 +1688,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '640',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -1699,6 +1701,7 @@ let gCmps = [
     id: utilService.makeId(4),
     type: 'wap-signup',
     screenshotImg: 'fylo-examples/fylo-sign-up.png',
+    category: 'Contacts',
     info: {
       title: [
         {
@@ -1783,7 +1786,6 @@ let gCmps = [
       color: '',
       backgroundColor: '',
       fontSize: '',
-      height: '307.725',
       paddingRight: '',
       paddingTop: '',
       paddingBottom: '',
@@ -1793,8 +1795,3632 @@ let gCmps = [
       fontStyle: '',
     },
   },
-];
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/hero.png',
+    category: 'Landings',
+    info: {
+      dir: 'column',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-header',
+          info: {
+            title: '',
+            subtitle: '',
+            logo: {
+              type: 'img',
+              url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047189/gvhktnel0e6qvqxpnooy.svg',
+              txt: '',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            navBar: [
+              // need to figure this out quickly
+              {
+                id: utilService.makeId(6),
+                txt: 'About',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Services',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Projects',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Contact',
+                style: {
+                  background: 'url()',
+                  color: 'black',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-header-sunnyside',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'WE ARE CREATIVE',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '3.75rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-text-sunnyside',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'theme-hero-sunnyside',
+    style: {
+      background: `url('https://res.cloudinary.com/rb-mister-toy/image/upload/v1638813593/edeyukdwkhhk5we1vbeh.jpg')`, //'url(sunnyside-imgs/images/desktop/image-header.jpg)',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/egg.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Transform your brand',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '2em',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Fraunces,serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'We are a full-service creative agency specializing in helping brands grow fast. engage your clients through compelling visuals that do most of the marketing for youre',
+                style: {
+                  background: 'url()',
+                  color: '#99A799',
+                  backgroundColor: '',
+                  fontSize: '1.125rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'LEARN MORE',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-card-default',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047278/tchg2bfwn2rcbo7u5jsr.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-sunny',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/pink.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047278/l4imdffltxtyeo3muyat.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-sunny',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Stand out to the right audience',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '3rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Fraunces,serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'We are a full-service creative agency specializing in helping brands grow fast. engage your clients through compelling visuals that do most of the marketing for youre',
+                style: {
+                  background: 'url()',
+                  color: '#99A799',
+                  backgroundColor: '',
+                  fontSize: '1.125rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'LEARN MORE',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-card-default',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/orange.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Graphic Design',
+                style: {
+                  background: '',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Fraunces,serif',
+                  fontStyle: '1.8rem',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Great design makes you memorable. we deliver artwork that underscores your brand messgae and captures potential clients attention.',
+                style: {
+                  background: 'url()',
+                  color: '#99A799',
+                  backgroundColor: '',
+                  fontSize: '1.125rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-card-text-inside wap-bg-img', //maybe same theme like before
+          style: {
+            background: `url('https://res.cloudinary.com/rb-mister-toy/image/upload/v1638862155/i2c1irwsrw1eo3ndehxy.jpg')`,
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Photography',
+                style: {
+                  background: `url()`,
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Fraunces,serif',
+                  fontStyle: '1.8rem',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Great design makes you memorable. we deliver artwork that underscores your brand messgae and captures potential clients attention.',
+                style: {
+                  background: 'url()',
+                  color: '#99A799',
+                  backgroundColor: '',
+                  fontSize: '1.125rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-card-text-inside wap-bg-img', //maybe same theme like before
+          style: {
+            background: ` url(
+              'https://res.cloudinary.com/rb-mister-toy/image/upload/v1638862167/u54kaytue4izlyy2aqzd.jpg')`,
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-container-flex',
+    style: {
+      background: `url()`,
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+      height: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/reviews.png',
+    category: 'Reviews',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'CLIENT TESTIMONIALS',
+                style: {
+                  background: 'url()',
+                  color: '#99A799',
+                  backgroundColor: '',
+                  fontSize: '1.125rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-text-sunnyside-review-title basic-title',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: 'We put our trust in sunnyside and they delivered. making sure our needs were met and deadlines were always hit.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Emily R.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Marketing director',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047218/vhclmr440m2t8djfwvp3.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-review-sunnyside',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+            height: '400',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: 'We put our trust in sunnyside and they delivered. making sure our needs were met and deadlines were always hit.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Thomas S.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Marketing director',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047218/mzogv0hke7fyqncuoofq.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-review-sunnyside',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: 'We put our trust in sunnyside and they delivered. making sure our needs were met and deadlines were always hit.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Jennie F.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Marketing director',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '1.25rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '1.75rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047217/lsttztfqqw0ydmzw2aad.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-review-sunnyside',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'theme-reviews-sunnyside',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/imgs.png',
+    category: 'Galleries',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/obournwajbm91puewp2d.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-sunny',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/ypwtbx0kygjlafvspjoa.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-sunny',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/xzoon57pmlzolnwh05jw.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-sunny',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/xjgf5ouan5y7ielhflby.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-sunny',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'sunnyside-examples/footer.png',
+    category: 'Footers',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'sunnyside',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '3rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Barlow,sans-serif', //maybe change font family
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-text-sunnyside-footer-title',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-header',
+          info: {
+            title: '',
+            subtitle: '',
+            navBar: [
+              {
+                id: utilService.makeId(6),
+                txt: 'About',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Services',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Projects',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '',
+                  fontSize: '1.5rem',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '2rem',
+                  fontFamily: 'Barlow,sans-serif',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-sunnyside-footer-nav',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-social',
+          info: {
+            icons: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/fsrwrmaypdamlutcckaj.svg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/hu70lgble2ovlac6rd3d.svg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/kgvy5qmccx4fjf1qk7ic.svg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/oy2fh5qxeimwjkw5f5zz.svg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'theme-sunnyside-footer-icons',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-footer-sunny',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/hero.png',
+    category: 'Landings',
+    info: {
+      dir: 'column',
+      cmps: [
+        //HEADER
+        {
+          id: utilService.makeId(4),
+          type: 'wap-header',
+          info: {
+            title: '',
+            subtitle: '',
+            logo: {
+              type: 'txt',
+              txt: 'Feliciano',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '20',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: 'Poppins',
+                fontStyle: '',
+              },
+            },
+            navBar: [
+              {
+                id: utilService.makeId(6),
+                txt: 'Home',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'About',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Menu',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Stories',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Contact',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(6),
+                txt: 'Book a table',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontSize: '18',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-header-feliciano',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        //HEADER
+        //TEXT
+        {
+          id: utilService.makeId(4),
+          type: 'wap-text',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Feliciano',
+                style: {
+                  background: '',
+                  color: '#c8a97e',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'GreatVibes',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                txt: 'Notorious and Tasty',
+                style: {
+                  background: '',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Arial',
+                  fontStyle: '50px',
+                },
+              },
+            ],
+          },
+          theme: 'landing-feliciano', //maybe same theme like before
+          style: {
+            background: `url()`,
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        //TEXT
+        //CARDS
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '18',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '14',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'card-dish',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '18',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '14',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/czna341vpw6mm15tbygi.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'card-dish',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '18',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '14',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/so8gr3gawwx5ejpyecw8.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'card-dish',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '18',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '14',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/yf4oetd3x5yqgqz6lbe0.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'card-dish',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        //CARDS
+      ],
+    },
+    theme: 'feliciano-landing-page',
+    style: {
+      background: 'url(../../imgs/main-header-feliciano.jpg)',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      fontFamily: '',
+      height: '',
+    },
+  },
+  //Hero container
+  //Container2
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/herochefs.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        //IMAGES
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045697/hbahgn9wxtzvj51kctdi.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045690/dv65ye7pvztvruzwjj4q.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-feliciano',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        //IMAGES
+        //CARD
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Feliciano Restaurant',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                txt: 'Mon - Fri 8 AM - 11 PM',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+              {
+                id: utilService.makeId(4),
+                txt: '+ 1-978-123-4567',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-card-default',
+          style: {
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        //CARD
+      ],
+    },
 
+    theme: 'wap-feliciano-detail-card wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      fontStyle: '',
+    },
+  },
+  //Container2
+  //TEXT CMP
+  {
+    id: utilService.makeId(4),
+    type: 'wap-text',
+    screenshotImg: 'feliciano-examples/text.png',
+    category: 'Text',
+    info: {
+      title: [
+        {
+          id: utilService.makeId(4),
+          txt: 'Catering Services',
+          style: {
+            background: '',
+            color: '',
+            fontFamily: 'Poppins',
+            fontStyle: '50px',
+          },
+        },
+      ],
+      subtitle: [
+        {
+          id: utilService.makeId(4),
+          txt: 'Catering Services',
+          style: {
+            background: '',
+            color: '#c8a97e',
+            fontFamily: 'GreatVibes',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-feliciano-catering', //maybe same theme like before
+    style: {
+      background: ``,
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/services.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        //IMAGES
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Birthday Party',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045685/otxtfe0johrcwqdug2dz.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-catering-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Business Meetings',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wx7awvwj6ff2rgpo5496.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-catering-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Wedding Party',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/cstj9mlafjyman7kbqqv.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-catering-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        //IMAGES
+      ],
+    },
+    theme: 'wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      fontStyle: '',
+    },
+  },
+
+  //TEXT CMP
+  //MENU-CONTAINER
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/menu1.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          //1
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        }, // 2
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // 3
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/so8gr3gawwx5ejpyecw8.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          // 4
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // end of the first line
+        {
+          // second line begins // 1
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // 2
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/czna341vpw6mm15tbygi.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        }, // 3
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, //4
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/p1oib2rzk32ne5mwyxz9.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        }, // 3rd line begins // 1
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/yf4oetd3x5yqgqz6lbe0.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          // 2
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, //3
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Grilled Beef with potatoes',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Meat, Potatoes, Rice, Tomatoe',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // 5
+      ],
+    },
+    theme: 'feliciano-menu-gallery container-layout',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  //MENU-CONTAINER
+  {
+    id: utilService.makeId(4),
+    type: 'wap-text',
+    screenshotImg: 'feliciano-examples/chefs-text.png',
+    category: 'Text',
+    info: {
+      title: [
+        {
+          id: utilService.makeId(4),
+          txt: 'Our Master Chefs',
+          style: {
+            background: '',
+            color: '',
+            fontFamily: 'Poppins',
+            fontStyle: '50px',
+          },
+        },
+      ],
+      subtitle: [
+        {
+          id: utilService.makeId(4),
+          txt: 'Our Master Chefs',
+          style: {
+            background: '',
+            color: '#c8a97e',
+            fontFamily: 'GreatVibes',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-feliciano-catering', //maybe same theme like before
+    style: {
+      background: ``,
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  //CHEF-IMGS
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/chefs-imgs.png',
+    category: 'Cards',
+    info: {
+      dir: 'row',
+      cmps: [
+        //IMAGES
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'John Smooth',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Restaurant Owner',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Contact the chef',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-chef-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Becky Welson',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Head Chef',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Contact the chef',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-chef-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Kharl Branyt',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/qwmjkk2qe7bq4pu0uwyb.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Chef',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Contact the chef',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-chef-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Luke Simon',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/oqlcyu8uqm7eezumvtb7.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Chef',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Contact the chef',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-chef-preview',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+        //IMAGES
+      ],
+    },
+    theme: 'wap-container-center container-layout',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      fontStyle: '',
+    },
+  },
+
+  //TEXT CMP
+  {
+    id: utilService.makeId(4),
+    type: 'wap-text',
+    screenshotImg: 'feliciano-examples/happy-text.png',
+    category: 'Text',
+    info: {
+      title: [
+        {
+          id: utilService.makeId(4),
+          txt: 'Happy Customer',
+          style: {
+            background: '',
+            color: '',
+            fontFamily: 'Poppins',
+            fontStyle: '50px',
+          },
+        },
+      ],
+      subtitle: [
+        {
+          id: utilService.makeId(4),
+          txt: 'Happy Customer',
+          style: {
+            background: '',
+            color: '#c8a97e',
+            fontFamily: 'GreatVibes',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-feliciano-catering', //maybe same theme like before
+    style: {
+      background: ``,
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+
+  //TEXT CMP
+  //Reviews
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/reviews.png',
+    category: 'Reviews',
+    info: {
+      dir: 'row',
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Yarden M.',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'CEO & Head of lunch',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/xdjpu2m2cekusa9sumk9.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-review',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Rotem Bublil',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'CEO & Head of lunch',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/z6kmqgl99aj7quigxfi7.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-review',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Matan Lasry',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Chief ',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/wcuewyjbvcl1ng9sexp6.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-review',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-review',
+          info: {
+            txt: [
+              {
+                id: utilService.makeId(4),
+                txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            name: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Shani Aharon',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'CEO & Head of lunch',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+            avatar: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/ynikal9lmpvlmmmyfijm.png',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'feliciano-review',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'feliciano-review-container',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+]
 const wap_architecture = {
   // _id: 'aaaaa12',
   name: 'Architecture',
@@ -1805,14 +5431,18 @@ const wap_architecture = {
     username: 'Hekro Special',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
 
   cmps: [
     {
       id: utilService.makeId(4),
       type: 'wap-header',
+      screenshotImg: 'archi-examples/theme-header-architecture.png',
+      category: 'Headers',
       info: {
         title: '',
         subtitle: '',
@@ -1939,6 +5569,8 @@ const wap_architecture = {
     {
       id: utilService.makeId(4),
       type: 'wap-card',
+      screenshotImg: 'archi-examples/card-archi.png',
+      category: 'Cards',
       info: {
         title: [
           {
@@ -1963,7 +5595,7 @@ const wap_architecture = {
         imgs: [
           {
             id: utilService.makeId(4),
-            url: 'building1.jpg',
+            url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047582/k6uufj8vqob5zmeqqguz.jpg',
             style: {
               background: 'url()',
               color: '',
@@ -1998,6 +5630,8 @@ const wap_architecture = {
     {
       id: utilService.makeId(4),
       type: 'wap-text',
+      screenshotImg: 'archi-examples/text-archi.png',
+      category: 'Text',
       info: {
         title: [
           {
@@ -2056,6 +5690,8 @@ const wap_architecture = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'archi-examples/gallery-archi.png',
+      category: 'Galleries',
       info: {
         dir: 'row',
         cmps: [
@@ -2086,7 +5722,7 @@ const wap_architecture = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'proj1.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/z37wb0ptsbys73axascc.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2145,7 +5781,7 @@ const wap_architecture = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'proj2.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047584/divy2h23e5uzapcqpqup.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2204,7 +5840,7 @@ const wap_architecture = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'proj3.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/cb0vpto1vvxblurhj3rf.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2263,7 +5899,7 @@ const wap_architecture = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'proj4.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047585/uywwyuledud6ctzctxit.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2315,6 +5951,8 @@ const wap_architecture = {
     {
       id: utilService.makeId(4),
       type: 'wap-contact',
+      screenshotImg: 'archi-examples/contact-archi.png',
+      category: 'Contacts',
       info: {
         title: [
           {
@@ -2338,7 +5976,7 @@ const wap_architecture = {
         subtitle: [
           {
             id: utilService.makeId(6),
-            txt: 'We’re always looking for new opportunities and are comfortable working internationally. Please get in touch and one of our project managers will contact you about beginning the proposal process.',
+            txt: "We're always looking for new opportunities and are comfortable working internationally. Please get in touch and one of our project managers will contact you about beginning the proposal process.",
             style: {
               background: 'url()',
               color: '',
@@ -2391,7 +6029,7 @@ const wap_architecture = {
     },
   ],
   isPublic: true,
-};
+}
 
 const wap_fylo = {
   isPublic: true,
@@ -2403,8 +6041,10 @@ const wap_fylo = {
     username: '',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
   theme: 'fylo-main',
 
@@ -2412,12 +6052,14 @@ const wap_fylo = {
     {
       id: utilService.makeId(4),
       type: 'wap-header',
+      screenshotImg: 'fylo-examples/fylo-header.png',
+      category: 'Headers',
       info: {
         title: '',
         subtitle: '',
         logo: {
           type: 'img',
-          url: 'fylo-imgs/logo.svg',
+          url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046911/y8xzjmh6sikx4iaxsjoy.svg',
           txt: '',
           style: {
             background: 'url()',
@@ -2506,6 +6148,8 @@ const wap_fylo = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'fylo-examples/fylo-card-v1.png',
+      category: 'Landings',
       info: {
         dir: 'row',
         cmps: [
@@ -2516,7 +6160,7 @@ const wap_fylo = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/illustration-intro.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/nwynylnvzz3cl5rtsmdo.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2668,6 +6312,8 @@ const wap_fylo = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'fylo-examples/fylo-gallery.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -2716,7 +6362,7 @@ const wap_fylo = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/icon-access-anywhere.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/hdxrb2fjvotkfjrglqkb.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2793,7 +6439,7 @@ const wap_fylo = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/icon-security.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046802/z1cwegkmiv9qawbmmwad.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2870,7 +6516,7 @@ const wap_fylo = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/icon-collaboration.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046825/g1weljwqgxhryicacme3.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2947,7 +6593,7 @@ const wap_fylo = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/icon-any-file.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/lq0ngmmk0ciulsowcdb0.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -2999,6 +6645,8 @@ const wap_fylo = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'fylo-examples/fylo-card-v2.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -3009,7 +6657,7 @@ const wap_fylo = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/illustration-stay-productive.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/so8bjwwlzcl4eikovxgr.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -3136,6 +6784,8 @@ const wap_fylo = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'fylo-examples/fylo-review.png',
+      category: 'Reviews',
       info: {
         dir: 'row',
         cmps: [
@@ -3203,7 +6853,7 @@ const wap_fylo = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/profile-1.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/tcrmtyvjpse0llvh7r45.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -3299,7 +6949,7 @@ const wap_fylo = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/profile-2.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/ongddbdwdh9wjmscaydh.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -3395,7 +7045,7 @@ const wap_fylo = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'fylo-imgs/profile-3.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/j4wfnxxodyuxlayfvjno.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -3447,6 +7097,8 @@ const wap_fylo = {
     {
       id: utilService.makeId(4),
       type: 'wap-signup',
+      screenshotImg: 'fylo-examples/fylo-sign-up.png',
+      category: 'Contacts',
       info: {
         title: [
           {
@@ -3541,7 +7193,7 @@ const wap_fylo = {
       },
     },
   ],
-};
+}
 
 const wap_sunnyside = {
   isPublic: true,
@@ -3552,14 +7204,18 @@ const wap_sunnyside = {
     username: '',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
   theme: 'sunnyside-main',
   cmps: [
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/hero.png',
+      category: 'Landings',
       info: {
         dir: 'column',
         cmps: [
@@ -3571,7 +7227,7 @@ const wap_sunnyside = {
               subtitle: '',
               logo: {
                 type: 'img',
-                url: 'sunnyside-imgs/images/logo.svg',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047189/gvhktnel0e6qvqxpnooy.svg',
                 txt: '',
                 style: {
                   background: 'url()',
@@ -3733,6 +7389,8 @@ const wap_sunnyside = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/egg.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -3821,7 +7479,7 @@ const wap_sunnyside = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/desktop/image-transform.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047278/tchg2bfwn2rcbo7u5jsr.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -3873,6 +7531,8 @@ const wap_sunnyside = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/pink.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -3883,7 +7543,7 @@ const wap_sunnyside = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/desktop/image-stand-out.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047278/l4imdffltxtyeo3muyat.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4013,6 +7673,8 @@ const wap_sunnyside = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/orange.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -4059,7 +7721,7 @@ const wap_sunnyside = {
                 },
               ],
             },
-            theme: 'wap-card-text-inside wap-bg-img basic-title', //maybe same theme like before
+            theme: 'wap-card-text-inside wap-bg-img', //maybe same theme like before
             style: {
               background: `url('https://res.cloudinary.com/rb-mister-toy/image/upload/v1638862155/i2c1irwsrw1eo3ndehxy.jpg')`,
               color: '',
@@ -4117,7 +7779,7 @@ const wap_sunnyside = {
                 },
               ],
             },
-            theme: 'wap-card-text-inside wap-bg-img basic-title', //maybe same theme like before
+            theme: 'wap-card-text-inside wap-bg-img', //maybe same theme like before
             style: {
               background: ` url(
                 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1638862167/u54kaytue4izlyy2aqzd.jpg')`,
@@ -4154,6 +7816,8 @@ const wap_sunnyside = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/reviews.png',
+      category: 'Reviews',
       info: {
         dir: 'row',
         cmps: [
@@ -4260,7 +7924,7 @@ const wap_sunnyside = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/image-emily.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047218/vhclmr440m2t8djfwvp3.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4357,7 +8021,7 @@ const wap_sunnyside = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/image-thomas.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047218/mzogv0hke7fyqncuoofq.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4453,7 +8117,7 @@ const wap_sunnyside = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/image-jennie.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047217/lsttztfqqw0ydmzw2aad.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4505,6 +8169,8 @@ const wap_sunnyside = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/imgs.png',
+      category: 'Galleries',
       info: {
         dir: 'row',
         cmps: [
@@ -4515,7 +8181,7 @@ const wap_sunnyside = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/desktop/image-gallery-cone.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/obournwajbm91puewp2d.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4554,7 +8220,7 @@ const wap_sunnyside = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/desktop/image-gallery-milkbottles.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/ypwtbx0kygjlafvspjoa.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4593,7 +8259,7 @@ const wap_sunnyside = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/desktop/image-gallery-orange.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/xzoon57pmlzolnwh05jw.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4632,7 +8298,7 @@ const wap_sunnyside = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/desktop/image-gallery-sugarcubes.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047277/xjgf5ouan5y7ielhflby.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4684,6 +8350,8 @@ const wap_sunnyside = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'sunnyside-examples/footer.png',
+      category: 'Footers',
       info: {
         dir: 'row',
         cmps: [
@@ -4808,7 +8476,7 @@ const wap_sunnyside = {
               icons: [
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/icon-facebook.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/fsrwrmaypdamlutcckaj.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4825,7 +8493,7 @@ const wap_sunnyside = {
                 },
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/icon-instagram.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/hu70lgble2ovlac6rd3d.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4842,7 +8510,7 @@ const wap_sunnyside = {
                 },
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/icon-twitter.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/kgvy5qmccx4fjf1qk7ic.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4859,7 +8527,7 @@ const wap_sunnyside = {
                 },
                 {
                   id: utilService.makeId(4),
-                  url: 'sunnyside-imgs/images/icon-pinterest.svg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047488/oy2fh5qxeimwjkw5f5zz.svg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -4909,7 +8577,7 @@ const wap_sunnyside = {
       },
     },
   ],
-};
+}
 
 const wap_feliciano = {
   isPublic: true,
@@ -4920,8 +8588,10 @@ const wap_feliciano = {
     username: '',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
   theme: 'feliciano-main',
   cmps: [
@@ -4929,6 +8599,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'feliciano-examples/hero.png',
+      category: 'Landings',
       info: {
         dir: 'column',
         cmps: [
@@ -5181,7 +8853,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-1-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5258,7 +8930,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-2-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/czna341vpw6mm15tbygi.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5335,7 +9007,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-3-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/so8gr3gawwx5ejpyecw8.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5412,7 +9084,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-4-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/yf4oetd3x5yqgqz6lbe0.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5462,6 +9134,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'feliciano-examples/herochefs.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -5473,7 +9147,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/chef-salting.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045697/hbahgn9wxtzvj51kctdi.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5485,7 +9159,7 @@ const wap_feliciano = {
                 },
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/chef-cleaning-salt.jpg',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045690/dv65ye7pvztvruzwjj4q.jpg',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5598,6 +9272,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-text',
+      screenshotImg: 'feliciano-examples/text.png',
+      category: 'Text',
       info: {
         title: [
           {
@@ -5642,6 +9318,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'feliciano-examples/services.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -5666,7 +9344,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/catering-logo-1.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045685/otxtfe0johrcwqdug2dz.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5717,7 +9395,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/catering-logo-2.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wx7awvwj6ff2rgpo5496.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5768,7 +9446,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/catering-logo-3.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/cstj9mlafjyman7kbqqv.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5817,6 +9495,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'feliciano-examples/menu1.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -5828,7 +9508,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-1-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -5919,7 +9599,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-3-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/so8gr3gawwx5ejpyecw8.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6064,7 +9744,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-3-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/czna341vpw6mm15tbygi.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6155,7 +9835,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-4-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/p1oib2rzk32ne5mwyxz9.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6194,7 +9874,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-4-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/yf4oetd3x5yqgqz6lbe0.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6286,7 +9966,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/dish-1-feliciano.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6372,7 +10052,7 @@ const wap_feliciano = {
           }, // 5
         ],
       },
-      theme: 'feliciano-menu-gallery',
+      theme: 'feliciano-menu-gallery container-layout',
       style: {
         background: 'url()',
         color: '',
@@ -6391,6 +10071,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-text',
+      screenshotImg: 'feliciano-examples/chefs-text.png',
+      category: 'Text',
       info: {
         title: [
           {
@@ -6404,8 +10086,20 @@ const wap_feliciano = {
             },
           },
         ],
+        subtitle: [
+          {
+            id: utilService.makeId(4),
+            txt: 'Our Master Chefs',
+            style: {
+              background: '',
+              color: '#c8a97e',
+              fontFamily: 'GreatVibes',
+              fontStyle: '',
+            },
+          },
+        ],
       },
-      theme: 'basic-title wap-feliciano-chef-text', //maybe same theme like before
+      theme: 'wap-feliciano-catering', //maybe same theme like before
       style: {
         background: ``,
         color: '',
@@ -6424,6 +10118,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'feliciano-examples/chefs-imgs.png',
+      category: 'Cards',
       info: {
         dir: 'row',
         cmps: [
@@ -6448,7 +10144,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/chef-1.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6513,7 +10209,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/chef-2.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6578,7 +10274,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/chef-3.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/qwmjkk2qe7bq4pu0uwyb.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6643,7 +10339,7 @@ const wap_feliciano = {
               imgs: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/chef-4.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/oqlcyu8uqm7eezumvtb7.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6691,7 +10387,7 @@ const wap_feliciano = {
           //IMAGES
         ],
       },
-      theme: 'wap-container-flex',
+      theme: 'wap-container-center container-layout',
       style: {
         background: 'url()',
         color: '',
@@ -6705,6 +10401,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-text',
+      screenshotImg: 'feliciano-examples/happy-text.png',
+      category: 'Text',
       info: {
         title: [
           {
@@ -6752,6 +10450,8 @@ const wap_feliciano = {
     {
       id: utilService.makeId(4),
       type: 'wap-container',
+      screenshotImg: 'feliciano-examples/reviews.png',
+      category: 'Reviews',
       info: {
         dir: 'row',
         cmps: [
@@ -6762,7 +10462,7 @@ const wap_feliciano = {
               txt: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6819,7 +10519,7 @@ const wap_feliciano = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/yarden-review.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/xdjpu2m2cekusa9sumk9.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6858,7 +10558,7 @@ const wap_feliciano = {
               txt: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6915,7 +10615,7 @@ const wap_feliciano = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/rotem-review.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/z6kmqgl99aj7quigxfi7.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -6954,7 +10654,7 @@ const wap_feliciano = {
               txt: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
                   style: {
                     background: 'url()',
                     color: '',
@@ -7011,7 +10711,7 @@ const wap_feliciano = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/matan-review.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/wcuewyjbvcl1ng9sexp6.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -7050,7 +10750,7 @@ const wap_feliciano = {
               txt: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
                   style: {
                     background: 'url()',
                     color: '',
@@ -7107,7 +10807,7 @@ const wap_feliciano = {
               avatar: [
                 {
                   id: utilService.makeId(4),
-                  url: 'feliciano-imgs/shani-review.png',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/ynikal9lmpvlmmmyfijm.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -7160,8 +10860,7 @@ const wap_feliciano = {
 
     //CHEF-IMGS
   ],
-};
-
+}
 // function custom() {
 //   const cmps = gCmps;
 //   let str = '';
@@ -7172,6 +10871,6 @@ const wap_feliciano = {
 // }
 // gCmps = custom();
 //can genarate json for a wap
-fs.writeFile('test.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
-  console.log('success');
-});
+fs.writeFile('testcmp.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
+  console.log('success')
+})
