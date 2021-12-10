@@ -40,8 +40,23 @@ function connectSockets(http, session) {
       }
     })
 
-    socket.on('mousemove', async wap => {
-      socket.broadcast.to(socket.wapId).emit('mousemove', updatedWap)
+    socket.on('wap undo', async wap => {
+      console.log('WAP undo UPDATED', wap._id)
+      try {
+        const updatedWap = await wapService.undo(wap)
+        console.log(
+          '🚀 ~ file: socket.service.js ~ line 47 ~ connectSockets ~ updatedWap',
+          updatedWap
+        )
+        socket.broadcast.to(socket.wapId).emit('wap updated', updatedWap)
+      } catch (err) {
+        console.log(err)
+      }
+    })
+
+    socket.on('mousemove', async offsetXY => {
+      console.log(offsetXY)
+      socket.broadcast.to(socket.wapId).emit('mousemove', offsetXY)
     })
     // socket.on('user-watch', (userId) => {
     //   socket.join('watching:' + userId);
