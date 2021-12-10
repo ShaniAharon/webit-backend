@@ -1,3 +1,29 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+09/12/2021, 11:17:33 - INFO - Server is running on port: 3000 
+09/12/2021, 12:24:51 - INFO - Server is running on port: 3000 
+=======
+<<<<<<< HEAD
+09/12/2021, 11:22:05 - INFO - Server is running on port: 3000 
+09/12/2021, 13:35:09 - INFO - Server is running on port: 3000 
+09/12/2021, 13:36:31 - INFO - Server is running on port: 3000 
+09/12/2021, 13:37:20 - INFO - Server is running on port: 3000 
+09/12/2021, 13:38:01 - INFO - Server is running on port: 3000 
+09/12/2021, 13:39:44 - INFO - Server is running on port: 3000 
+=======
+9.12.2021, 11:10:21 - INFO - Server is running on port: 3000 
+9.12.2021, 12:33:22 - INFO - Server is running on port: 3000 
+9.12.2021, 12:51:36 - INFO - Server is running on port: 3000 
+>>>>>>> d813103e168364779e43f53dbc5b0c5146274255
+09/12/2021, 13:45:45 - INFO - Server is running on port: 3000 
+09/12/2021, 14:14:20 - INFO - Server is running on port: 3000 
+09/12/2021, 14:22:55 - INFO - Server is running on port: 3000 
+09/12/2021, 14:24:55 - INFO - Server is running on port: 3000 
+09/12/2021, 14:26:03 - INFO - Server is running on port: 3000 
+09/12/2021, 14:27:03 - INFO - Server is running on port: 3000 
+>>>>>>> 66ecefc3809c25c988ef5e78be0bbe83420fafee
+09/12/2021, 14:41:02 - INFO - Server is running on port: 3000 
+=======
 09/12/2021, 18:52:52 - INFO - Server is running on port: 3000 
 09/12/2021, 18:53:09 - INFO - Server is running on port: 3000 
 09/12/2021, 18:53:10 - INFO - Server is running on port: 3000 
@@ -563,6 +589,7 @@
 09/12/2021, 23:00:02 - ERROR - Failed to get wap | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
 09/12/2021, 23:00:06 - ERROR - while finding wap undefined | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
 09/12/2021, 23:00:06 - ERROR - Failed to get wap | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
+<<<<<<< HEAD
 10/12/2021, 0:19:03 - INFO - Server is running on port: 3000 
 10/12/2021, 0:48:29 - INFO - Server is running on port: 3000 
 10/12/2021, 0:48:46 - ERROR - cannot update wap undefined | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
@@ -654,3 +681,6 @@
 10/12/2021, 2:27:22 - ERROR - Failed to add template | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: WxPdF2GYb6dg5b4D0TCJhgf-XfzmU1AF)
 10/12/2021, 2:38:01 - INFO - Server is running on port: 3000 
 10/12/2021, 10:26:47 - INFO - Server is running on port: 3000 
+=======
+>>>>>>> d75c60496315d56ea9d19be7aedc6b58255c2ff9
+>>>>>>> ac3c0efbdf74ffd84817c6b2437d01ae27586e59
