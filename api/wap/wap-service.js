@@ -8,6 +8,7 @@ module.exports = {
   remove,
   add,
   update,
+  undo,
 }
 
 async function query(filterBy) {
@@ -56,23 +57,47 @@ async function remove(wapId) {
 }
 
 async function update(wap) {
-  console.log('UPDATED')
   try {
-    // let newWap = { ...wap } /// remember to come back to this
-    // delete newWap.wapHistory
-    // wap.wapHistory.push(newWap)
-
-    // console.log('wap', wap); // dont change the database
-    const copyWapId = wap._id //return the changes to  the store
-    var id = ObjectId(wap._id)
-    delete wap._id //why remove the id??? check if its bad ,
-    // need to remove the id but in the front we need the id
+    let id = wap._id
+    delete wap._id
+    let newWap = { ...wap } /// remember to come back to this
+    newWap.wapHistory = newWap.wapHistory || []
+    newWap.wapHistory.push(wap.cmps)
+    console.log(
+      '🚀 ~ file: wap-service.js ~ line 63 ~ update ~ newWap',
+      newWap.wapHistory
+    )
     const collection = await dbService.getCollection('wap')
-    await collection.updateOne({ _id: id }, { $set: { ...wap } })
-    // updatedWap._id = id;
-    // console.log(wap);
-    wap._id = copyWapId //return the id work!!
-    return wap
+    delete newWap._id
+    const updatedWap = await collection.findOneAndUpdate(
+      { _id: ObjectId(id) },
+      { $set: newWap }
+    )
+    return updatedWap.value
+  } catch (err) {
+    logger.error(`cannot update wap ${wap._id}`, err)
+    throw err
+  }
+}
+
+async function undo(wap) {
+  try {
+    let wapFromDb = await getById(wap._id)
+    let id = wapFromDb._id
+    delete wapFromDb._id
+    let newWap = { ...wapFromDb }
+    if (newWap.wapHistory.length > 0) {
+      let oldCmps = newWap.wapHistory.pop()
+      console.log('\n\n\noldCmps', oldCmps)
+      newWap.cmps = [...oldCmps]
+    }
+    const collection = await dbService.getCollection('wap')
+    delete newWap._id
+    const updatedWap = await collection.findOneAndUpdate(
+      { _id: ObjectId(id) },
+      { $set: newWap }
+    )
+    return updatedWap.value
   } catch (err) {
     logger.error(`cannot update wap ${wap._id}`, err)
     throw err

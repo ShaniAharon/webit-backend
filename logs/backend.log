@@ -589,10 +589,107 @@
 09/12/2021, 23:00:02 - ERROR - Failed to get wap | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
 09/12/2021, 23:00:06 - ERROR - while finding wap undefined | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
 09/12/2021, 23:00:06 - ERROR - Failed to get wap | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
+<<<<<<< HEAD
+10/12/2021, 0:19:03 - INFO - Server is running on port: 3000 
+10/12/2021, 0:48:29 - INFO - Server is running on port: 3000 
+10/12/2021, 0:48:46 - ERROR - cannot update wap undefined | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:49:06 - ERROR - cannot update wap undefined | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:49:17 - ERROR - cannot update wap undefined | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:49:21 - ERROR - cannot update wap undefined | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:49:25 - ERROR - cannot update wap undefined | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:52:48 - INFO - Server is running on port: 3000 
+10/12/2021, 0:52:53 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | TypeError: Cannot read properties of undefined (reading 'push') 
+10/12/2021, 0:53:39 - INFO - Server is running on port: 3000 
+10/12/2021, 0:53:43 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | TypeError: Cannot read properties of undefined (reading 'push') 
+10/12/2021, 0:53:45 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | TypeError: Cannot read properties of undefined (reading 'push') 
+10/12/2021, 0:53:47 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | TypeError: Cannot read properties of undefined (reading 'push') 
+10/12/2021, 0:54:13 - INFO - Server is running on port: 3000 
+10/12/2021, 0:54:28 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:54:30 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:54:32 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 0:55:27 - INFO - Server is running on port: 3000 
+10/12/2021, 0:58:45 - INFO - Server is running on port: 3000 
+10/12/2021, 0:58:48 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Unknown modifier: upsert. Expected a valid update modifier or pipeline-style update specified as an array 
+10/12/2021, 0:59:55 - INFO - Server is running on port: 3000 
+10/12/2021, 1:00:32 - INFO - Server is running on port: 3000 
+10/12/2021, 1:00:37 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 1:00:55 - INFO - Server is running on port: 3000 
+10/12/2021, 1:01:08 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 1:01:11 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | MongoError: Performing an update on the path '_id' would modify the immutable field '_id' 
+10/12/2021, 1:02:39 - INFO - Server is running on port: 3000 
+10/12/2021, 1:02:51 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | Error: cyclic dependency detected 
+10/12/2021, 1:03:00 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | Error: cyclic dependency detected 
+10/12/2021, 1:03:02 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | Error: cyclic dependency detected 
+10/12/2021, 1:03:07 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | Error: cyclic dependency detected 
+10/12/2021, 1:03:29 - INFO - Server is running on port: 3000 
+10/12/2021, 1:03:36 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | Error: cyclic dependency detected 
+10/12/2021, 1:03:39 - ERROR - cannot update wap 61b1f649012f8120b0d10fd6 | Error: cyclic dependency detected 
+10/12/2021, 1:05:50 - INFO - Server is running on port: 3000 
+10/12/2021, 1:05:59 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:07:05 - INFO - Server is running on port: 3000 
+10/12/2021, 1:07:13 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:07:37 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:07:41 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:08:33 - INFO - Server is running on port: 3000 
+10/12/2021, 1:09:36 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:09:44 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:09:45 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:09:57 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:01 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:04 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:07 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:12 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:18 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:20 - ERROR - cannot update wap undefined | Error: cyclic dependency detected 
+10/12/2021, 1:10:44 - INFO - Server is running on port: 3000 
+10/12/2021, 1:12:43 - INFO - Server is running on port: 3000 
+10/12/2021, 1:22:06 - INFO - Server is running on port: 3000 
+10/12/2021, 1:26:13 - INFO - Server is running on port: 3000 
+10/12/2021, 1:26:40 - INFO - Server is running on port: 3000 
+10/12/2021, 1:28:01 - INFO - Server is running on port: 3000 
+10/12/2021, 1:29:26 - INFO - Server is running on port: 3000 
+10/12/2021, 1:30:08 - INFO - Server is running on port: 3000 
+10/12/2021, 1:32:50 - INFO - Server is running on port: 3000 
+10/12/2021, 1:33:00 - INFO - Server is running on port: 3000 
+10/12/2021, 1:34:40 - INFO - Server is running on port: 3000 
+10/12/2021, 1:35:17 - ERROR - while finding template  | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: qs6i7zVOe6Ppt1S9o9OArnTv4KwshM_a)
+10/12/2021, 1:35:17 - ERROR - Failed to add template | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: qs6i7zVOe6Ppt1S9o9OArnTv4KwshM_a)
+10/12/2021, 1:35:40 - ERROR - cannot update wap undefined | TypeError: Cannot read properties of undefined (reading 'length') 
+10/12/2021, 1:36:01 - ERROR - cannot update wap undefined | TypeError: Cannot read properties of undefined (reading 'length') 
+10/12/2021, 1:36:08 - ERROR - cannot update wap undefined | TypeError: Cannot read properties of undefined (reading 'length') 
+10/12/2021, 1:38:27 - ERROR - cannot update wap undefined | TypeError: Cannot read properties of undefined (reading 'length') 
+10/12/2021, 1:39:48 - INFO - Server is running on port: 3000 
+10/12/2021, 1:39:59 - ERROR - cannot update wap 61b1f96a7d758b1ed0453792 | ReferenceError: getWapById is not defined 
+10/12/2021, 1:40:19 - INFO - Server is running on port: 3000 
+10/12/2021, 1:43:37 - INFO - Server is running on port: 3000 
+10/12/2021, 1:47:18 - INFO - Server is running on port: 3000 
+10/12/2021, 1:48:28 - INFO - Server is running on port: 3000 
+10/12/2021, 1:51:28 - INFO - Server is running on port: 3000 
+10/12/2021, 1:52:28 - INFO - Server is running on port: 3000 
+10/12/2021, 1:55:33 - INFO - Server is running on port: 3000 
+10/12/2021, 1:55:43 - INFO - Server is running on port: 3000 
+10/12/2021, 1:57:32 - INFO - Server is running on port: 3000 
+10/12/2021, 2:01:30 - INFO - Server is running on port: 3000 
+10/12/2021, 2:05:35 - INFO - Server is running on port: 3000 
+10/12/2021, 2:10:27 - INFO - Server is running on port: 3000 
+10/12/2021, 2:11:54 - INFO - Server is running on port: 3000 
+10/12/2021, 2:14:38 - ERROR - while finding template  | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: 2GIxaBnEdpoP_s655h2r4kWrg0g2ScRl)
+10/12/2021, 2:14:38 - ERROR - Failed to add template | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: 2GIxaBnEdpoP_s655h2r4kWrg0g2ScRl)
+10/12/2021, 2:21:54 - INFO - Server is running on port: 3000 
+10/12/2021, 2:22:50 - INFO - Server is running on port: 3000 
+10/12/2021, 2:27:22 - ERROR - while finding template  | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: WxPdF2GYb6dg5b4D0TCJhgf-XfzmU1AF)
+10/12/2021, 2:27:22 - ERROR - Failed to add template | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: WxPdF2GYb6dg5b4D0TCJhgf-XfzmU1AF)
+10/12/2021, 2:38:01 - INFO - Server is running on port: 3000 
+10/12/2021, 10:26:47 - INFO - Server is running on port: 3000 
+=======
 >>>>>>> d75c60496315d56ea9d19be7aedc6b58255c2ff9
+<<<<<<< HEAD
 10/12/2021, 0:15:29 - INFO - Server is running on port: 3000 
 10/12/2021, 9:15:13 - INFO - Server is running on port: 3000 
 10/12/2021, 9:47:16 - DEBUG - auth.service - login with username:  (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
 10/12/2021, 9:47:16 - ERROR - Failed to Login Invalid username or password (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
 10/12/2021, 10:39:24 - DEBUG - auth.service - login with username:  (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
 10/12/2021, 10:39:25 - ERROR - Failed to Login Invalid username or password (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
+=======
+>>>>>>> ac3c0efbdf74ffd84817c6b2437d01ae27586e59
+>>>>>>> c76078acb4da6681d00bfdb1f158ba178c990592
