@@ -590,3 +590,9 @@
 09/12/2021, 23:00:06 - ERROR - while finding wap undefined | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
 09/12/2021, 23:00:06 - ERROR - Failed to get wap | Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters (sid: Kr83dolZ8WaBL0o5o-9ogpN-pVNYsHt3)
 >>>>>>> d75c60496315d56ea9d19be7aedc6b58255c2ff9
+10/12/2021, 0:15:29 - INFO - Server is running on port: 3000 
+10/12/2021, 9:15:13 - INFO - Server is running on port: 3000 
+10/12/2021, 9:47:16 - DEBUG - auth.service - login with username:  (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
+10/12/2021, 9:47:16 - ERROR - Failed to Login Invalid username or password (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
+10/12/2021, 10:39:24 - DEBUG - auth.service - login with username:  (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
+10/12/2021, 10:39:25 - ERROR - Failed to Login Invalid username or password (sid: P80n6lWQnrmYOryEwoVSEIyqywK2WGDq)
