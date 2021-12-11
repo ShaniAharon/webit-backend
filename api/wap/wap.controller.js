@@ -20,11 +20,7 @@ async function getWapById(req, res) {
   console.log('req.params.id', req.params.id)
   try {
     const wapId = req.params.id
-    if (!wapId) return res.end()
-    console.log(
-      '🚀 ~ file: wap.controller.js ~ line 22 ~ getWapById ~ wapId',
-      wapId
-    )
+    if (!wapId) return res.end('I dont have ID in the params')
     const wap = await wapService.getById(wapId)
     res.json(wap)
   } catch (err) {
@@ -38,7 +34,7 @@ async function getWapById(req, res) {
 async function addWap(req, res) {
   try {
     const wap = req.body
-    const addedWap = await wapService.add(wap)
+    const addedWap = await wapService.add(wap, req.session.user)
     res.json(addedWap)
   } catch (err) {
     logger.error('Failed to add wap', err)

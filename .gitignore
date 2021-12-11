@@ -2,7 +2,8 @@
 node_modules
 /dist
 
-
+backend.log
+testcmp.json
 # local env files
 .env.local
 .env.*.local

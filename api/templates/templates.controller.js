@@ -33,8 +33,28 @@ async function getTemplateById(req, res) {
 // POST (add wap by template ID)
 async function createNewWap(req, res) {
   try {
-    const { templateId } = req.body
-    const template = await templateService.getById(templateId)
+    const { templateId, newWapData } = req.body
+    let template
+    if (templateId) {
+      template = await templateService.getById(templateId)
+      template.name = newWapData.name
+      template.usersData = newWapData.users
+      console.log(
+        '🚀 ~ file: templates.controller.js ~ line 39 ~ createNewWap ~ templateId',
+        template
+      )
+    } else {
+      template = {
+        name: 'New Project',
+        imgUrl: '',
+        usersData: {
+          contacts: [{ email: '', msg: '', at: null }],
+          signups: [{ email: '', at: null }],
+        },
+        cmps: [],
+        wapHistory: [],
+      }
+    }
     const wap = await wapService.add(template, req.session.user)
     console.log('A wap has been created successfully: ', wap)
     res.json(wap)

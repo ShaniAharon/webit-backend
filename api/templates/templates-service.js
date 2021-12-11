@@ -29,12 +29,9 @@ async function query(filterBy) {
 
 async function getById(templateId) {
   try {
+    if (!templateId) throw 'Tamplate ID Malformed'
     const collection = await dbService.getCollection('template')
     const template = collection.findOne({ _id: ObjectId(templateId) })
-    // template.cmps = template.cmps.map((cmp)=>{
-    //   cmp._id = utilService.makeId()
-    //   return cmp
-    // })
     return template
   } catch (err) {
     logger.error(`while finding template ${templateId}`, err)
@@ -83,7 +80,7 @@ async function add(template) {
     const collection = await dbService.getCollection('template')
     // console.log('23478 collection', collection);
     const addedTemplate = await collection.insertOne(template)
-    // console.log('addedTemplate:', addedTemplate)
+    console.log('addedTemplate:', addedTemplate)
     return template
   } catch (err) {
     logger.error('cannot insert template', err)

@@ -55,14 +55,12 @@ function _buildCriteria(filterBy) {
 }
 
 async function getById(wapId) {
-  console.log('\n\n\n\ngetById ~ wapId', wapId);
   try {
+    if (!wapId) throw 'Wapid malformed';
+    console.log('🚀 ~ file: wap-service.js ~ line 34 ~ getById ~ wapId', wapId);
+
     const collection = await dbService.getCollection('wap');
-    const wap = collection.findOne({_id: ObjectId(wapId)});
-    // wap.cmps = wap.cmps.map((cmp)=>{
-    //   cmp._id = utilService.makeId()
-    //   return cmp
-    // })
+    const wap = await collection.findOne({_id: ObjectId(wapId + '')});
     return wap;
   } catch (err) {
     logger.error(`while finding wap ${wapId}`, err);
@@ -84,22 +82,20 @@ async function remove(wapId) {
 
 async function update(wap) {
   try {
+    let wapFromDb = await getById(wap._id);
     let id = wap._id;
     delete wap._id;
-    let newWap = {...wap}; /// remember to come back to this
-    newWap.wapHistory = newWap.wapHistory || [];
-    newWap.wapHistory.push(wap.cmps);
-    console.log(
-      '🚀 ~ file: wap-service.js ~ line 63 ~ update ~ newWap',
-      newWap.wapHistory
-    );
+    let newWap = JSON.parse(JSON.stringify(wap));
+    newWap.wapHistory.push(JSON.parse(JSON.stringify(wapFromDb.cmps)));
+    console.log('NEW WAP HISTORY \n\n\n\n', newWap.wapHistory);
     const collection = await dbService.getCollection('wap');
     delete newWap._id;
     const updatedWap = await collection.findOneAndUpdate(
       {_id: ObjectId(id)},
       {$set: newWap}
     );
-    return updatedWap.value;
+    newWap._id = id;
+    return newWap;
   } catch (err) {
     logger.error(`cannot update wap ${wap._id}`, err);
     throw err;
@@ -113,17 +109,16 @@ async function undo(wap) {
     delete wapFromDb._id;
     let newWap = {...wapFromDb};
     if (newWap.wapHistory.length > 0) {
-      let oldCmps = newWap.wapHistory.pop();
-      console.log('\n\n\noldCmps', oldCmps);
-      newWap.cmps = [...oldCmps];
+      console.log('ANI HINAS');
+      newWap.cmps = newWap.wapHistory.pop();
     }
     const collection = await dbService.getCollection('wap');
-    delete newWap._id;
     const updatedWap = await collection.findOneAndUpdate(
       {_id: ObjectId(id)},
       {$set: newWap}
     );
-    return updatedWap.value;
+    newWap._id = id;
+    return newWap;
   } catch (err) {
     logger.error(`cannot update wap ${wap._id}`, err);
     throw err;
@@ -131,6 +126,10 @@ async function undo(wap) {
 }
 
 async function add(wap, user) {
+  console.log(
+    '############## ~ file: wap-service.js ~ line 106 ~ add ~ wap',
+    wap
+  );
   try {
     const collection = await dbService.getCollection('wap');
     // console.log('23478 collection', collection);
@@ -141,8 +140,8 @@ async function add(wap, user) {
       createdBy: user,
     };
     const addedWap = await collection.insertOne(newWap);
-    // console.log('addedWap:', addedWap)
-    return wap;
+    console.log('addedWap:', addedWap.ops[0]);
+    return addedWap.ops[0];
   } catch (err) {
     logger.error('cannot insert wap', err);
     throw err;

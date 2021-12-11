@@ -80,7 +80,7 @@ async function update(user) {
       _id: ObjectId(user._id), // needed for the returnd obj
       username: user.username,
       fullname: user.fullname,
-      waps: user.waps,
+      score: user.score,
     };
     const collection = await dbService.getCollection('user');
     await collection.updateOne({_id: userToSave._id}, {$set: userToSave});
@@ -110,6 +110,7 @@ async function add(user) {
 }
 
 function _buildCriteria(filterBy) {
+  console.log(filterBy);
   const criteria = {};
   if (filterBy.txt) {
     const txtCriteria = {$regex: filterBy.txt, $options: 'i'};
@@ -121,9 +122,6 @@ function _buildCriteria(filterBy) {
         fullname: txtCriteria,
       },
     ];
-  }
-  if (filterBy.minBalance) {
-    criteria.balance = {$gte: filterBy.minBalance};
   }
   return criteria;
 }
