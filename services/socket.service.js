@@ -2,8 +2,14 @@ const asyncLocalStorage = require('./als.service')
 const logger = require('./logger.service')
 var sharedsession = require('express-socket.io-session')
 const wapService = require('../api/wap/wap-service')
+const { update } = require('../api/templates/templates-service')
 var gIo = null
-
+let rooms = [
+  {
+    wapId: '123',
+    users: 0,
+  },
+]
 function connectSockets(http, session) {
   gIo = require('socket.io')(http, {
     cors: {
@@ -23,6 +29,7 @@ function connectSockets(http, session) {
     })
     socket.on('wap id', wapId => {
       console.log('Joining room:', wapId)
+
       if (socket.wapId === wapId) return
       if (socket.wapId) {
         socket.leave(socket.wapId)
@@ -30,6 +37,8 @@ function connectSockets(http, session) {
       socket.join(wapId)
       socket.wapId = wapId
     })
+
+    // Wap Update Routes
     socket.on('wap updated', async wap => {
       console.log('WAP UPDATED', wap._id)
       try {
@@ -40,22 +49,22 @@ function connectSockets(http, session) {
       }
     })
 
+    // Wap undo Routes
+
     socket.on('wap undo', async wap => {
       console.log('WAP undo UPDATED', wap._id)
       try {
         const updatedWap = await wapService.undo(wap)
-        console.log(
-          '🚀 ~ file: socket.service.js ~ line 47 ~ connectSockets ~ updatedWap',
-          updatedWap
-        )
-        socket.broadcast.to(socket.wapId).emit('wap updated', updatedWap)
+        updatedWap.eventType = 'undo'
+        gIo.in(socket.wapId).emit('wap updated undo', updatedWap)
       } catch (err) {
         console.log(err)
       }
     })
 
+    // Mouse Routes
     socket.on('mousemove', async offsetXY => {
-      console.log(offsetXY)
+      // console.log(offsetXY)
       socket.broadcast.to(socket.wapId).emit('mousemove', offsetXY)
     })
     // socket.on('user-watch', (userId) => {
