@@ -55,7 +55,7 @@ function connectSockets(http, session) {
     })
 
     socket.on('mousemove', async offsetXY => {
-      console.log(offsetXY)
+      // console.log(offsetXY)
       socket.broadcast.to(socket.wapId).emit('mousemove', offsetXY)
     })
     // socket.on('user-watch', (userId) => {
