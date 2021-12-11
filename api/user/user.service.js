@@ -75,11 +75,12 @@ async function remove(userId) {
 async function update(user) {
   try {
     // peek only updatable fields!
+    console.log(user, 'the user');
     const userToSave = {
       _id: ObjectId(user._id), // needed for the returnd obj
       username: user.username,
       fullname: user.fullname,
-      score: user.score,
+      waps: user.waps,
     };
     const collection = await dbService.getCollection('user');
     await collection.updateOne({_id: userToSave._id}, {$set: userToSave});
@@ -97,6 +98,7 @@ async function add(user) {
       username: user.username,
       password: user.password,
       fullname: user.fullname,
+      waps: [],
     };
     const collection = await dbService.getCollection('user');
     await collection.insertOne(userToAdd);
