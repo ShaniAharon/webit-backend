@@ -27791,6 +27791,6 @@ const footer = {
     fontStyle: '',
   },
 }
-fs.writeFile('test.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
+fs.writeFile('test.json', JSON.stringify(gCmps), 'utf-8', () => {
   console.log('success')
 }) //make new gcmps updated
