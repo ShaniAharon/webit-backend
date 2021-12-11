@@ -1,31 +1,31 @@
-const express = require('express')
-const fs = require('fs')
-const cors = require('cors')
-const utilService = require('./utilServiceJson')
-const path = require('path')
-const expressSession = require('express-session')
-const app = express()
-const http = require('http').createServer(app)
+const express = require('express');
+const fs = require('fs');
+const cors = require('cors');
+const utilService = require('./utilServiceJson');
+const path = require('path');
+const expressSession = require('express-session');
+const app = express();
+const http = require('http').createServer(app);
 
 // Express App Config
 const session = expressSession({
   secret: 'coding is amazing',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false },
-})
-app.use(express.json())
-app.use(session)
+  cookie: {secure: false},
+});
+app.use(express.json());
+app.use(session);
 
-const authRoutes = require('./api/auth/auth.routes')
-const userRoutes = require('./api/user/user.routes')
-const cmpRoutes = require('./api/cmp/cmp.routes')
-const wapRoutes = require('./api/wap/wap.routes')
-const templatesRoute = require('./api/templates/templates.routes')
+const authRoutes = require('./api/auth/auth.routes');
+const userRoutes = require('./api/user/user.routes');
+const cmpRoutes = require('./api/cmp/cmp.routes');
+const wapRoutes = require('./api/wap/wap.routes');
+const templatesRoute = require('./api/templates/templates.routes');
 
-const { connectSockets } = require('./services/socket.service')
+const {connectSockets} = require('./services/socket.service');
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'public')))
+  app.use(express.static(path.resolve(__dirname, 'public')));
 } else {
   // app.use(express.static(path.resolve(__dirname, 'public')))
   const corsOptions = {
@@ -36,34 +36,34 @@ if (process.env.NODE_ENV === 'production') {
       'http://localhost:3000',
     ],
     credentials: true,
-  }
-  app.use(cors(corsOptions))
+  };
+  app.use(cors(corsOptions));
 }
 
 // routes
-const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
-app.all('*', setupAsyncLocalStorage)
+const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware');
+app.all('*', setupAsyncLocalStorage);
 
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
-app.use('/api/wap', wapRoutes)
-app.use('/api/cmp', cmpRoutes)
-app.use('/api/template', templatesRoute)
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/wap', wapRoutes);
+app.use('/api/cmp', cmpRoutes);
+app.use('/api/template', templatesRoute);
 
-connectSockets(http, session)
+connectSockets(http, session);
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 
 app.get('/**', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
-const logger = require('./services/logger.service')
-const port = process.env.PORT || 3000
+const logger = require('./services/logger.service');
+const port = process.env.PORT || 3000;
 http.listen(port, () => {
-  logger.info('Server is running on port: ' + port)
-})
+  logger.info('Server is running on port: ' + port);
+});
 
 let gCmps = [
   {
@@ -5769,7 +5769,7 @@ let gCmps = [
       fontStyle: '',
     },
   },
-]
+];
 // const wap_architecture = {
 //   // _id: 'aaaaa12',
 //   name: 'Architecture',
@@ -11220,10 +11220,8 @@ const wap_architecture = {
     username: 'Hekro Special',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
 
   cmps: [
@@ -11601,7 +11599,7 @@ const wap_architecture = {
               fontFamily: '',
               fontStyle: '',
             },
-          }
+          },
         ],
       },
       theme: 'theme-gallery-architecture',
@@ -11843,8 +11841,7 @@ const wap_architecture = {
     },
   ],
   isPublic: true,
-}
-
+};
 
 const wap_fylo = {
   isPublic: true,
@@ -11856,10 +11853,8 @@ const wap_fylo = {
     username: '',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
   theme: 'fylo-main',
 
@@ -13033,7 +13028,7 @@ const wap_fylo = {
       },
     },
   ],
-}
+};
 
 const wap_sunnyside = {
   isPublic: true,
@@ -13044,10 +13039,8 @@ const wap_sunnyside = {
     username: '',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
   theme: 'sunnyside-main',
   cmps: [
@@ -14417,7 +14410,7 @@ const wap_sunnyside = {
       },
     },
   ],
-}
+};
 
 const wap_feliciano = {
   isPublic: true,
@@ -14428,10 +14421,8 @@ const wap_feliciano = {
     username: '',
   },
   usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    signups: [{ email: 'user@user.com', at: 123 }],
+    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
+    signups: [{email: 'user@user.com', at: 123}],
   },
   theme: 'feliciano-main',
   cmps: [
@@ -14536,7 +14527,7 @@ const wap_feliciano = {
                     fontFamily: 'Poppins',
                     fontStyle: '',
                   },
-                }
+                },
               ],
             },
             theme: 'wap-header-feliciano',
@@ -14611,7 +14602,7 @@ const wap_feliciano = {
               fontFamily: '',
               fontStyle: '',
             },
-          }
+          },
         ],
       },
       theme: 'feliciano-landing-page',
@@ -15038,6 +15029,7 @@ const wap_feliciano = {
             },
           }, // 2
           {
+            // 4
             id: utilService.makeId(4),
             type: 'wap-card',
             info: {
@@ -15090,6 +15082,7 @@ const wap_feliciano = {
             },
           }, // 3
           {
+            // second line begins // 1
             id: utilService.makeId(4),
             type: 'wap-img',
             info: {
@@ -15127,11 +15120,11 @@ const wap_feliciano = {
               fontFamily: '',
               fontStyle: '',
             },
-          },
+          }, // 2
           {
             // 4
             id: utilService.makeId(4),
-            type: 'wap-card',
+            type: 'wap-img',
             info: {
               title: [
                 {
@@ -15179,9 +15172,18 @@ const wap_feliciano = {
             style: {
               background: 'url()',
               color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
             },
           }, // end of the first line
-        ]
+        ],
       },
       theme: 'feliciano-menu-gallery container-layout',
       style: {
@@ -15300,6 +15302,7 @@ const wap_feliciano = {
             },
           }, // 3
           {
+            // 2
             id: utilService.makeId(4),
             type: 'wap-card',
             info: {
@@ -15390,7 +15393,7 @@ const wap_feliciano = {
               fontStyle: '',
             },
           }, // 3rd line begins // 1
-        ]
+        ],
       },
       theme: 'feliciano-menu-gallery container-layout',
       style: {
@@ -15463,7 +15466,20 @@ const wap_feliciano = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Grilled Beef with potatoes',
+                  txt: 'John Smooth',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              imgs: [
+                {
+                  id: utilService.makeId(4),
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15476,7 +15492,7 @@ const wap_feliciano = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Meat, Potatoes, Rice, Tomatoe',
+                  txt: 'Restaurant Owner',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15491,7 +15507,7 @@ const wap_feliciano = {
                 //see if its good
                 {
                   id: utilService.makeId(4),
-                  txt: 'Order now',
+                  txt: 'Contact the chef',
                   style: {
                     background: 'url()',
                     color: 'white',
@@ -15502,7 +15518,7 @@ const wap_feliciano = {
                 },
               ],
             },
-            theme: 'wap-menu-card',
+            theme: 'wap-chef-preview',
             style: {
               background: 'url()',
               color: '',
@@ -15510,9 +15526,9 @@ const wap_feliciano = {
           }, //3
           {
             id: utilService.makeId(4),
-            type: 'wap-img',
+            type: 'wap-card',
             info: {
-              imgs: [
+              title: [
                 {
                   id: utilService.makeId(4),
                   url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
@@ -15521,13 +15537,7 @@ const wap_feliciano = {
                     color: '',
                     backgroundColor: '',
                     fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
+                    fontFamily: 'Poppins',
                   },
                 },
               ],
@@ -15554,7 +15564,7 @@ const wap_feliciano = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Grilled Beef with potatoes',
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15567,7 +15577,7 @@ const wap_feliciano = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Meat, Potatoes, Rice, Tomatoe',
+                  txt: 'Head Chef',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15582,7 +15592,7 @@ const wap_feliciano = {
                 //see if its good
                 {
                   id: utilService.makeId(4),
-                  txt: 'Order now',
+                  txt: 'Contact the chef',
                   style: {
                     background: 'url()',
                     color: 'white',
@@ -15598,8 +15608,8 @@ const wap_feliciano = {
               background: 'url()',
               color: '',
             },
-          }
-        ]
+          },
+        ],
       },
       theme: 'feliciano-menu-gallery container-layout',
       style: {
@@ -15753,375 +15763,6 @@ const wap_feliciano = {
                     backgroundColor: '',
                     fontSize: '',
                     fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Head Chef',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Contact the chef',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-chef-preview',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          },
-          {
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Kharl Branyt',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/qwmjkk2qe7bq4pu0uwyb.png',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Chef',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Contact the chef',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-chef-preview',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          },
-          {
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Luke Simon',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/oqlcyu8uqm7eezumvtb7.png',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Chef',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Contact the chef',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-chef-preview',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          },
-          //IMAGES
-        ],
-      },
-      theme: 'wap-container-center container-layout',
-      style: {
-        background: 'url()',
-        color: '',
-        backgroundColor: '',
-        fontSize: '',
-        fontStyle: '',
-      },
-    },
-
-    //TEXT CMP
-    {
-      id: utilService.makeId(4),
-      type: 'wap-text',
-      screenshotImg: 'feliciano-examples/happy-text.png',
-      category: 'Text',
-      info: {
-        title: [
-          {
-            id: utilService.makeId(4),
-            txt: 'Happy Customer',
-            style: {
-              background: '',
-              color: '',
-              fontFamily: 'Poppins',
-              fontStyle: '50px',
-            },
-          },
-        ],
-        subtitle: [
-          {
-            id: utilService.makeId(4),
-            txt: 'Happy Customer',
-            style: {
-              background: '',
-              color: '#c8a97e',
-              fontFamily: 'GreatVibes',
-              fontStyle: '',
-            },
-          },
-        ],
-      },
-      theme: 'wap-feliciano-catering', //maybe same theme like before
-      style: {
-        background: ``,
-        color: '',
-        backgroundColor: '',
-        fontSize: '',
-        paddingRight: '',
-        paddingTop: '',
-        paddingBottom: '',
-        paddingLeft: '',
-        lineHeight: '',
-        fontFamily: '',
-        fontStyle: '',
-      },
-    },
-
-    //TEXT CMP
-    //Reviews
-    {
-      id: utilService.makeId(4),
-      type: 'wap-container',
-      screenshotImg: 'feliciano-examples/reviews.png',
-      category: 'Reviews',
-      info: {
-        dir: 'horizontal',
-        toggle: true,
-        cmps: [
-          {
-            id: utilService.makeId(4),
-            type: 'wap-review',
-            info: {
-              txt: [
-                {
-                  id: utilService.makeId(4),
-                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              name: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Yarden M.',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'CEO & Head of lunch',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              avatar: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/xdjpu2m2cekusa9sumk9.png',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'feliciano-review',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          {
-            id: utilService.makeId(4),
-            type: 'wap-review',
-            info: {
-              txt: [
-                {
-                  id: utilService.makeId(4),
-                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
                   },
                 },
               ],
@@ -16393,6 +16034,355 @@ const wap_feliciano = {
         ],
       },
       theme: 'feliciano-review-container',
+      style: {
+        background: 'url()',
+        color: '',
+        backgroundColor: '',
+        fontSize: '',
+        paddingRight: '',
+        paddingTop: '',
+        paddingBottom: '',
+        paddingLeft: '',
+        lineHeight: '',
+        fontFamily: '',
+        fontStyle: '',
+      },
+    },
+    //Reviews
+    //FOOTER
+    {
+      id: utilService.makeId(4),
+      type: 'wap-container',
+      screenshotImg: 'pexels-photo-12211.jpeg',
+      category: 'Footers',
+      info: {
+        dir: 'horizontal',
+        toggle: true,
+        cmps: [
+          {
+            id: utilService.makeId(4),
+            type: 'wap-text',
+            info: {
+              title: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Feliciano',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              subtitle: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'feliciano-footer-text',
+            style: {
+              background: 'url()',
+              color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
+            },
+          },
+          {
+            id: utilService.makeId(4),
+            type: 'wap-text',
+            info: {
+              title: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Open Hours',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              subtitle: [
+                {
+                  // 1
+                  id: utilService.makeId(4),
+                  txt: 'Monday 9:00 - 24:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+                {
+                  // 2
+                  id: utilService.makeId(4),
+                  txt: 'Tuesday 9:00 - 24:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+                {
+                  //3
+                  id: utilService.makeId(4),
+                  txt: 'Wednesday 9:00 - 24:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+                {
+                  // 4
+                  id: utilService.makeId(4),
+                  txt: 'Thursday 9:00 - 24:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+                {
+                  //5
+                  id: utilService.makeId(4),
+                  txt: 'Friday 9:00 - 02:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+                {
+                  //6
+                  id: utilService.makeId(4),
+                  txt: 'Saturday 9:00 - 02:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+                {
+                  //7
+                  id: utilService.makeId(4),
+                  txt: 'Sunday 9:00 - 02:00',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'feliciano-footer-hours',
+            style: {
+              background: 'url()',
+              color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
+            },
+          },
+          {
+            id: utilService.makeId(4),
+            type: 'wap-signup',
+            info: {
+              title: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Newsletter',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              subtitle: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Far far away, behind the word mountains, far from the countries.',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              input: [
+                {
+                  id: utilService.makeId(4),
+                  txt: '',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              buttons: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Subscribe',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'feliciano-signup',
+            style: {
+              background: 'url()',
+              color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
+            },
+          },
+        ],
+      },
+      theme: 'feliciano-footer',
       style: {
         background: 'url()',
         color: '',
@@ -16753,12 +16743,12 @@ const wap_feliciano = {
         fontFamily: '',
         fontStyle: '',
       },
-    }
+    },
     //Reviews
 
     //CHEF-IMGS
   ],
-}
+};
 
 const templates = [
   {
@@ -16771,9 +16761,9 @@ const templates = [
     },
     usersData: {
       contacts: [
-        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
       ],
-      signups: [{ email: 'user@user.com', at: 123 }],
+      signups: [{email: 'user@user.com', at: 123}],
     },
     theme: 'feliciano-main',
     cmps: [
@@ -16987,7 +16977,7 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            }
+            },
           ],
         },
         theme: 'feliciano-landing-page',
@@ -17554,7 +17544,7 @@ const templates = [
                 color: '',
               },
             }, // end of the first line
-          ]
+          ],
         },
         theme: 'feliciano-menu-gallery container-layout',
         style: {
@@ -17762,7 +17752,7 @@ const templates = [
                 fontStyle: '',
               },
             }, // 3rd line begins // 1
-          ]
+          ],
         },
         theme: 'feliciano-menu-gallery container-layout',
         style: {
@@ -17969,8 +17959,8 @@ const templates = [
                 background: 'url()',
                 color: '',
               },
-            }
-          ]
+            },
+          ],
         },
         theme: 'feliciano-menu-gallery container-layout',
         style: {
@@ -19122,7 +19112,7 @@ const templates = [
           fontFamily: '',
           fontStyle: '',
         },
-      }
+      },
       //Reviews
 
       //CHEF-IMGS
@@ -19138,9 +19128,9 @@ const templates = [
     },
     usersData: {
       contacts: [
-        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
       ],
-      signups: [{ email: 'user@user.com', at: 123 }],
+      signups: [{email: 'user@user.com', at: 123}],
     },
     theme: 'sunnyside-main',
     cmps: [
@@ -20522,9 +20512,9 @@ const templates = [
     },
     usersData: {
       contacts: [
-        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
       ],
-      signups: [{ email: 'user@user.com', at: 123 }],
+      signups: [{email: 'user@user.com', at: 123}],
     },
     theme: 'fylo-main',
 
@@ -21677,17 +21667,16 @@ const templates = [
   {
     // _id: 'aaaaa12',
     name: 'Architecture',
-    imgUrl:
-      'utica-template.png',
+    imgUrl: 'utica-template.png',
     createdBy: {
       _id: '5e26e0b718a0891d4c995527',
       username: 'Hekro Special',
     },
     usersData: {
       contacts: [
-        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
       ],
-      signups: [{ email: 'user@user.com', at: 123 }],
+      signups: [{email: 'user@user.com', at: 123}],
     },
 
     cmps: [
@@ -22282,8 +22271,8 @@ const templates = [
       },
     ],
     isPublic: true,
-  }
-]
+  },
+];
 // function custom() {
 //   const cmps = gCmps;
 //   let str = '';
@@ -22640,7 +22629,7 @@ const footer = {
     fontFamily: '',
     fontStyle: '',
   },
-}
+};
 fs.writeFile('test.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
-  console.log('success')
-})
+  console.log('success');
+});
