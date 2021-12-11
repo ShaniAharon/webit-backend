@@ -1,33 +1,33 @@
-const express = require('express');
-const fs = require('fs');
-const cors = require('cors');
-const utilService = require('./utilServiceJson');
-const path = require('path');
-const expressSession = require('express-session');
-const app = express();
-const http = require('http').createServer(app);
+const express = require('express')
+const fs = require('fs')
+const cors = require('cors')
+const utilService = require('./utilServiceJson')
+const path = require('path')
+const expressSession = require('express-session')
+const app = express()
+const http = require('http').createServer(app)
 
 // Express App Config
 const session = expressSession({
   secret: 'coding is amazing',
   resave: false,
   saveUninitialized: true,
-  cookie: {secure: false},
-});
-app.use(express.json());
-app.use(session);
+  cookie: { secure: false },
+})
+app.use(express.json())
+app.use(session)
 
-const authRoutes = require('./api/auth/auth.routes');
-const userRoutes = require('./api/user/user.routes');
-const cmpRoutes = require('./api/cmp/cmp.routes');
-const wapRoutes = require('./api/wap/wap.routes');
-const templatesRoute = require('./api/templates/templates.routes');
+const authRoutes = require('./api/auth/auth.routes')
+const userRoutes = require('./api/user/user.routes')
+const cmpRoutes = require('./api/cmp/cmp.routes')
+const wapRoutes = require('./api/wap/wap.routes')
+const templatesRoute = require('./api/templates/templates.routes')
 
-const {connectSockets} = require('./services/socket.service');
+const { connectSockets } = require('./services/socket.service')
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'public')));
+  app.use(express.static(path.resolve(__dirname, 'public')))
 } else {
-  // app.use(express.static(path.resolve(__dirname, 'public')))
+  app.use(express.static(path.resolve(__dirname, 'public')))
   const corsOptions = {
     origin: [
       'http://127.0.0.1:8080',
@@ -36,34 +36,34 @@ if (process.env.NODE_ENV === 'production') {
       'http://localhost:3000',
     ],
     credentials: true,
-  };
-  app.use(cors(corsOptions));
+  }
+  app.use(cors(corsOptions))
 }
 
 // routes
-const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware');
-app.all('*', setupAsyncLocalStorage);
+const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
+app.all('*', setupAsyncLocalStorage)
 
-app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/wap', wapRoutes);
-app.use('/api/cmp', cmpRoutes);
-app.use('/api/template', templatesRoute);
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/wap', wapRoutes)
+app.use('/api/cmp', cmpRoutes)
+app.use('/api/template', templatesRoute)
 
-connectSockets(http, session);
+connectSockets(http, session)
 // Make every server-side-route to match the index.html
 // so when requesting http://localhost:3030/index.html/car/123 it will still respond with
 // our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
 
 app.get('/**', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
 
-const logger = require('./services/logger.service');
-const port = process.env.PORT || 3000;
+const logger = require('./services/logger.service')
+const port = process.env.PORT || 3000
 http.listen(port, () => {
-  logger.info('Server is running on port: ' + port);
-});
+  logger.info('Server is running on port: ' + port)
+})
 
 let gCmps = [
   {
@@ -5769,7 +5769,7 @@ let gCmps = [
       fontStyle: '',
     },
   },
-];
+]
 // const wap_architecture = {
 //   // _id: 'aaaaa12',
 //   name: 'Architecture',
@@ -11215,13 +11215,16 @@ const wap_architecture = {
   // _id: 'aaaaa12',
   name: 'Architecture',
   imgUrl: 'utica-template.png',
+  wapHistory: [],
   createdBy: {
     _id: '5e26e0b718a0891d4c995527',
     username: 'Hekro Special',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
 
   cmps: [
@@ -11841,20 +11844,23 @@ const wap_architecture = {
     },
   ],
   isPublic: true,
-};
+}
 
 const wap_fylo = {
   isPublic: true,
   // _id: '999994123sd12',
   name: 'fylo',
   imgUrl: 'fylo-template.png',
+  wapHistory: [],
   createdBy: {
     _id: '',
     username: '',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
   theme: 'fylo-main',
 
@@ -13028,19 +13034,22 @@ const wap_fylo = {
       },
     },
   ],
-};
+}
 
 const wap_sunnyside = {
   isPublic: true,
   name: 'SunnySide',
   imgUrl: 'sunnyside-template.png',
+  wapHistory: [],
   createdBy: {
     _id: '',
     username: '',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
   theme: 'sunnyside-main',
   cmps: [
@@ -14410,10 +14419,11 @@ const wap_sunnyside = {
       },
     },
   ],
-};
+}
 
 const wap_feliciano = {
   isPublic: true,
+  wapHistory: [],
   name: 'Feliciano',
   imgUrl: 'feliciano-template.png',
   createdBy: {
@@ -14421,8 +14431,10 @@ const wap_feliciano = {
     username: '',
   },
   usersData: {
-    contacts: [{email: 'user@user.com', msg: 'Please send me stuff', at: 123}],
-    signups: [{email: 'user@user.com', at: 123}],
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    signups: [{ email: 'user@user.com', at: 123 }],
   },
   theme: 'feliciano-main',
   cmps: [
@@ -15029,7 +15041,6 @@ const wap_feliciano = {
             },
           }, // 2
           {
-            // 4
             id: utilService.makeId(4),
             type: 'wap-card',
             info: {
@@ -15082,7 +15093,6 @@ const wap_feliciano = {
             },
           }, // 3
           {
-            // second line begins // 1
             id: utilService.makeId(4),
             type: 'wap-img',
             info: {
@@ -15120,11 +15130,11 @@ const wap_feliciano = {
               fontFamily: '',
               fontStyle: '',
             },
-          }, // 2
+          },
           {
             // 4
             id: utilService.makeId(4),
-            type: 'wap-img',
+            type: 'wap-card',
             info: {
               title: [
                 {
@@ -15172,15 +15182,6 @@ const wap_feliciano = {
             style: {
               background: 'url()',
               color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
             },
           }, // end of the first line
         ],
@@ -15302,7 +15303,6 @@ const wap_feliciano = {
             },
           }, // 3
           {
-            // 2
             id: utilService.makeId(4),
             type: 'wap-card',
             info: {
@@ -15466,20 +15466,7 @@ const wap_feliciano = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'John Smooth',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
+                  txt: 'Grilled Beef with potatoes',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15492,7 +15479,7 @@ const wap_feliciano = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Restaurant Owner',
+                  txt: 'Meat, Potatoes, Rice, Tomatoe',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15507,7 +15494,7 @@ const wap_feliciano = {
                 //see if its good
                 {
                   id: utilService.makeId(4),
-                  txt: 'Contact the chef',
+                  txt: 'Order now',
                   style: {
                     background: 'url()',
                     color: 'white',
@@ -15518,7 +15505,7 @@ const wap_feliciano = {
                 },
               ],
             },
-            theme: 'wap-chef-preview',
+            theme: 'wap-menu-card',
             style: {
               background: 'url()',
               color: '',
@@ -15526,9 +15513,9 @@ const wap_feliciano = {
           }, //3
           {
             id: utilService.makeId(4),
-            type: 'wap-card',
+            type: 'wap-img',
             info: {
-              title: [
+              imgs: [
                 {
                   id: utilService.makeId(4),
                   url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
@@ -15537,7 +15524,13 @@ const wap_feliciano = {
                     color: '',
                     backgroundColor: '',
                     fontSize: '',
-                    fontFamily: 'Poppins',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
                   },
                 },
               ],
@@ -15564,7 +15557,7 @@ const wap_feliciano = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
+                  txt: 'Grilled Beef with potatoes',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15577,7 +15570,7 @@ const wap_feliciano = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Head Chef',
+                  txt: 'Meat, Potatoes, Rice, Tomatoe',
                   style: {
                     background: 'url()',
                     color: '',
@@ -15592,7 +15585,7 @@ const wap_feliciano = {
                 //see if its good
                 {
                   id: utilService.makeId(4),
-                  txt: 'Contact the chef',
+                  txt: 'Order now',
                   style: {
                     background: 'url()',
                     color: 'white',
@@ -15763,6 +15756,375 @@ const wap_feliciano = {
                     backgroundColor: '',
                     fontSize: '',
                     fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              imgs: [
+                {
+                  id: utilService.makeId(4),
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              subtitle: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Head Chef',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              buttons: [
+                //see if its good
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Contact the chef',
+                  style: {
+                    background: 'url()',
+                    color: 'white',
+                    backgroundColor: '#c8a97e',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'wap-chef-preview',
+            style: {
+              background: 'url()',
+              color: '',
+            },
+          },
+          {
+            id: utilService.makeId(4),
+            type: 'wap-card',
+            info: {
+              title: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Kharl Branyt',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              imgs: [
+                {
+                  id: utilService.makeId(4),
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/qwmjkk2qe7bq4pu0uwyb.png',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              subtitle: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Chef',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              buttons: [
+                //see if its good
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Contact the chef',
+                  style: {
+                    background: 'url()',
+                    color: 'white',
+                    backgroundColor: '#c8a97e',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'wap-chef-preview',
+            style: {
+              background: 'url()',
+              color: '',
+            },
+          },
+          {
+            id: utilService.makeId(4),
+            type: 'wap-card',
+            info: {
+              title: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Luke Simon',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              imgs: [
+                {
+                  id: utilService.makeId(4),
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/oqlcyu8uqm7eezumvtb7.png',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                  },
+                },
+              ],
+              subtitle: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Chef',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              buttons: [
+                //see if its good
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Contact the chef',
+                  style: {
+                    background: 'url()',
+                    color: 'white',
+                    backgroundColor: '#c8a97e',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'wap-chef-preview',
+            style: {
+              background: 'url()',
+              color: '',
+            },
+          },
+          //IMAGES
+        ],
+      },
+      theme: 'wap-container-center container-layout',
+      style: {
+        background: 'url()',
+        color: '',
+        backgroundColor: '',
+        fontSize: '',
+        fontStyle: '',
+      },
+    },
+
+    //TEXT CMP
+    {
+      id: utilService.makeId(4),
+      type: 'wap-text',
+      screenshotImg: 'feliciano-examples/happy-text.png',
+      category: 'Text',
+      info: {
+        title: [
+          {
+            id: utilService.makeId(4),
+            txt: 'Happy Customer',
+            style: {
+              background: '',
+              color: '',
+              fontFamily: 'Poppins',
+              fontStyle: '50px',
+            },
+          },
+        ],
+        subtitle: [
+          {
+            id: utilService.makeId(4),
+            txt: 'Happy Customer',
+            style: {
+              background: '',
+              color: '#c8a97e',
+              fontFamily: 'GreatVibes',
+              fontStyle: '',
+            },
+          },
+        ],
+      },
+      theme: 'wap-feliciano-catering', //maybe same theme like before
+      style: {
+        background: ``,
+        color: '',
+        backgroundColor: '',
+        fontSize: '',
+        paddingRight: '',
+        paddingTop: '',
+        paddingBottom: '',
+        paddingLeft: '',
+        lineHeight: '',
+        fontFamily: '',
+        fontStyle: '',
+      },
+    },
+
+    //TEXT CMP
+    //Reviews
+    {
+      id: utilService.makeId(4),
+      type: 'wap-container',
+      screenshotImg: 'feliciano-examples/reviews.png',
+      category: 'Reviews',
+      info: {
+        dir: 'horizontal',
+        toggle: true,
+        cmps: [
+          {
+            id: utilService.makeId(4),
+            type: 'wap-review',
+            info: {
+              txt: [
+                {
+                  id: utilService.makeId(4),
+                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              name: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'Yarden M.',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              title: [
+                {
+                  id: utilService.makeId(4),
+                  txt: 'CEO & Head of lunch',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+              avatar: [
+                {
+                  id: utilService.makeId(4),
+                  url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/xdjpu2m2cekusa9sumk9.png',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                },
+              ],
+            },
+            theme: 'feliciano-review',
+            style: {
+              background: 'url()',
+              color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
+            },
+          },
+          {
+            id: utilService.makeId(4),
+            type: 'wap-review',
+            info: {
+              txt: [
+                {
+                  id: utilService.makeId(4),
+                  txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: '',
+                    fontStyle: '',
                   },
                 },
               ],
@@ -16034,355 +16396,6 @@ const wap_feliciano = {
         ],
       },
       theme: 'feliciano-review-container',
-      style: {
-        background: 'url()',
-        color: '',
-        backgroundColor: '',
-        fontSize: '',
-        paddingRight: '',
-        paddingTop: '',
-        paddingBottom: '',
-        paddingLeft: '',
-        lineHeight: '',
-        fontFamily: '',
-        fontStyle: '',
-      },
-    },
-    //Reviews
-    //FOOTER
-    {
-      id: utilService.makeId(4),
-      type: 'wap-container',
-      screenshotImg: 'pexels-photo-12211.jpeg',
-      category: 'Footers',
-      info: {
-        dir: 'horizontal',
-        toggle: true,
-        cmps: [
-          {
-            id: utilService.makeId(4),
-            type: 'wap-text',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Feliciano',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'feliciano-footer-text',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          {
-            id: utilService.makeId(4),
-            type: 'wap-text',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Open Hours',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  // 1
-                  id: utilService.makeId(4),
-                  txt: 'Monday 9:00 - 24:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-                {
-                  // 2
-                  id: utilService.makeId(4),
-                  txt: 'Tuesday 9:00 - 24:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-                {
-                  //3
-                  id: utilService.makeId(4),
-                  txt: 'Wednesday 9:00 - 24:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-                {
-                  // 4
-                  id: utilService.makeId(4),
-                  txt: 'Thursday 9:00 - 24:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-                {
-                  //5
-                  id: utilService.makeId(4),
-                  txt: 'Friday 9:00 - 02:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-                {
-                  //6
-                  id: utilService.makeId(4),
-                  txt: 'Saturday 9:00 - 02:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-                {
-                  //7
-                  id: utilService.makeId(4),
-                  txt: 'Sunday 9:00 - 02:00',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'feliciano-footer-hours',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          {
-            id: utilService.makeId(4),
-            type: 'wap-signup',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Newsletter',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Far far away, behind the word mountains, far from the countries.',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              input: [
-                {
-                  id: utilService.makeId(4),
-                  txt: '',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Subscribe',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'feliciano-signup',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-        ],
-      },
-      theme: 'feliciano-footer',
       style: {
         background: 'url()',
         color: '',
@@ -16748,164 +16761,55 @@ const wap_feliciano = {
 
     //CHEF-IMGS
   ],
-};
+}
 
 const templates = [
   {
-    isPublic: true,
-    name: 'Feliciano',
-    imgUrl: 'feliciano-template.png',
+    // _id: 'aaaaa12',
+    name: 'Architecture',
+    imgUrl: 'utica-template.png',
+    wapHistory: [],
     createdBy: {
-      _id: '',
-      username: '',
+      _id: '5e26e0b718a0891d4c995527',
+      username: 'Hekro Special',
     },
     usersData: {
       contacts: [
-        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
+        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
       ],
-      signups: [{email: 'user@user.com', at: 123}],
+      signups: [{ email: 'user@user.com', at: 123 }],
     },
-    theme: 'feliciano-main',
+
     cmps: [
-      //Hero container
       {
         id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'feliciano-examples/hero.png',
-        category: 'Landings',
+        type: 'wap-header',
+        screenshotImg: 'archi-examples/theme-header-architecture.png',
+        category: 'Headers',
         info: {
-          dir: 'vertical',
-          cmps: [
-            //HEADER
+          title: '',
+          subtitle: '',
+          logo: {
+            type: 'txt',
+            txt: 'Utica',
+            style: {
+              background: 'url()',
+              color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
+            },
+          },
+          navBar: [
             {
-              id: utilService.makeId(4),
-              type: 'wap-header',
-              info: {
-                title: '',
-                subtitle: '',
-                logo: {
-                  type: 'txt',
-                  txt: 'Feliciano',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '20',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-                navBar: [
-                  {
-                    id: utilService.makeId(6),
-                    txt: 'Home',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(6),
-                    txt: 'About',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(6),
-                    txt: 'Menu',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(6),
-                    txt: 'Stories',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(6),
-                    txt: 'Contact',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(6),
-                    txt: 'Book a table',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontSize: '18',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-header-feliciano',
+              id: utilService.makeId(6),
+              txt: 'Work',
               style: {
                 background: 'url()',
                 color: '',
@@ -16920,8 +16824,742 @@ const templates = [
                 fontStyle: '',
               },
             },
-            //HEADER
-            //TEXT
+            {
+              id: utilService.makeId(6),
+              txt: 'About',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(6),
+              txt: 'Our Team',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(6),
+              txt: 'Press',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(6),
+              txt: 'Contact',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-header-architecture',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-card',
+        screenshotImg: 'archi-examples/card-archi.png',
+        category: 'Cards',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Utica is an architecture firm based in Copenhagen, Denmark.',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          subtitle: '',
+          imgs: [
+            {
+              id: utilService.makeId(4),
+              url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047582/k6uufj8vqob5zmeqqguz.jpg',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-card-architecture',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-text',
+        screenshotImg: 'archi-examples/text-archi.png',
+        category: 'Text',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Recent Work...',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          subtitle: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Our practice spans from environmental retrofits of existing buildings to the complete planning and design of new neighborhoods and public spaces. While our work is aesthetically diverse, our projects are linked by a focus on enhancing human relationships through',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-text-architecture',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'archi-examples/gallery-archi.png',
+        category: 'Galleries',
+        info: {
+          dir: 'horizontal',
+          cmps: [
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Project one',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: '',
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/z37wb0ptsbys73axascc.jpg',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'theme-card-architecture-inner',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Project two',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: '',
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047584/divy2h23e5uzapcqpqup.jpg',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'theme-card-architecture-inner',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-gallery-architecture',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'archi-examples/gallery-archi.png',
+        category: 'Galleries',
+        info: {
+          dir: 'horizontal',
+          cmps: [
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Project three',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: '',
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/cb0vpto1vvxblurhj3rf.jpg',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'theme-card-architecture-inner',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Project four',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: '',
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047585/uywwyuledud6ctzctxit.jpg',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'theme-card-architecture-inner',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-gallery-architecture',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-contact',
+        screenshotImg: 'archi-examples/contact-archi.png',
+        category: 'Contacts',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(6),
+              txt: "Let's Work Together!",
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          subtitle: [
+            {
+              id: utilService.makeId(6),
+              txt: "We're always looking for new opportunities and are comfortable working internationally. Please get in touch and one of our project managers will contact you about beginning the proposal process.",
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+          buttons: [
+            {
+              id: utilService.makeId(6),
+              txt: 'Contact Us',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-contact-architecture',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+    ],
+    isPublic: true,
+  },
+  {
+    isPublic: true,
+    // _id: '999994123sd12',
+    name: 'fylo',
+    imgUrl: 'fylo-template.png',
+    wapHistory: [],
+    createdBy: {
+      _id: '',
+      username: '',
+    },
+    usersData: {
+      contacts: [
+        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+      ],
+      signups: [{ email: 'user@user.com', at: 123 }],
+    },
+    theme: 'fylo-main',
+
+    cmps: [
+      {
+        id: utilService.makeId(4),
+        type: 'wap-header',
+        screenshotImg: 'fylo-examples/fylo-header.png',
+        category: 'Headers',
+        info: {
+          title: '',
+          subtitle: '',
+          logo: {
+            type: 'img',
+            url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046911/y8xzjmh6sikx4iaxsjoy.svg',
+            txt: '',
+            style: {
+              background: 'url()',
+              color: '',
+              backgroundColor: '',
+              fontSize: '',
+              paddingRight: '',
+              paddingTop: '',
+              paddingBottom: '',
+              paddingLeft: '',
+              lineHeight: '',
+              fontFamily: '',
+              fontStyle: '',
+            },
+          },
+          navBar: [
+            // need to figure this out quickly
+            {
+              id: utilService.makeId(6),
+              txt: 'Features',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(6),
+              txt: 'Team',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(6),
+              txt: 'Sign In',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'theme-header-fylo',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'fylo-examples/fylo-card-v1.png',
+        category: 'Landings',
+        info: {
+          dir: 'vertical',
+          cmps: [
+            {
+              id: utilService.makeId(4),
+              type: 'wap-img',
+              info: {
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/nwynylnvzz3cl5rtsmdo.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'theme-img-fylo',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
             {
               id: utilService.makeId(4),
               type: 'wap-text',
@@ -16929,26 +17567,9 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Feliciano',
+                    txt: 'All your files in one secure location',
                     style: {
-                      background: '',
-                      color: '#c8a97e',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: 'GreatVibes',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Notorious and Tasty',
-                    style: {
-                      background: '',
+                      background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
@@ -16957,418 +17578,15 @@ const templates = [
                       paddingBottom: '',
                       paddingLeft: '',
                       lineHeight: '',
-                      fontFamily: 'Arial',
-                      fontStyle: '50px',
-                    },
-                  },
-                ],
-              },
-              theme: 'landing-feliciano', //maybe same theme like before
-              style: {
-                background: `url()`,
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'feliciano-landing-page',
-        style: {
-          background: 'url(../../imgs/main-header-feliciano.jpg)',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          fontFamily: '',
-          height: '',
-        },
-      },
-      //Hero container
-      //Container2
-      {
-        id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'feliciano-examples/herochefs.png',
-        category: 'Cards',
-        info: {
-          dir: 'horizontal',
-          cmps: [
-            //IMAGES
-            {
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045697/hbahgn9wxtzvj51kctdi.jpg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045690/dv65ye7pvztvruzwjj4q.jpg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
                       fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
-              },
-              theme: 'wap-img-feliciano',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            //IMAGES
-            //CARD
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Feliciano Restaurant',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Mon - Fri 8 AM - 11 PM',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    id: utilService.makeId(4),
-                    txt: '+ 1-978-123-4567',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-card-default',
-              style: {
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            //CARD
-          ],
-        },
-
-        theme: 'wap-feliciano-detail-card wap-container-flex',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          fontStyle: '',
-        },
-      },
-      //Container2
-      //TEXT CMP
-      {
-        id: utilService.makeId(4),
-        type: 'wap-text',
-        screenshotImg: 'feliciano-examples/text.png',
-        category: 'Text',
-        info: {
-          title: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Catering Services',
-              style: {
-                background: '',
-                color: '',
-                fontFamily: 'Poppins',
-                fontStyle: '50px',
-              },
-            },
-          ],
-          subtitle: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Catering Services',
-              style: {
-                background: '',
-                color: '#c8a97e',
-                fontFamily: 'GreatVibes',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'wap-feliciano-catering', //maybe same theme like before
-        style: {
-          background: ``,
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-      {
-        id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'feliciano-examples/services.png',
-        category: 'Cards',
-        info: {
-          dir: 'horizontal',
-          cmps: [
-            //IMAGES
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Birthday Party',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045685/otxtfe0johrcwqdug2dz.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-catering-preview',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Business Meetings',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wx7awvwj6ff2rgpo5496.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-catering-preview',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Wedding Party',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/cstj9mlafjyman7kbqqv.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-catering-preview',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            },
-            //IMAGES
-          ],
-        },
-        theme: 'wap-container-flex',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          fontStyle: '',
-        },
-      },
-      //TEXT CMP
-      //MENU-CONTAINER
-      {
-        id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'feliciano-examples/menu1.png',
-        category: 'Cards',
-        info: {
-          dir: 'horizontal',
-          cmps: [
-            {
-              //1
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                    txt: 'Fylo stores all your most important files in one secure location. Access them wherever you need, share and collaborate with friends family, and co-workers',
                     style: {
                       background: 'url()',
                       color: '',
@@ -17385,7 +17603,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'wap-img-menu',
+              theme: 'theme-text-fylo',
               style: {
                 background: 'url()',
                 color: '',
@@ -17399,67 +17617,18 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            }, // 2
+            },
             {
               id: utilService.makeId(4),
               type: 'wap-card',
               info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Grilled Beef with potatoes',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Meat, Potatoes, Rice, Tomatoe',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
+                title: '',
+                subtitle: '',
+                imgs: '',
                 buttons: [
-                  //see if its good
                   {
-                    id: utilService.makeId(4),
-                    txt: 'Order now',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-menu-card',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            }, // 3
-            {
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/so8gr3gawwx5ejpyecw8.png',
+                    id: utilService.makeId(6),
+                    txt: 'Get Started',
                     style: {
                       background: 'url()',
                       color: '',
@@ -17476,7 +17645,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'wap-img-menu',
+              theme: 'theme-hero-fylo-v1',
               style: {
                 background: 'url()',
                 color: '',
@@ -17491,62 +17660,9 @@ const templates = [
                 fontStyle: '',
               },
             },
-            {
-              // 4
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Grilled Beef with potatoes',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Meat, Potatoes, Rice, Tomatoe',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Order now',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-menu-card',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            }, // end of the first line
           ],
         },
-        theme: 'feliciano-menu-gallery container-layout',
+        theme: 'theme-hero-fylo-v1',
         style: {
           background: 'url()',
           color: '',
@@ -17564,72 +17680,57 @@ const templates = [
       {
         id: utilService.makeId(4),
         type: 'wap-container',
-        screenshotImg: 'feliciano-examples/menu1.png',
+        screenshotImg: 'fylo-examples/fylo-gallery.png',
         category: 'Cards',
         info: {
           dir: 'horizontal',
           cmps: [
             {
-              // second line begins // 1
               id: utilService.makeId(4),
               type: 'wap-card',
               info: {
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Grilled Beef with potatoes',
+                    txt: 'Access your files, anywhere',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
                     },
                   },
                 ],
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    txt: 'The ability to use a smartphone, tablet, or computer to access your account means your files follow you everywhere',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Order now',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-menu-card',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            }, // 2
-            {
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
                 imgs: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/czna341vpw6mm15tbygi.png',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/hdxrb2fjvotkfjrglqkb.svg',
                     style: {
                       background: 'url()',
                       color: '',
@@ -17646,7 +17747,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'wap-img-menu',
+              theme: 'theme-card-fylo-inner',
               style: {
                 background: 'url()',
                 color: '',
@@ -17660,7 +17761,7 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            }, // 3
+            },
             {
               id: utilService.makeId(4),
               type: 'wap-card',
@@ -17668,59 +17769,45 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Grilled Beef with potatoes',
+                    txt: 'Security you can trust',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
                     },
                   },
                 ],
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    txt: '2-factor authentication and user-controlled encryption are just a couple of the security features we allow to help secure your files',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Order now',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-menu-card',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            }, //4
-            {
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
                 imgs: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/p1oib2rzk32ne5mwyxz9.png',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046802/z1cwegkmiv9qawbmmwad.svg',
                     style: {
                       background: 'url()',
                       color: '',
@@ -17737,7 +17824,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'wap-img-menu',
+              theme: 'theme-card-fylo-inner',
               style: {
                 background: 'url()',
                 color: '',
@@ -17751,10 +17838,10 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            }, // 3rd line begins // 1
+            },
           ],
         },
-        theme: 'feliciano-menu-gallery container-layout',
+        theme: 'theme-gallery-fylo',
         style: {
           background: 'url()',
           color: '',
@@ -17772,19 +17859,19 @@ const templates = [
       {
         id: utilService.makeId(4),
         type: 'wap-container',
-        screenshotImg: 'feliciano-examples/menu1.png',
+        screenshotImg: 'fylo-examples/fylo-gallery.png',
         category: 'Cards',
         info: {
           dir: 'horizontal',
           cmps: [
             {
               id: utilService.makeId(4),
-              type: 'wap-img',
+              type: 'wap-card',
               info: {
-                imgs: [
+                title: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/yf4oetd3x5yqgqz6lbe0.png',
+                    txt: 'Real-time collaboration',
                     style: {
                       background: 'url()',
                       color: '',
@@ -17797,86 +17884,32 @@ const templates = [
                       lineHeight: '',
                       fontFamily: '',
                       fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-img-menu',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              // 2
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Grilled Beef with potatoes',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
                     },
                   },
                 ],
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    txt: 'Securely share files and folders with friends, family and colleagues for live collaboration. No email attachments required',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Order now',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-menu-card',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            }, //3
-            {
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
                 imgs: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046825/g1weljwqgxhryicacme3.svg',
                     style: {
                       background: 'url()',
                       color: '',
@@ -17893,7 +17926,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'wap-img-menu',
+              theme: 'theme-card-fylo-inner',
               style: {
                 background: 'url()',
                 color: '',
@@ -17915,54 +17948,79 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Grilled Beef with potatoes',
+                    txt: 'Store any type of file',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
                     },
                   },
                 ],
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    txt: "Whether you're sharing holidays photos or work documents, Fylo has you covered allowing for all file types to be securely stored and shared",
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
-                buttons: [
-                  //see if its good
+                imgs: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Order now',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/lq0ngmmk0ciulsowcdb0.svg',
                     style: {
                       background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
               },
-              theme: 'wap-menu-card',
+              theme: 'theme-card-fylo-inner',
               style: {
                 background: 'url()',
                 color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
               },
             },
           ],
         },
-        theme: 'feliciano-menu-gallery container-layout',
+        theme: 'theme-gallery-fylo',
         style: {
           background: 'url()',
           color: '',
@@ -17977,371 +18035,133 @@ const templates = [
           fontStyle: '',
         },
       },
-      //MENU-CONTAINER
-      {
-        id: utilService.makeId(4),
-        type: 'wap-text',
-        screenshotImg: 'feliciano-examples/chefs-text.png',
-        category: 'Text',
-        info: {
-          title: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Our Master Chefs',
-              style: {
-                background: '',
-                color: '',
-                fontFamily: 'Poppins',
-                fontStyle: '50px',
-              },
-            },
-          ],
-          subtitle: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Our Master Chefs',
-              style: {
-                background: '',
-                color: '#c8a97e',
-                fontFamily: 'GreatVibes',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'wap-feliciano-catering', //maybe same theme like before
-        style: {
-          background: ``,
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-      //CHEF-IMGS
       {
         id: utilService.makeId(4),
         type: 'wap-container',
-        screenshotImg: 'feliciano-examples/chefs-imgs.png',
+        screenshotImg: 'fylo-examples/fylo-card-v2.png',
         category: 'Cards',
         info: {
           dir: 'horizontal',
           cmps: [
-            //IMAGES
             {
               id: utilService.makeId(4),
-              type: 'wap-card',
+              type: 'wap-img',
+              info: {
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/so8bjwwlzcl4eikovxgr.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'theme-img-fylo-v2',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-text',
               info: {
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'John Smooth',
+                    txt: 'Stay productive, wherever you are',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
                     },
                   },
                 ],
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Restaurant Owner',
+                    txt: 'Never let location be an issue when accessing your files. Fylo has you covered for all of your file storage needs',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      fontFamily: 'Poppins',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
-                ],
-                buttons: [
-                  //see if its good
                   {
                     id: utilService.makeId(4),
-                    txt: 'Contact the chef',
+                    txt: 'Securely share files and folders with friends, family and colleagues for live collaboration. No email attachments required',
                     style: {
                       background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
                       fontStyle: '',
                     },
                   },
                 ],
               },
-              theme: 'wap-chef-preview',
+              theme: 'theme-text-fylo-v2',
               style: {
                 background: 'url()',
                 color: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Becky Welson',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Head Chef',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Contact the chef',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-chef-preview',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Kharl Branyt',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/qwmjkk2qe7bq4pu0uwyb.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Chef',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Contact the chef',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-chef-preview',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Luke Simon',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/oqlcyu8uqm7eezumvtb7.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Chef',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                buttons: [
-                  //see if its good
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Contact the chef',
-                    style: {
-                      background: 'url()',
-                      color: 'white',
-                      backgroundColor: '#c8a97e',
-                      fontFamily: 'Poppins',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'wap-chef-preview',
-              style: {
-                background: 'url()',
-                color: '',
-              },
-            },
-            //IMAGES
-          ],
-        },
-        theme: 'wap-container-center container-layout',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          fontStyle: '',
-        },
-      },
-
-      //TEXT CMP
-      {
-        id: utilService.makeId(4),
-        type: 'wap-text',
-        screenshotImg: 'feliciano-examples/happy-text.png',
-        category: 'Text',
-        info: {
-          title: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Happy Customer',
-              style: {
-                background: '',
-                color: '',
-                fontFamily: 'Poppins',
-                fontStyle: '50px',
-              },
-            },
-          ],
-          subtitle: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Happy Customer',
-              style: {
-                background: '',
-                color: '#c8a97e',
-                fontFamily: 'GreatVibes',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
                 fontStyle: '',
               },
             },
           ],
         },
-        theme: 'wap-feliciano-catering', //maybe same theme like before
+        theme: 'theme-container-fylo-v2',
         style: {
-          background: ``,
+          background: 'url()',
           color: '',
           backgroundColor: '',
           fontSize: '',
@@ -18354,13 +18174,10 @@ const templates = [
           fontStyle: '',
         },
       },
-
-      //TEXT CMP
-      //Reviews
       {
         id: utilService.makeId(4),
         type: 'wap-container',
-        screenshotImg: 'feliciano-examples/reviews.png',
+        screenshotImg: 'fylo-examples/fylo-review.png',
         category: 'Reviews',
         info: {
           dir: 'horizontal',
@@ -18372,7 +18189,7 @@ const templates = [
                 txt: [
                   {
                     id: utilService.makeId(4),
-                    txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                    txt: 'Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has become a well-oiled collaboration machine.',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18391,7 +18208,7 @@ const templates = [
                 name: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Yarden M.',
+                    txt: 'Satish Patel',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18410,7 +18227,7 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'CEO & Head of lunch',
+                    txt: 'Founder & CEO, Huddle',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18429,7 +18246,7 @@ const templates = [
                 avatar: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/xdjpu2m2cekusa9sumk9.png',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/tcrmtyvjpse0llvh7r45.jpg',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18446,7 +18263,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'feliciano-review',
+              theme: 'theme-review-fylo',
               style: {
                 background: 'url()',
                 color: '',
@@ -18468,7 +18285,7 @@ const templates = [
                 txt: [
                   {
                     id: utilService.makeId(4),
-                    txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                    txt: 'Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has become a well-oiled collaboration machine.',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18487,7 +18304,7 @@ const templates = [
                 name: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Rotem Bublil',
+                    txt: 'Bruce McKenzie',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18506,7 +18323,7 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'CEO & Head of lunch',
+                    txt: 'Founder & CEO, Huddle',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18525,7 +18342,7 @@ const templates = [
                 avatar: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/z6kmqgl99aj7quigxfi7.png',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/ongddbdwdh9wjmscaydh.jpg',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18542,7 +18359,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'feliciano-review',
+              theme: 'theme-review-fylo',
               style: {
                 background: 'url()',
                 color: '',
@@ -18564,7 +18381,7 @@ const templates = [
                 txt: [
                   {
                     id: utilService.makeId(4),
-                    txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                    txt: 'Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has become a well-oiled collaboration machine.',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18583,7 +18400,7 @@ const templates = [
                 name: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Matan Lasry',
+                    txt: 'Iva Boyd',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18602,7 +18419,7 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Chief ',
+                    txt: 'Founder & CEO, Huddle',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18621,7 +18438,7 @@ const templates = [
                 avatar: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/wcuewyjbvcl1ng9sexp6.png',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/j4wfnxxodyuxlayfvjno.jpg',
                     style: {
                       background: 'url()',
                       color: '',
@@ -18638,103 +18455,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'feliciano-review',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-review',
-              info: {
-                txt: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                name: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Shani Aharon',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'CEO & Head of lunch',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                avatar: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/ynikal9lmpvlmmmyfijm.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'feliciano-review',
+              theme: 'theme-review-fylo',
               style: {
                 background: 'url()',
                 color: '',
@@ -18751,7 +18472,7 @@ const templates = [
             },
           ],
         },
-        theme: 'feliciano-review-container',
+        theme: 'theme-reviews-fylo',
         style: {
           background: 'url()',
           color: '',
@@ -18768,56 +18489,14 @@ const templates = [
       },
       {
         id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'pexels-photo-12211.jpeg',
-        category: 'Footers',
+        type: 'wap-signup',
+        screenshotImg: 'fylo-examples/fylo-sign-up.png',
+        category: 'Contacts',
         info: {
-          dir: 'horizontal',
-          cmps: [
+          title: [
             {
               id: utilService.makeId(4),
-              type: 'wap-text',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Feliciano',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'feliciano-footer-text',
+              txt: 'Get Early Access Today',
               style: {
                 background: 'url()',
                 color: '',
@@ -18832,159 +18511,11 @@ const templates = [
                 fontStyle: '',
               },
             },
+          ],
+          subtitle: [
             {
               id: utilService.makeId(4),
-              type: 'wap-text',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Open Hours',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    // 1
-                    id: utilService.makeId(4),
-                    txt: 'Monday 9:00 - 24:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    // 2
-                    id: utilService.makeId(4),
-                    txt: 'Tuesday 9:00 - 24:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    //3
-                    id: utilService.makeId(4),
-                    txt: 'Wednesday 9:00 - 24:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    // 4
-                    id: utilService.makeId(4),
-                    txt: 'Thursday 9:00 - 24:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    //5
-                    id: utilService.makeId(4),
-                    txt: 'Friday 9:00 - 02:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    //6
-                    id: utilService.makeId(4),
-                    txt: 'Saturday 9:00 - 02:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                  {
-                    //7
-                    id: utilService.makeId(4),
-                    txt: 'Sunday 9:00 - 02:00',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'feliciano-footer-hours',
+              txt: 'It only takes a minute to sign up and our free starter tier is extremely generous. If you have any questions, our support team would be happy to help you',
               style: {
                 background: 'url()',
                 color: '',
@@ -18999,89 +18530,30 @@ const templates = [
                 fontStyle: '',
               },
             },
+          ],
+          input: [
             {
               id: utilService.makeId(4),
-              type: 'wap-signup',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Newsletter',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Far far away, behind the word mountains, far from the countries.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                input: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'example@email.com',
-                    type: 'text',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                buttons: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Subscribe',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
+              txt: '',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
               },
-              theme: 'feliciano-signup',
+            },
+          ],
+          buttons: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Get Started For Free!',
               style: {
                 background: 'url()',
                 color: '',
@@ -19098,7 +18570,7 @@ const templates = [
             },
           ],
         },
-        theme: 'feliciano-footer',
+        theme: 'theme-signup-fylo',
         style: {
           background: 'url()',
           color: '',
@@ -19113,24 +18585,22 @@ const templates = [
           fontStyle: '',
         },
       },
-      //Reviews
-
-      //CHEF-IMGS
     ],
   },
   {
     isPublic: true,
     name: 'SunnySide',
     imgUrl: 'sunnyside-template.png',
+    wapHistory: [],
     createdBy: {
       _id: '',
       username: '',
     },
     usersData: {
       contacts: [
-        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
+        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
       ],
-      signups: [{email: 'user@user.com', at: 123}],
+      signups: [{ email: 'user@user.com', at: 123 }],
     },
     theme: 'sunnyside-main',
     cmps: [
@@ -20503,234 +19973,58 @@ const templates = [
   },
   {
     isPublic: true,
-    // _id: '999994123sd12',
-    name: 'fylo',
-    imgUrl: 'fylo-template.png',
+    name: 'Feliciano',
+    imgUrl: 'feliciano-template.png',
+    wapHistory: [],
     createdBy: {
       _id: '',
       username: '',
     },
     usersData: {
       contacts: [
-        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
+        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
       ],
-      signups: [{email: 'user@user.com', at: 123}],
+      signups: [{ email: 'user@user.com', at: 123 }],
     },
-    theme: 'fylo-main',
-
+    theme: 'feliciano-main',
     cmps: [
-      {
-        id: utilService.makeId(4),
-        type: 'wap-header',
-        screenshotImg: 'fylo-examples/fylo-header.png',
-        category: 'Headers',
-        info: {
-          title: '',
-          subtitle: '',
-          logo: {
-            type: 'img',
-            url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046911/y8xzjmh6sikx4iaxsjoy.svg',
-            txt: '',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          navBar: [
-            // need to figure this out quickly
-            {
-              id: utilService.makeId(6),
-              txt: 'Features',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(6),
-              txt: 'Team',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(6),
-              txt: 'Sign In',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'theme-header-fylo',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
+      //Hero container
       {
         id: utilService.makeId(4),
         type: 'wap-container',
-        screenshotImg: 'fylo-examples/fylo-card-v1.png',
+        screenshotImg: 'feliciano-examples/hero.png',
         category: 'Landings',
         info: {
-          dir: 'row',
+          dir: 'vertical',
           cmps: [
+            //HEADER
             {
               id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/nwynylnvzz3cl5rtsmdo.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-img-fylo',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-text',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'All your files in one secure location',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Fylo stores all your most important files in one secure location. Access them wherever you need, share and collaborate with friends family, and co-workers',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-text-fylo',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
+              type: 'wap-header',
               info: {
                 title: '',
                 subtitle: '',
-                imgs: '',
-                buttons: [
+                logo: {
+                  type: 'txt',
+                  txt: 'Feliciano',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '20',
+                    paddingRight: '',
+                    paddingTop: '',
+                    paddingBottom: '',
+                    paddingLeft: '',
+                    lineHeight: '',
+                    fontFamily: 'Poppins',
+                    fontStyle: '',
+                  },
+                },
+                navBar: [
                   {
                     id: utilService.makeId(6),
-                    txt: 'Get Started',
+                    txt: 'Home',
                     style: {
                       background: 'url()',
                       color: '',
@@ -20741,13 +20035,64 @@ const templates = [
                       paddingBottom: '',
                       paddingLeft: '',
                       lineHeight: '',
-                      fontFamily: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    id: utilService.makeId(6),
+                    txt: 'About',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    id: utilService.makeId(6),
+                    txt: 'Menu',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    id: utilService.makeId(6),
+                    txt: 'Contact',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                 ],
               },
-              theme: 'theme-hero-fylo-v1',
+              theme: 'wap-header-feliciano',
               style: {
                 background: 'url()',
                 color: '',
@@ -20762,403 +20107,8 @@ const templates = [
                 fontStyle: '',
               },
             },
-          ],
-        },
-        theme: 'theme-hero-fylo-v1',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-      {
-        id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'fylo-examples/fylo-gallery.png',
-        category: 'Cards',
-        info: {
-          dir: 'row',
-          cmps: [
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Access your files, anywhere',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'The ability to use a smartphone, tablet, or computer to access your account means your files follow you everywhere',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/hdxrb2fjvotkfjrglqkb.svg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-card-fylo-inner',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Security you can trust',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: '2-factor authentication and user-controlled encryption are just a couple of the security features we allow to help secure your files',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046802/z1cwegkmiv9qawbmmwad.svg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-card-fylo-inner',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Real-time collaboration',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Securely share files and folders with friends, family and colleagues for live collaboration. No email attachments required',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046825/g1weljwqgxhryicacme3.svg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-card-fylo-inner',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-card',
-              info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Store any type of file',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: "Whether you're sharing holidays photos or work documents, Fylo has you covered allowing for all file types to be securely stored and shared",
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046824/lq0ngmmk0ciulsowcdb0.svg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-card-fylo-inner',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'theme-gallery-fylo',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-      {
-        id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'fylo-examples/fylo-card-v2.png',
-        category: 'Cards',
-        info: {
-          dir: 'row',
-          cmps: [
-            {
-              id: utilService.makeId(4),
-              type: 'wap-img',
-              info: {
-                imgs: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/so8bjwwlzcl4eikovxgr.png',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-img-fylo-v2',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
+            //HEADER
+            //TEXT
             {
               id: utilService.makeId(4),
               type: 'wap-text',
@@ -21166,9 +20116,26 @@ const templates = [
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Stay productive, wherever you are',
+                    txt: 'Feliciano',
                     style: {
-                      background: 'url()',
+                      background: '',
+                      color: '#c8a97e',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: 'GreatVibes',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Notorious and Tasty',
+                    style: {
+                      background: '',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
@@ -21177,7 +20144,113 @@ const templates = [
                       paddingBottom: '',
                       paddingLeft: '',
                       lineHeight: '',
+                      fontFamily: 'Arial',
+                      fontStyle: '50px',
+                    },
+                  },
+                ],
+              },
+              theme: 'landing-feliciano', //maybe same theme like before
+              style: {
+                background: `url()`,
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-landing-page',
+        style: {
+          background: 'url(../../imgs/main-header-feliciano.jpg)',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          fontFamily: '',
+          height: '',
+        },
+      },
+      //Hero container
+      //Container2
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'feliciano-examples/herochefs.png',
+        category: 'Cards',
+        info: {
+          dir: 'horizontal',
+          toggle: true,
+          cmps: [
+            //IMAGES
+            {
+              id: utilService.makeId(4),
+              type: 'wap-img',
+              info: {
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045697/hbahgn9wxtzvj51kctdi.jpg',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
                       fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045690/dv65ye7pvztvruzwjj4q.jpg',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-img-feliciano',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            //IMAGES
+            //CARD
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Feliciano Restaurant',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
@@ -21185,719 +20258,324 @@ const templates = [
                 subtitle: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Never let location be an issue when accessing your files. Fylo has you covered for all of your file storage needs',
+                    txt: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                   {
                     id: utilService.makeId(4),
-                    txt: 'Securely share files and folders with friends, family and colleagues for live collaboration. No email attachments required',
+                    txt: 'Mon - Fri 8 AM - 11 PM',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    id: utilService.makeId(4),
+                    txt: '+ 1-978-123-4567',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                 ],
               },
-              theme: 'theme-text-fylo-v2',
+              theme: 'wap-card-default',
               style: {
-                background: 'url()',
                 color: '',
                 backgroundColor: '',
                 fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
                 fontFamily: '',
                 fontStyle: '',
               },
             },
+            //CARD
           ],
         },
-        theme: 'theme-container-fylo-v2',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-      {
-        id: utilService.makeId(4),
-        type: 'wap-container',
-        screenshotImg: 'fylo-examples/fylo-review.png',
-        category: 'Reviews',
-        info: {
-          dir: 'row',
-          cmps: [
-            {
-              id: utilService.makeId(4),
-              type: 'wap-review',
-              info: {
-                txt: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has become a well-oiled collaboration machine.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                name: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Satish Patel',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Founder & CEO, Huddle',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                avatar: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/tcrmtyvjpse0llvh7r45.jpg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-review-fylo',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-review',
-              info: {
-                txt: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has become a well-oiled collaboration machine.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                name: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Bruce McKenzie',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Founder & CEO, Huddle',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                avatar: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/ongddbdwdh9wjmscaydh.jpg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-review-fylo',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(4),
-              type: 'wap-review',
-              info: {
-                txt: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has become a well-oiled collaboration machine.',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                name: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Iva Boyd',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Founder & CEO, Huddle',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                avatar: [
-                  {
-                    id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639046608/j4wfnxxodyuxlayfvjno.jpg',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-              },
-              theme: 'theme-review-fylo',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'theme-reviews-fylo',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-      {
-        id: utilService.makeId(4),
-        type: 'wap-signup',
-        screenshotImg: 'fylo-examples/fylo-sign-up.png',
-        category: 'Contacts',
-        info: {
-          title: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Get Early Access Today',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-          subtitle: [
-            {
-              id: utilService.makeId(4),
-              txt: 'It only takes a minute to sign up and our free starter tier is extremely generous. If you have any questions, our support team would be happy to help you',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-          input: [
-            {
-              id: utilService.makeId(4),
-              txt: '',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-          buttons: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Get Started For Free!',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'theme-signup-fylo',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
-    ],
-  },
-  {
-    // _id: 'aaaaa12',
-    name: 'Architecture',
-    imgUrl: 'utica-template.png',
-    createdBy: {
-      _id: '5e26e0b718a0891d4c995527',
-      username: 'Hekro Special',
-    },
-    usersData: {
-      contacts: [
-        {email: 'user@user.com', msg: 'Please send me stuff', at: 123},
-      ],
-      signups: [{email: 'user@user.com', at: 123}],
-    },
 
-    cmps: [
-      {
-        id: utilService.makeId(4),
-        type: 'wap-header',
-        screenshotImg: 'archi-examples/theme-header-architecture.png',
-        category: 'Headers',
-        info: {
-          title: '',
-          subtitle: '',
-          logo: {
-            type: 'txt',
-            txt: 'Utica',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          navBar: [
-            {
-              id: utilService.makeId(6),
-              txt: 'Work',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(6),
-              txt: 'About',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(6),
-              txt: 'Our Team',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(6),
-              txt: 'Press',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-            {
-              id: utilService.makeId(6),
-              txt: 'Contact',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'theme-header-architecture',
+        theme: 'wap-feliciano-detail-card wap-container-flex',
         style: {
           background: 'url()',
           color: '',
           backgroundColor: '',
           fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
           fontStyle: '',
         },
       },
-      {
-        id: utilService.makeId(4),
-        type: 'wap-card',
-        screenshotImg: 'archi-examples/card-archi.png',
-        category: 'Cards',
-        info: {
-          title: [
-            {
-              id: utilService.makeId(4),
-              txt: 'Utica is an architecture firm based in Copenhagen, Denmark.',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-          subtitle: '',
-          imgs: [
-            {
-              id: utilService.makeId(4),
-              url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047582/k6uufj8vqob5zmeqqguz.jpg',
-              style: {
-                background: 'url()',
-                color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
-              },
-            },
-          ],
-        },
-        theme: 'theme-card-architecture',
-        style: {
-          background: 'url()',
-          color: '',
-          backgroundColor: '',
-          fontSize: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
-          paddingLeft: '',
-          lineHeight: '',
-          fontFamily: '',
-          fontStyle: '',
-        },
-      },
+      //Container2
+      //TEXT CMP
       {
         id: utilService.makeId(4),
         type: 'wap-text',
-        screenshotImg: 'archi-examples/text-archi.png',
+        screenshotImg: 'feliciano-examples/text.png',
         category: 'Text',
         info: {
           title: [
             {
               id: utilService.makeId(4),
-              txt: 'Recent Work...',
+              txt: 'Catering Services',
               style: {
-                background: 'url()',
+                background: '',
                 color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
+                fontFamily: 'Poppins',
+                fontStyle: '50px',
               },
             },
           ],
           subtitle: [
             {
               id: utilService.makeId(4),
-              txt: 'Our practice spans from environmental retrofits of existing buildings to the complete planning and design of new neighborhoods and public spaces. While our work is aesthetically diverse, our projects are linked by a focus on enhancing human relationships through',
+              txt: 'Catering Services',
+              style: {
+                background: '',
+                color: '#c8a97e',
+                fontFamily: 'GreatVibes',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'wap-feliciano-catering', //maybe same theme like before
+        style: {
+          background: ``,
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'feliciano-examples/services.png',
+        category: 'Cards',
+        info: {
+          dir: 'horizontal',
+          toggle: true,
+          cmps: [
+            //IMAGES
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Birthday Party',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045685/otxtfe0johrcwqdug2dz.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-catering-preview',
+              style: {
+                background: 'url()',
+                color: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Business Meetings',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wx7awvwj6ff2rgpo5496.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-catering-preview',
+              style: {
+                background: 'url()',
+                color: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Wedding Party',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/cstj9mlafjyman7kbqqv.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-catering-preview',
+              style: {
+                background: 'url()',
+                color: '',
+              },
+            },
+            //IMAGES
+          ],
+        },
+        theme: 'wap-container-flex',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          fontStyle: '',
+        },
+      },
+      //TEXT CMP
+      //MENU-CONTAINER
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'feliciano-examples/menu1.png',
+        category: 'Cards',
+        info: {
+          dir: 'horizontal',
+          toggle: true,
+          cmps: [
+            {
+              //1
+              id: utilService.makeId(4),
+              type: 'wap-img',
+              info: {
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-img-menu',
               style: {
                 background: 'url()',
                 color: '',
@@ -21911,10 +20589,165 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            },
+            }, // 2
+            {
+              // 4
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Grilled Beef with potatoes',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  //see if its good
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Order now',
+                    style: {
+                      background: 'url()',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-menu-card',
+              style: {
+                background: 'url()',
+                color: '',
+              },
+            }, // 3
+            {
+              // second line begins // 1
+              id: utilService.makeId(4),
+              type: 'wap-img',
+              info: {
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/so8gr3gawwx5ejpyecw8.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-img-menu',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            }, // 2
+            {
+              // 4
+              id: utilService.makeId(4),
+              type: 'wap-img',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Grilled Beef with potatoes',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  //see if its good
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Order now',
+                    style: {
+                      background: 'url()',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-menu-card',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            }, // end of the first line
           ],
         },
-        theme: 'theme-text-architecture',
+        theme: 'feliciano-menu-gallery container-layout',
         style: {
           background: 'url()',
           color: '',
@@ -21932,98 +20765,73 @@ const templates = [
       {
         id: utilService.makeId(4),
         type: 'wap-container',
-        screenshotImg: 'archi-examples/gallery-archi.png',
-        category: 'Galleries',
+        screenshotImg: 'feliciano-examples/menu1.png',
+        category: 'Cards',
         info: {
-          dir: 'row',
+          dir: 'horizontal',
+          toggle: true,
           cmps: [
             {
+              // second line begins // 1
               id: utilService.makeId(4),
               type: 'wap-card',
               info: {
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Project one',
+                    txt: 'Grilled Beef with potatoes',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                 ],
-                subtitle: '',
-                imgs: [
+                buttons: [
+                  //see if its good
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/z37wb0ptsbys73axascc.jpg',
+                    txt: 'Order now',
                     style: {
                       background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                 ],
               },
-              theme: 'theme-card-architecture-inner',
+              theme: 'wap-menu-card',
               style: {
                 background: 'url()',
                 color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
               },
-            },
+            }, // 2
             {
               id: utilService.makeId(4),
-              type: 'wap-card',
+              type: 'wap-img',
               info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Project two',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: '',
                 imgs: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047584/divy2h23e5uzapcqpqup.jpg',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/czna341vpw6mm15tbygi.png',
                     style: {
                       background: 'url()',
                       color: '',
@@ -22040,7 +20848,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'theme-card-architecture-inner',
+              theme: 'wap-img-menu',
               style: {
                 background: 'url()',
                 color: '',
@@ -22054,94 +20862,68 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            },
+            }, // 3
             {
+              // 2
               id: utilService.makeId(4),
               type: 'wap-card',
               info: {
                 title: [
                   {
                     id: utilService.makeId(4),
-                    txt: 'Project three',
+                    txt: 'Grilled Beef with potatoes',
                     style: {
                       background: 'url()',
                       color: '',
                       backgroundColor: '',
                       fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Meat, Potatoes, Rice, Tomatoe',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                 ],
-                subtitle: '',
-                imgs: [
+                buttons: [
+                  //see if its good
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047583/cb0vpto1vvxblurhj3rf.jpg',
+                    txt: 'Order now',
                     style: {
                       background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
                       fontStyle: '',
                     },
                   },
                 ],
               },
-              theme: 'theme-card-architecture-inner',
+              theme: 'wap-menu-card',
               style: {
                 background: 'url()',
                 color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
               },
-            },
+            }, //4
             {
               id: utilService.makeId(4),
-              type: 'wap-card',
+              type: 'wap-img',
               info: {
-                title: [
-                  {
-                    id: utilService.makeId(4),
-                    txt: 'Project four',
-                    style: {
-                      background: 'url()',
-                      color: '',
-                      backgroundColor: '',
-                      fontSize: '',
-                      paddingRight: '',
-                      paddingTop: '',
-                      paddingBottom: '',
-                      paddingLeft: '',
-                      lineHeight: '',
-                      fontFamily: '',
-                      fontStyle: '',
-                    },
-                  },
-                ],
-                subtitle: '',
                 imgs: [
                   {
                     id: utilService.makeId(4),
-                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639047585/uywwyuledud6ctzctxit.jpg',
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045687/p1oib2rzk32ne5mwyxz9.png',
                     style: {
                       background: 'url()',
                       color: '',
@@ -22158,7 +20940,7 @@ const templates = [
                   },
                 ],
               },
-              theme: 'theme-card-architecture-inner',
+              theme: 'wap-img-menu',
               style: {
                 background: 'url()',
                 color: '',
@@ -22172,10 +20954,10 @@ const templates = [
                 fontFamily: '',
                 fontStyle: '',
               },
-            },
+            }, // 3rd line begins // 1
           ],
         },
-        theme: 'theme-gallery-architecture',
+        theme: 'feliciano-menu-gallery container-layout',
         style: {
           background: 'url()',
           color: '',
@@ -22192,14 +20974,38 @@ const templates = [
       },
       {
         id: utilService.makeId(4),
-        type: 'wap-contact',
-        screenshotImg: 'archi-examples/contact-archi.png',
-        category: 'Contacts',
+        type: 'wap-container',
+        screenshotImg: 'feliciano-examples/menu1.png',
+        category: 'Cards',
         info: {
-          title: [
+          dir: 'horizontal',
+          toggle: true,
+          cmps: [
             {
-              id: utilService.makeId(6),
-              txt: "Let's Work Together!",
+              id: utilService.makeId(4),
+              type: 'wap-img',
+              info: {
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/yf4oetd3x5yqgqz6lbe0.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-img-menu',
               style: {
                 background: 'url()',
                 color: '',
@@ -22214,11 +21020,91 @@ const templates = [
                 fontStyle: '',
               },
             },
-          ],
-          subtitle: [
             {
-              id: utilService.makeId(6),
-              txt: "We're always looking for new opportunities and are comfortable working internationally. Please get in touch and one of our project managers will contact you about beginning the proposal process.",
+              // 2
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'John Smooth',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Restaurant Owner',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  //see if its good
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Contact the chef',
+                    style: {
+                      background: 'url()',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-chef-preview',
+              style: {
+                background: 'url()',
+                color: '',
+              },
+            }, //3
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/uaarokyp98gttuio0rp2.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-img-menu',
               style: {
                 background: 'url()',
                 color: '',
@@ -22233,28 +21119,61 @@ const templates = [
                 fontStyle: '',
               },
             },
-          ],
-          buttons: [
             {
-              id: utilService.makeId(6),
-              txt: 'Contact Us',
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/xgfgpi2znifye1faupoh.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Head Chef',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  //see if its good
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Contact the chef',
+                    style: {
+                      background: 'url()',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-menu-card',
               style: {
                 background: 'url()',
                 color: '',
-                backgroundColor: '',
-                fontSize: '',
-                paddingRight: '',
-                paddingTop: '',
-                paddingBottom: '',
-                paddingLeft: '',
-                lineHeight: '',
-                fontFamily: '',
-                fontStyle: '',
               },
             },
           ],
         },
-        theme: 'theme-contact-architecture',
+        theme: 'feliciano-menu-gallery container-layout',
         style: {
           background: 'url()',
           color: '',
@@ -22269,10 +21188,1131 @@ const templates = [
           fontStyle: '',
         },
       },
+      //MENU-CONTAINER
+      {
+        id: utilService.makeId(4),
+        type: 'wap-text',
+        screenshotImg: 'feliciano-examples/chefs-text.png',
+        category: 'Text',
+        info: {
+          title: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Our Master Chefs',
+              style: {
+                background: '',
+                color: '',
+                fontFamily: 'Poppins',
+                fontStyle: '50px',
+              },
+            },
+          ],
+          subtitle: [
+            {
+              id: utilService.makeId(4),
+              txt: 'Our Master Chefs',
+              style: {
+                background: '',
+                color: '#c8a97e',
+                fontFamily: 'GreatVibes',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'wap-feliciano-catering', //maybe same theme like before
+        style: {
+          background: ``,
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      //CHEF-IMGS
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'feliciano-examples/chefs-imgs.png',
+        category: 'Cards',
+        info: {
+          dir: 'horizontal',
+          toggle: true,
+          cmps: [
+            //IMAGES
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'John Smooth',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                imgs: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045686/wtyrzzdhnfdftmyh0cbs.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Restaurant Owner',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  //see if its good
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Contact the chef',
+                    style: {
+                      background: 'url()',
+                      color: 'white',
+                      backgroundColor: '#c8a97e',
+                      fontFamily: 'Poppins',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'wap-chef-preview',
+              style: {
+                background: 'url()',
+                color: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-card',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Becky Welson',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: 'Poppins',
+                    },
+                  },
+                ],
+                name: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Rotem Bublil',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'CEO & Head of lunch',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                avatar: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/z6kmqgl99aj7quigxfi7.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-review',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-review',
+              info: {
+                txt: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                name: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Matan Lasry',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Chief ',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                avatar: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045688/wcuewyjbvcl1ng9sexp6.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-review',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-review',
+              info: {
+                txt: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: '"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts."',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                name: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Shani Aharon',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'CEO & Head of lunch',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                avatar: [
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045689/ynikal9lmpvlmmmyfijm.png',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-review',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-review-container',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      //Reviews
+      //FOOTER
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'pexels-photo-12211.jpeg',
+        category: 'Footers',
+        info: {
+          dir: 'horizontal',
+          toggle: true,
+          cmps: [
+            {
+              id: utilService.makeId(4),
+              type: 'wap-text',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Feliciano',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-footer-text',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-text',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Open Hours',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    // 1
+                    id: utilService.makeId(4),
+                    txt: 'Monday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    // 2
+                    id: utilService.makeId(4),
+                    txt: 'Tuesday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //3
+                    id: utilService.makeId(4),
+                    txt: 'Wednesday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    // 4
+                    id: utilService.makeId(4),
+                    txt: 'Thursday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //5
+                    id: utilService.makeId(4),
+                    txt: 'Friday 9:00 - 02:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //6
+                    id: utilService.makeId(4),
+                    txt: 'Saturday 9:00 - 02:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //7
+                    id: utilService.makeId(4),
+                    txt: 'Sunday 9:00 - 02:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-footer-hours',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-signup',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Newsletter',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Far far away, behind the word mountains, far from the countries.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                input: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: '',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Subscribe',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-signup',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-footer',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      {
+        id: utilService.makeId(4),
+        type: 'wap-container',
+        screenshotImg: 'pexels-photo-12211.jpeg',
+        category: 'Footers',
+        info: {
+          dir: 'horizontal',
+          cmps: [
+            {
+              id: utilService.makeId(4),
+              type: 'wap-text',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Feliciano',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-footer-text',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-text',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Open Hours',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    // 1
+                    id: utilService.makeId(4),
+                    txt: 'Monday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    // 2
+                    id: utilService.makeId(4),
+                    txt: 'Tuesday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //3
+                    id: utilService.makeId(4),
+                    txt: 'Wednesday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    // 4
+                    id: utilService.makeId(4),
+                    txt: 'Thursday 9:00 - 24:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //5
+                    id: utilService.makeId(4),
+                    txt: 'Friday 9:00 - 02:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //6
+                    id: utilService.makeId(4),
+                    txt: 'Saturday 9:00 - 02:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                  {
+                    //7
+                    id: utilService.makeId(4),
+                    txt: 'Sunday 9:00 - 02:00',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-footer-hours',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+            {
+              id: utilService.makeId(4),
+              type: 'wap-signup',
+              info: {
+                title: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Newsletter',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                subtitle: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Far far away, behind the word mountains, far from the countries.',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                input: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'example@email.com',
+                    type: 'text',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+                buttons: [
+                  {
+                    id: utilService.makeId(4),
+                    txt: 'Subscribe',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      paddingRight: '',
+                      paddingTop: '',
+                      paddingBottom: '',
+                      paddingLeft: '',
+                      lineHeight: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  },
+                ],
+              },
+              theme: 'feliciano-signup',
+              style: {
+                background: 'url()',
+                color: '',
+                backgroundColor: '',
+                fontSize: '',
+                paddingRight: '',
+                paddingTop: '',
+                paddingBottom: '',
+                paddingLeft: '',
+                lineHeight: '',
+                fontFamily: '',
+                fontStyle: '',
+              },
+            },
+          ],
+        },
+        theme: 'feliciano-footer',
+        style: {
+          background: 'url()',
+          color: '',
+          backgroundColor: '',
+          fontSize: '',
+          paddingRight: '',
+          paddingTop: '',
+          paddingBottom: '',
+          paddingLeft: '',
+          lineHeight: '',
+          fontFamily: '',
+          fontStyle: '',
+        },
+      },
+      //Reviews
+
+      //CHEF-IMGS
     ],
-    isPublic: true,
   },
-];
+]
+
 // function custom() {
 //   const cmps = gCmps;
 //   let str = '';
@@ -22629,7 +22669,7 @@ const footer = {
     fontFamily: '',
     fontStyle: '',
   },
-};
+}
 fs.writeFile('test.json', JSON.stringify(wap_feliciano), 'utf-8', () => {
-  console.log('success');
-});
+  console.log('success')
+})
