@@ -67,6 +67,90 @@ http.listen(port, () => {
 
 let gCmps = [
   {
+    _id: '61b5c1b3cfc5c8eb8f6e629a',
+    id: 'oUNO0',
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/herochefs.png',
+    category: 'Cards',
+    info: {
+      dir: 'horizontal',
+      toggle: true,
+      cmps: [
+        {
+          id: '3vtir',
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: 'EUOw',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045697/hbahgn9wxtzvj51kctdi.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-feliciano',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: 'HTJA8',
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: 'KyVi',
+                txt: 'Feliciano Restaurant',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '50',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [],
+          },
+          theme: 'wap-card-default',
+          style: {
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-feliciano-detail-card wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      fontStyle: '',
+    },
+  },
+  {
     id: utilService.makeId(4),
     type: 'wap-container',
     screenshotImg: 'feliciano-examples/hero.png',
