@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b0d2a4d585bff289ca12",
-    "url": "/css/app.8576389f.css"
+    "revision": "8260c28bc56d1c0a4c2a",
+    "url": "/css/app.7bfb5e42.css"
   },
   {
     "revision": "6e63970152121593a4d2",
@@ -256,12 +256,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/imgs/main-header-feliciano.jpg"
   },
   {
-    "revision": "cf670a024f5917349031a0d51341fed9",
+    "revision": "be8a01b7365cf306ced886f1499c823a",
     "url": "/index.html"
   },
   {
-    "revision": "b0d2a4d585bff289ca12",
-    "url": "/js/app.9aa64fab.js"
+    "revision": "8260c28bc56d1c0a4c2a",
+    "url": "/js/app.64502f17.js"
   },
   {
     "revision": "6e63970152121593a4d2",
