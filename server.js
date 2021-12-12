@@ -17874,7 +17874,7 @@ const wap_feliciano_test = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Ravioli',
+                  txt: 'Sweet potato ravioli',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17887,7 +17887,7 @@ const wap_feliciano_test = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Cream, Parmesan',
+                  txt: 'Ravioli with sweet potato cream with parmesan and spinach',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17966,7 +17966,7 @@ const wap_feliciano_test = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Cheese Cake',
+                  txt: 'Cheese cake with wild berries',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17979,7 +17979,7 @@ const wap_feliciano_test = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Chesse, Cherry',
+                  txt: 'Our flag desert, Sweet cheese cake with wild berries syrop',
                   style: {
                     background: 'url()',
                     color: '',
@@ -18045,7 +18045,7 @@ const wap_feliciano_test = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Salmon',
+                  txt: 'Roast Salmon on baked vegetables',
                   style: {
                     background: 'url()',
                     color: '',
@@ -18058,7 +18058,7 @@ const wap_feliciano_test = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Fish, Vegetables',
+                  txt: '500g piece of roast Salmon and Vegetables in the over',
                   style: {
                     background: 'url()',
                     color: '',
