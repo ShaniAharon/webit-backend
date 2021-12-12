@@ -59,6 +59,7 @@
 11/12/2021, 19:17:23 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
 11/12/2021, 19:26:40 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
 11/12/2021, 19:40:00 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
+<<<<<<< HEAD
 11/12/2021, 19:45:46 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
 11/12/2021, 20:05:28 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
 11/12/2021, 21:36:27 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
@@ -77,3 +78,7 @@
 12/12/2021, 0:19:28 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
 12/12/2021, 0:31:56 - INFO - Req from: guest (sid: GcR9nHcak5wJwskyAHWoIhvBHz0OdZbq)
 12/12/2021, 8:37:09 - INFO - Server is running on port: 3000 
+=======
+11/12/2021, 21:38:40 - INFO - Server is running on port: 3000 
+12/12/2021, 0:26:54 - INFO - Server is running on port: 3000 
+>>>>>>> 18d6281407e94fd583463ecf9ab26d141a28623b

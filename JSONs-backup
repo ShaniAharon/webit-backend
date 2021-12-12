@@ -388,7 +388,7 @@ const wap_architecture = {
               fontFamily: '',
               fontStyle: '',
             },
-          }
+          },
         ],
       },
       theme: 'theme-gallery-architecture',
@@ -631,7 +631,6 @@ const wap_architecture = {
   ],
   isPublic: true,
 }
-
 
 const wap_fylo = {
   isPublic: true,
@@ -3208,6 +3207,7 @@ const wap_sunnyside = {
 
 const wap_feliciano = {
   isPublic: true,
+  wapHistory: [],
   name: 'Feliciano',
   imgUrl: 'feliciano-template.png',
   createdBy: {
@@ -3323,7 +3323,7 @@ const wap_feliciano = {
                     fontFamily: 'Poppins',
                     fontStyle: '',
                   },
-                }
+                },
               ],
             },
             theme: 'wap-header-feliciano',
@@ -3398,7 +3398,7 @@ const wap_feliciano = {
               fontFamily: '',
               fontStyle: '',
             },
-          }
+          },
         ],
       },
       theme: 'feliciano-landing-page',
@@ -3968,7 +3968,7 @@ const wap_feliciano = {
               color: '',
             },
           }, // end of the first line
-        ]
+        ],
       },
       theme: 'feliciano-menu-gallery container-layout',
       style: {
@@ -4177,7 +4177,7 @@ const wap_feliciano = {
               fontStyle: '',
             },
           }, // 3rd line begins // 1
-        ]
+        ],
       },
       theme: 'feliciano-menu-gallery container-layout',
       style: {
@@ -4385,8 +4385,8 @@ const wap_feliciano = {
               background: 'url()',
               color: '',
             },
-          }
-        ]
+          },
+        ],
       },
       theme: 'feliciano-menu-gallery container-layout',
       style: {
@@ -5540,7 +5540,7 @@ const wap_feliciano = {
         fontFamily: '',
         fontStyle: '',
       },
-    }
+    },
     //Reviews
 
     //CHEF-IMGS
