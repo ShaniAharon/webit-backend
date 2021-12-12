@@ -65,7 +65,6 @@ http.listen(port, () => {
   logger.info('Server is running on port: ' + port)
 })
 
-
 let gCmps = [
   {
     id: utilService.makeId(4),
@@ -167,7 +166,7 @@ let gCmps = [
                   fontFamily: 'Poppins',
                   fontStyle: '',
                 },
-              }
+              },
             ],
           },
           theme: 'wap-header-feliciano',
@@ -242,7 +241,7 @@ let gCmps = [
             fontFamily: '',
             fontStyle: '',
           },
-        }
+        },
       ],
     },
     theme: 'feliciano-landing-page',
@@ -806,7 +805,7 @@ let gCmps = [
             color: '',
           },
         }, // end of the first line
-      ]
+      ],
     },
     theme: 'feliciano-menu-gallery container-layout',
     style: {
@@ -1015,7 +1014,7 @@ let gCmps = [
             fontStyle: '',
           },
         }, // 3rd line begins // 1
-      ]
+      ],
     },
     theme: 'feliciano-menu-gallery container-layout',
     style: {
@@ -1223,8 +1222,8 @@ let gCmps = [
             background: 'url()',
             color: '',
           },
-        }
-      ]
+        },
+      ],
     },
     theme: 'feliciano-menu-gallery container-layout',
     style: {
@@ -4111,7 +4110,7 @@ let gCmps = [
             fontFamily: '',
             fontStyle: '',
           },
-        }
+        },
       ],
     },
     theme: 'theme-gallery-architecture',
@@ -5520,7 +5519,6 @@ let gCmps = [
     },
   },
 ]
-
 
 const wap_architecture = {
   // _id: 'aaaaa12',
