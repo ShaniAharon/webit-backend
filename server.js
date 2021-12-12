@@ -2028,7 +2028,7 @@ let gCmps = [
   {
     id: utilService.makeId(4),
     type: 'wap-container',
-    screenshotImg: 'feliciano-examples/feliciano-footer.png',
+    screenshotImg: './feliciano-examples/feliciano-footer.png',
     category: 'Footers',
     info: {
       dir: 'horizontal',
