@@ -17635,6 +17635,638 @@ const footer = {
   },
 }
 
+const menus = [
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/menu1.png',
+    category: 'Cards',
+    info: {
+      dir: 'horizontal',
+      toggle: true,
+      cmps: [
+        {
+          //1
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4), // pasta
+                url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/pasta_vmepzx.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        }, // 2
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            //Ravioli
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Sweet potato ravioli',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Ravioli with sweet potato cream with parmesan and spinach',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // 3
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4), //cheese Cake
+                url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/cheeseCake_xgvuru.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          // 4
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Cheese cake with wild berries',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Our flag desert, Sweet cheese cake with wild berries syrop',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // end of the first line
+      ],
+    },
+    theme: 'feliciano-menu-gallery container-layout',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/menu1.png',
+    category: 'Cards',
+    info: {
+      dir: 'horizontal',
+      toggle: true,
+      cmps: [
+        {
+          // second line begins // 1
+          id: utilService.makeId(4),
+          type: 'wap-card', //salmon
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Roast Salmon on baked vegetables',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: '500g piece of roast Salmon and Vegetables in the over',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, // 2
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/salmon_cl7ook.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        }, // 3
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Cream Cake',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Chocolate, Cream',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, //4
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/desert2_rottea.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        }, // 3rd line begins // 1
+      ],
+    },
+    theme: 'feliciano-menu-gallery container-layout',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+  {
+    id: utilService.makeId(4),
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/menu1.png',
+    category: 'Cards',
+    info: {
+      dir: 'horizontal',
+      toggle: true,
+      cmps: [
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4), //pizza
+                url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/pizza_und9h4.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          // 2
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Pizza',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Cheese, Onion',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        }, //3
+        {
+          id: utilService.makeId(4),
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: utilService.makeId(4),
+                url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/drinks_vjj50m.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  paddingRight: '',
+                  paddingTop: '',
+                  paddingBottom: '',
+                  paddingLeft: '',
+                  lineHeight: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-menu',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: utilService.makeId(4),
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Drinks',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                },
+              },
+            ],
+            subtitle: [
+              {
+                id: utilService.makeId(4),
+                txt: 'Fruit, Alcohol',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            buttons: [
+              //see if its good
+              {
+                id: utilService.makeId(4),
+                txt: 'Order now',
+                style: {
+                  background: 'url()',
+                  color: 'white',
+                  backgroundColor: '#c8a97e',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-menu-card',
+          style: {
+            background: 'url()',
+            color: '',
+          },
+        },
+      ],
+    },
+    theme: 'feliciano-menu-gallery container-layout',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      paddingRight: '',
+      paddingTop: '',
+      paddingBottom: '',
+      paddingLeft: '',
+      lineHeight: '',
+      fontFamily: '',
+      fontStyle: '',
+    },
+  },
+]
+
 const wap_feliciano_test = {
   isPublic: true,
   wapHistory: [],
@@ -18217,635 +18849,6 @@ const wap_feliciano_test = {
     },
     //TEXT CMP
     //MENU-CONTAINER
-    {
-      id: utilService.makeId(4),
-      type: 'wap-container',
-      screenshotImg: 'feliciano-examples/menu1.png',
-      category: 'Cards',
-      info: {
-        dir: 'horizontal',
-        toggle: true,
-        cmps: [
-          {
-            //1
-            id: utilService.makeId(4),
-            type: 'wap-img',
-            info: {
-              imgs: [
-                {
-                  id: utilService.makeId(4), // pasta
-                  url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/pasta_vmepzx.jpg',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-img-menu',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          }, // 2
-          {
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              //Ravioli
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Sweet potato ravioli',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Ravioli with sweet potato cream with parmesan and spinach',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Order now',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-menu-card',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          }, // 3
-          {
-            id: utilService.makeId(4),
-            type: 'wap-img',
-            info: {
-              imgs: [
-                {
-                  id: utilService.makeId(4), //cheese Cake
-                  url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/cheeseCake_xgvuru.jpg',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-img-menu',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          {
-            // 4
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Cheese cake with wild berries',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Our flag desert, Sweet cheese cake with wild berries syrop',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Order now',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-menu-card',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          }, // end of the first line
-        ],
-      },
-      theme: 'feliciano-menu-gallery container-layout',
-      style: {
-        background: 'url()',
-        color: '',
-        backgroundColor: '',
-        fontSize: '',
-        paddingRight: '',
-        paddingTop: '',
-        paddingBottom: '',
-        paddingLeft: '',
-        lineHeight: '',
-        fontFamily: '',
-        fontStyle: '',
-      },
-    },
-    {
-      id: utilService.makeId(4),
-      type: 'wap-container',
-      screenshotImg: 'feliciano-examples/menu1.png',
-      category: 'Cards',
-      info: {
-        dir: 'horizontal',
-        toggle: true,
-        cmps: [
-          {
-            // second line begins // 1
-            id: utilService.makeId(4),
-            type: 'wap-card', //salmon
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Roast Salmon on baked vegetables',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: '500g piece of roast Salmon and Vegetables in the over',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Order now',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-menu-card',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          }, // 2
-          {
-            id: utilService.makeId(4),
-            type: 'wap-img',
-            info: {
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/salmon_cl7ook.jpg',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-img-menu',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          }, // 3
-          {
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Cream Cake',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Chocolate, Cream',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Order now',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-menu-card',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          }, //4
-          {
-            id: utilService.makeId(4),
-            type: 'wap-img',
-            info: {
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/desert2_rottea.jpg',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-img-menu',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          }, // 3rd line begins // 1
-        ],
-      },
-      theme: 'feliciano-menu-gallery container-layout',
-      style: {
-        background: 'url()',
-        color: '',
-        backgroundColor: '',
-        fontSize: '',
-        paddingRight: '',
-        paddingTop: '',
-        paddingBottom: '',
-        paddingLeft: '',
-        lineHeight: '',
-        fontFamily: '',
-        fontStyle: '',
-      },
-    },
-    {
-      id: utilService.makeId(4),
-      type: 'wap-container',
-      screenshotImg: 'feliciano-examples/menu1.png',
-      category: 'Cards',
-      info: {
-        dir: 'horizontal',
-        toggle: true,
-        cmps: [
-          {
-            id: utilService.makeId(4),
-            type: 'wap-img',
-            info: {
-              imgs: [
-                {
-                  id: utilService.makeId(4), //pizza
-                  url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/pizza_und9h4.jpg',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-img-menu',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          {
-            // 2
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Pizza',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Cheese, Onion',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Order now',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-menu-card',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          }, //3
-          {
-            id: utilService.makeId(4),
-            type: 'wap-img',
-            info: {
-              imgs: [
-                {
-                  id: utilService.makeId(4),
-                  url: 'https://res.cloudinary.com/diuwnmnjk/image/upload/v1639327638/drinks_vjj50m.jpg',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    paddingRight: '',
-                    paddingTop: '',
-                    paddingBottom: '',
-                    paddingLeft: '',
-                    lineHeight: '',
-                    fontFamily: '',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-img-menu',
-            style: {
-              background: 'url()',
-              color: '',
-              backgroundColor: '',
-              fontSize: '',
-              paddingRight: '',
-              paddingTop: '',
-              paddingBottom: '',
-              paddingLeft: '',
-              lineHeight: '',
-              fontFamily: '',
-              fontStyle: '',
-            },
-          },
-          {
-            id: utilService.makeId(4),
-            type: 'wap-card',
-            info: {
-              title: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Drinks',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                  },
-                },
-              ],
-              subtitle: [
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Fruit, Alcohol',
-                  style: {
-                    background: 'url()',
-                    color: '',
-                    backgroundColor: '',
-                    fontSize: '',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-              buttons: [
-                //see if its good
-                {
-                  id: utilService.makeId(4),
-                  txt: 'Order now',
-                  style: {
-                    background: 'url()',
-                    color: 'white',
-                    backgroundColor: '#c8a97e',
-                    fontFamily: 'Poppins',
-                    fontStyle: '',
-                  },
-                },
-              ],
-            },
-            theme: 'wap-menu-card',
-            style: {
-              background: 'url()',
-              color: '',
-            },
-          },
-        ],
-      },
-      theme: 'feliciano-menu-gallery container-layout',
-      style: {
-        background: 'url()',
-        color: '',
-        backgroundColor: '',
-        fontSize: '',
-        paddingRight: '',
-        paddingTop: '',
-        paddingBottom: '',
-        paddingLeft: '',
-        lineHeight: '',
-        fontFamily: '',
-        fontStyle: '',
-      },
-    },
     {
       id: utilService.makeId(4),
       type: 'wap-container',
