@@ -377,6 +377,18 @@ let gCmps = [
                   fontStyle: '',
                 },
               },
+              {
+                id: utilService.makeId(4),
+                url: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              }
             ],
           },
           theme: 'wap-img-feliciano',
@@ -11238,6 +11250,18 @@ const templates = [
                       fontStyle: '',
                     },
                   },
+                  {
+                    id: utilService.makeId(4),
+                    url: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
+                    style: {
+                      background: 'url()',
+                      color: '',
+                      backgroundColor: '',
+                      fontSize: '',
+                      fontFamily: '',
+                      fontStyle: '',
+                    },
+                  }
                 ],
               },
               theme: 'wap-img-feliciano',
@@ -17144,6 +17168,18 @@ const wap_feliciano_test = {
                     fontStyle: '',
                   },
                 },
+                {
+                  id: utilService.makeId(4),
+                  url: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
+                  style: {
+                    background: 'url()',
+                    color: '',
+                    backgroundColor: '',
+                    fontSize: '',
+                    fontFamily: '',
+                    fontStyle: '',
+                  },
+                }
               ],
             },
             theme: 'wap-img-feliciano',
@@ -17524,7 +17560,7 @@ const wap_feliciano_test = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Ravioli',
+                  txt: 'Sweet potato ravioli',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17537,7 +17573,7 @@ const wap_feliciano_test = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Cream, Parmesan',
+                  txt: 'Ravioli with sweet potato cream with parmesan and spinach',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17616,7 +17652,7 @@ const wap_feliciano_test = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Cheese Cake',
+                  txt: 'Cheese cake with wild berries',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17629,7 +17665,7 @@ const wap_feliciano_test = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Chesse, Cherry',
+                  txt: 'Our flag desert, Sweet cheese cake with wild berries syrop',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17695,7 +17731,7 @@ const wap_feliciano_test = {
               title: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Salmon',
+                  txt: 'Roast Salmon on baked vegetables',
                   style: {
                     background: 'url()',
                     color: '',
@@ -17708,7 +17744,7 @@ const wap_feliciano_test = {
               subtitle: [
                 {
                   id: utilService.makeId(4),
-                  txt: 'Fish, Vegetables',
+                  txt: '500g piece of roast Salmon and Vegetables in the over',
                   style: {
                     background: 'url()',
                     color: '',
