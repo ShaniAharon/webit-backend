@@ -81,4 +81,8 @@
 =======
 11/12/2021, 21:38:40 - INFO - Server is running on port: 3000 
 12/12/2021, 0:26:54 - INFO - Server is running on port: 3000 
+<<<<<<< HEAD
+12/12/2021, 9:30:20 - INFO - Server is running on port: 3000 
+=======
 >>>>>>> 18d6281407e94fd583463ecf9ab26d141a28623b
+>>>>>>> d4e63769b11ade019fe661c4256f5c285a0c81f6
