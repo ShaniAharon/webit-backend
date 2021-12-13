@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "654db2972b7f04cc0f39",
+    "revision": "46010ab747f50d914e90",
     "url": "/css/app.1598b02a.css"
   },
   {
@@ -184,6 +184,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/gallery-archi.4077e194.png"
   },
   {
+    "revision": "33af0638e27ce8a7b2693d6b2a08caa0",
+    "url": "/img/get-creative.33af0638.png"
+  },
+  {
     "revision": "896f8155eea74cda98d945b36f679e64",
     "url": "/img/happy-text.896f8155.png"
   },
@@ -280,12 +284,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/imgs/main-header-feliciano.jpg"
   },
   {
-    "revision": "bc3454a466c64bd5a5d82ae0c1896245",
+    "revision": "8127b3db0e83102fcd223089d3a76d25",
     "url": "/index.html"
   },
   {
-    "revision": "654db2972b7f04cc0f39",
-    "url": "/js/app.3a07a693.js"
+    "revision": "46010ab747f50d914e90",
+    "url": "/js/app.4a28b5e8.js"
   },
   {
     "revision": "6e63970152121593a4d2",
