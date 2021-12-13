@@ -39,10 +39,6 @@ async function createNewWap(req, res) {
       template = await templateService.getById(templateId)
       template.name = newWapData.name
       template.usersData = newWapData.users
-      console.log(
-        '🚀 ~ file: templates.controller.js ~ line 39 ~ createNewWap ~ templateId',
-        template
-      )
     } else {
       template = {
         name: 'New Project',
