@@ -1,71 +1,88 @@
-const express = require('express')
-const fs = require('fs')
-const cors = require('cors')
-const utilService = require('./utilServiceJson')
-const path = require('path')
-const expressSession = require('express-session')
-const app = express()
-const http = require('http').createServer(app)
-
-// Express App Config
-const session = expressSession({
-  secret: 'coding is amazing',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false },
-})
-app.use(express.json())
-app.use(session)
-
-const authRoutes = require('./api/auth/auth.routes')
-const userRoutes = require('./api/user/user.routes')
-const cmpRoutes = require('./api/cmp/cmp.routes')
-const wapRoutes = require('./api/wap/wap.routes')
-const templatesRoute = require('./api/templates/templates.routes')
-
-const { connectSockets } = require('./services/socket.service')
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'public')))
-} else {
-  app.use(express.static(path.resolve(__dirname, 'public')))
-  const corsOptions = {
-    origin: [
-      'http://127.0.0.1:8080',
-      'http://localhost:8080',
-      'http://127.0.0.1:3000',
-      'http://localhost:3000',
-    ],
-    credentials: true,
-  }
-  app.use(cors(corsOptions))
-}
-
-// routes
-const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
-app.all('*', setupAsyncLocalStorage)
-
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
-app.use('/api/wap', wapRoutes)
-app.use('/api/cmp', cmpRoutes)
-app.use('/api/template', templatesRoute)
-
-connectSockets(http, session)
-// Make every server-side-route to match the index.html
-// so when requesting http://localhost:3030/index.html/car/123 it will still respond with
-// our SPA (single page app) (the index.html file) and allow vue/react-router to take it from there
-
-app.get('/**', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-const logger = require('./services/logger.service')
-const port = process.env.PORT || 3000
-http.listen(port, () => {
-  logger.info('Server is running on port: ' + port)
-})
-
 let gCmps = [
+  {
+    _id: '61b5c1b3cfc5c8eb8f6e629a',
+    id: 'oUNO0',
+    type: 'wap-container',
+    screenshotImg: 'feliciano-examples/herochefs.png',
+    category: 'Cards',
+    info: {
+      dir: 'horizontal',
+      toggle: true,
+      cmps: [
+        {
+          id: '3vtir',
+          type: 'wap-img',
+          info: {
+            imgs: [
+              {
+                id: 'EUOw',
+                url: 'https://res.cloudinary.com/rb-mister-toy/image/upload/v1639045697/hbahgn9wxtzvj51kctdi.jpg',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '',
+                  fontFamily: '',
+                  fontStyle: '',
+                },
+              },
+            ],
+          },
+          theme: 'wap-img-feliciano',
+          style: {
+            background: 'url()',
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            paddingRight: '',
+            paddingTop: '',
+            paddingBottom: '',
+            paddingLeft: '',
+            lineHeight: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+        {
+          id: 'HTJA8',
+          type: 'wap-card',
+          info: {
+            title: [
+              {
+                id: 'KyVi',
+                txt: 'Feliciano Restaurant',
+                style: {
+                  background: 'url()',
+                  color: '',
+                  backgroundColor: '',
+                  fontSize: '50',
+                  fontFamily: 'Poppins',
+                  fontStyle: '',
+                },
+              },
+            ],
+            subtitle: [],
+          },
+          theme: 'wap-card-default',
+          style: {
+            color: '',
+            backgroundColor: '',
+            fontSize: '',
+            fontFamily: '',
+            fontStyle: '',
+          },
+        },
+      ],
+    },
+    theme: 'wap-feliciano-detail-card wap-container-flex',
+    style: {
+      background: 'url()',
+      color: '',
+      backgroundColor: '',
+      fontSize: '',
+      fontStyle: '',
+    },
+  },
   {
     id: utilService.makeId(4),
     type: 'wap-container',
@@ -304,7 +321,7 @@ let gCmps = [
                   fontFamily: '',
                   fontStyle: '',
                 },
-              },
+              }
             ],
           },
           theme: 'wap-img-feliciano',
@@ -5712,7 +5729,7 @@ let gCmps = [
       fontStyle: '',
     },
   },
-]
+];
 
 const wap_architecture = {
   // _id: 'aaaaa12',
@@ -11889,7 +11906,7 @@ const templates = [
                       fontFamily: '',
                       fontStyle: '',
                     },
-                  },
+                  }
                 ],
               },
               theme: 'wap-img-feliciano',
@@ -18441,7 +18458,7 @@ const wap_feliciano_test = {
                     fontFamily: '',
                     fontStyle: '',
                   },
-                },
+                }
               ],
             },
             theme: 'wap-img-feliciano',
@@ -20090,7 +20107,3 @@ const wap_feliciano_test = {
     //CHEF-IMGS
   ],
 }
-
-fs.writeFile('test.json', JSON.stringify(wap_feliciano_test), 'utf-8', () => {
-  console.log('success')
-}) //make new gcmps updated
