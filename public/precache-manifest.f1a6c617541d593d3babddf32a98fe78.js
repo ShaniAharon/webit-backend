@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "93515f58c2eed1f2b7d1",
-    "url": "/css/app.951a2d78.css"
+    "revision": "413b4de88526f1fe0288",
+    "url": "/css/app.78317e9f.css"
   },
   {
     "revision": "6e63970152121593a4d2",
@@ -212,6 +212,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/homepage.bb27da81.svg"
   },
   {
+    "revision": "ed869e00c0371613aec18741311334d4",
+    "url": "/img/ice-cream-template.ed869e00.png"
+  },
+  {
     "revision": "44e3065026b08ed32221e1916da7484e",
     "url": "/img/illustration-woman-online-desktop.44e30650.svg"
   },
@@ -284,12 +288,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/imgs/main-header-feliciano.jpg"
   },
   {
-    "revision": "fc1ffa6ecab39423b9ad6c726e197734",
+    "revision": "54fa6b9f3e0425f6ebfda3ad1da925ee",
     "url": "/index.html"
   },
   {
-    "revision": "93515f58c2eed1f2b7d1",
-    "url": "/js/app.b7540663.js"
+    "revision": "413b4de88526f1fe0288",
+    "url": "/js/app.5226aa32.js"
   },
   {
     "revision": "6e63970152121593a4d2",
