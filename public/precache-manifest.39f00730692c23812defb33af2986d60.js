@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "46010ab747f50d914e90",
-    "url": "/css/app.1598b02a.css"
+    "revision": "cda1e9670d23fb7f0502",
+    "url": "/css/app.a98fbb00.css"
   },
   {
     "revision": "6e63970152121593a4d2",
@@ -84,8 +84,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/9.164a6388.jpg"
   },
   {
-    "revision": "a642c04f7657eb717f4ec9e3eabf206e",
-    "url": "/img/Logo.a642c04f.png"
+    "revision": "718853e57b0c989fce180a955d4012c3",
+    "url": "/img/Logo.718853e5.png"
   },
   {
     "revision": "2d630a76baad0a6738a6e448076f5701",
@@ -256,6 +256,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/services.3c9fce94.png"
   },
   {
+    "revision": "3226f17011d33be03d905d3c9dde5260",
+    "url": "/img/sport-template.3226f170.png"
+  },
+  {
     "revision": "02dfe2a7b06e99a3565bf6a50bfc54e8",
     "url": "/img/sunnyside-template.02dfe2a7.png"
   },
@@ -284,12 +288,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/imgs/main-header-feliciano.jpg"
   },
   {
-    "revision": "8127b3db0e83102fcd223089d3a76d25",
+    "revision": "67c110dbc94b9f8b9f98d4d3dd7187f2",
     "url": "/index.html"
   },
   {
-    "revision": "46010ab747f50d914e90",
-    "url": "/js/app.4a28b5e8.js"
+    "revision": "cda1e9670d23fb7f0502",
+    "url": "/js/app.33f55e2f.js"
   },
   {
     "revision": "6e63970152121593a4d2",
