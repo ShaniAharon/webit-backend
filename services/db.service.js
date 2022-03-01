@@ -8,7 +8,7 @@ module.exports = {
 };
 
 // Database Name
-const dbName = 'webit_db';
+const dbName = 'webit__db';
 
 var dbConn = null;
 
