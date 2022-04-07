@@ -1,5 +1,5 @@
 module.exports = {
   // dbURL: 'mongodb://localhost:27017',
   dbURL:
-    'mongodb+srv://Yarden:72lc5o7Xkqnm6KNl@cluster0.lsmqg.mongodb.net/toy_db?retryWrites=true&w=majority',
-}
+    'mongodb+srv://Yarden:TYXFlHHRgdH1U7hO@cluster0.lsmqg.mongodb.net/toy_db?retryWrites=true&w=majority',
+};

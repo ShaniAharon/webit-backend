@@ -16,10 +16,11 @@ async function getCmps(req, res) {
   try {
     var queryParams = req.query;
     const cmps = await cmpService.query(queryParams);
+    console.log('GETTING CMPS : ', cmps);
     res.json(cmps);
   } catch (err) {
     logger.error('Failed to get cmps', err);
-    res.status(500).send({err: 'Failed to get cmps'});
+    res.status(500).send({ err: 'Failed to get cmps' });
   }
 }
 
@@ -42,7 +43,7 @@ async function getCmpById(req, res) {
     res.json(copyCmp);
   } catch (err) {
     logger.error('Failed to get cmp', err);
-    res.status(500).send({err: 'Failed to get cmp'});
+    res.status(500).send({ err: 'Failed to get cmp' });
   }
 }
 
@@ -55,7 +56,7 @@ async function addCmp(req, res) {
     res.json(addedCmp);
   } catch (err) {
     logger.error('Failed to add cmp', err);
-    res.status(500).send({err: 'Failed to add cmp'});
+    res.status(500).send({ err: 'Failed to add cmp' });
   }
 }
 
@@ -67,7 +68,7 @@ async function updateCmp(req, res) {
     res.json(updatedCmp);
   } catch (err) {
     logger.error('Failed to update cmp', err);
-    res.status(500).send({err: 'Failed to update cmp'});
+    res.status(500).send({ err: 'Failed to update cmp' });
   }
 }
 
@@ -79,7 +80,7 @@ async function removeCmp(req, res) {
     res.send(removedId);
   } catch (err) {
     logger.error('Failed to remove cmp', err);
-    res.status(500).send({err: 'Failed to remove cmp'});
+    res.status(500).send({ err: 'Failed to remove cmp' });
   }
 }
 
