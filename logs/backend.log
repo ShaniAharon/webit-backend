@@ -309,3 +309,4 @@
 07/04/2022, 13:14:39 - DEBUG - auth.route - new account created: {"username":"aaa","password":"$2b$10$pppx1uYfV/HRwg7Tq852cOwSoOjADU681Djt.VYSjYD8x.11lTP3C","fullname":"aaa","waps":[],"_id":"624eb98f4236d053d43c06a8"} (sid: XGb818ZEX4LOFrzbe-TXKwjLMNKJ56RM)
 07/04/2022, 13:14:39 - DEBUG - auth.service - login with username: aaa (sid: XGb818ZEX4LOFrzbe-TXKwjLMNKJ56RM)
 07/04/2022, 13:14:40 - INFO - Req from: aaa (sid: XGb818ZEX4LOFrzbe-TXKwjLMNKJ56RM)
+16/08/2022, 16:03:00 - INFO - Server is running on port: 3000 
