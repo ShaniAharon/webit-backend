@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+config
+
 backend.log
 testcmp.json
 # local env files
@@ -22,3 +24,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+

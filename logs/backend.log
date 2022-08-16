@@ -284,6 +284,7 @@
 06/02/2022, 18:18:55 - INFO - Req from: admin (sid: ftuislINxIWo1myTWuae_1hXoIscNN8A)
 06/02/2022, 18:43:30 - DEBUG - auth.service - signup with username: Admin123, fullname:  (sid: ftuislINxIWo1myTWuae_1hXoIscNN8A)
 06/02/2022, 18:43:30 - ERROR - Failed to signup fullname, username and password are required! (sid: ftuislINxIWo1myTWuae_1hXoIscNN8A)
+<<<<<<< HEAD
 27/03/2022, 11:47:43 - INFO - Server is running on port: 3000 
 07/04/2022, 13:05:25 - INFO - Server is running on port: 3000 
 07/04/2022, 13:05:30 - DEBUG - auth.service - login with username: Admin123 (sid: XGb818ZEX4LOFrzbe-TXKwjLMNKJ56RM)
@@ -310,3 +311,82 @@
 07/04/2022, 13:14:39 - DEBUG - auth.service - login with username: aaa (sid: XGb818ZEX4LOFrzbe-TXKwjLMNKJ56RM)
 07/04/2022, 13:14:40 - INFO - Req from: aaa (sid: XGb818ZEX4LOFrzbe-TXKwjLMNKJ56RM)
 16/08/2022, 16:03:00 - INFO - Server is running on port: 3000 
+=======
+15/02/2022, 19:18:36 - INFO - Server is running on port: 3000 
+15/02/2022, 19:19:16 - DEBUG - auth.service - login with username: Admin123 (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+15/02/2022, 19:19:18 - INFO - Req from: admin (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+15/02/2022, 19:19:41 - INFO - Req from: admin (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+15/02/2022, 19:20:11 - INFO - Req from: admin (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+15/02/2022, 19:30:33 - INFO - Req from: admin (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+15/02/2022, 19:32:32 - INFO - Req from: admin (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+15/02/2022, 19:32:39 - INFO - Req from: admin (sid: IcxX2RRxFqfSW2OYcEfFk0mS1mywGNt8)
+24/02/2022, 12:37:57 - INFO - Server is running on port: 3000 
+24/02/2022, 12:38:35 - DEBUG - auth.service - signup with username: Admin123, fullname:  (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:38:35 - ERROR - Failed to signup fullname, username and password are required! (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:23 - DEBUG - auth.service - signup with username: Admin123, fullname:  (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:23 - ERROR - Failed to signup fullname, username and password are required! (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:45 - DEBUG - auth.service - signup with username: Admin123, fullname:  (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:45 - ERROR - Failed to signup fullname, username and password are required! (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:50 - DEBUG - auth.service - signup with username: Admin123, fullname:  (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:50 - ERROR - Failed to signup fullname, username and password are required! (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:58 - DEBUG - auth.service - login with username: Admin123 (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:39:59 - INFO - Req from: admin (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:40:22 - DEBUG - auth.service - signup with username: Baba, fullname: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:40:22 - DEBUG - auth.route - new account created: {"username":"Baba","password":"$2b$10$hVbtZsEHlBhgKN2KorutXOXVHH/eBcZmk14nhmDnTfGyqLa1u3j3.","fullname":"Baba","waps":[],"_id":"62176096179fe07bf0540e9e"} (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:40:22 - DEBUG - auth.service - login with username: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:40:26 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:40:36 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:41:16 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:41:21 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:41:33 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:03 - DEBUG - auth.service - signup with username: baba, fullname: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:03 - DEBUG - auth.route - new account created: {"username":"baba","password":"$2b$10$gknJWIeTUsc2Da0Aj8KqjuSgpriCDP4ymO0p7UTCiSHPav2JVNIHC","fullname":"Baba","waps":[],"_id":"621760fb179fe07bf0540ea0"} (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:03 - DEBUG - auth.service - login with username: baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:07 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:25 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:33 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:42:45 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:43:01 - DEBUG - auth.service - signup with username: Jord, fullname: Jord (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:43:01 - DEBUG - auth.route - new account created: {"username":"Jord","password":"$2b$10$IiWmLLCSxYlvnKLcYX33wOYC3jiX/NeFGtDy7SCs4uV4JdqTgG4je","fullname":"Jord","waps":[],"_id":"62176135179fe07bf0540ea3"} (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:43:01 - DEBUG - auth.service - login with username: Jord (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:43:02 - ERROR - Failed to signup Invalid username or password (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:51:53 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 12:55:40 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 13:14:09 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 13:29:13 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 13:33:49 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+24/02/2022, 13:37:29 - INFO - Req from: Baba (sid: doMUAdhoiizNkfahW3P_Tjn8eFaMabzN)
+01/03/2022, 12:22:57 - INFO - Server is running on port: 3000 
+01/03/2022, 12:26:56 - INFO - Server is running on port: 3000 
+01/03/2022, 13:11:12 - INFO - Server is running on port: 3000 
+01/03/2022, 13:17:48 - INFO - Server is running on port: 3000 
+01/03/2022, 13:20:31 - INFO - Server is running on port: 3000 
+01/03/2022, 13:21:54 - INFO - Server is running on port: 3000 
+01/03/2022, 13:22:36 - INFO - Server is running on port: 3000 
+01/03/2022, 13:24:09 - INFO - Server is running on port: 3000 
+01/03/2022, 13:25:40 - INFO - Server is running on port: 3000 
+01/03/2022, 13:32:35 - DEBUG - auth.service - login with username: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:32:36 - ERROR - Failed to Login Invalid username or password (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:32:37 - DEBUG - auth.service - login with username: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:32:38 - ERROR - Failed to Login Invalid username or password (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:32:51 - DEBUG - auth.service - signup with username: 1234, fullname: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:32:51 - DEBUG - auth.route - new account created: {"username":"1234","password":"$2b$10$jhouwvy5xRsAhWJ94JXabuPgFyoh1FpNjzEfHux/da4DTua2dwyGG","fullname":"Admin123","waps":[],"_id":"621e04632b2e7b56a80edb89"} (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:32:51 - DEBUG - auth.service - login with username: 1234 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:36:42 - INFO - Req from: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:37:59 - INFO - Req from: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:38:34 - INFO - Req from: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 13:38:50 - INFO - Req from: Admin123 (sid: N5Q-1K7TmxGmlVnwbmy7mq5VRGvFudZm)
+01/03/2022, 14:14:55 - INFO - Server is running on port: 3000 
+<<<<<<< HEAD
+01/03/2022, 15:22:49 - INFO - Server is running on port: 3000 
+01/03/2022, 15:23:03 - DEBUG - auth.service - login with username: Admin123 (sid: f6JELPmcVEG0UdPRYpmgauZW-HzFTxQ6)
+01/03/2022, 15:23:04 - ERROR - Failed to Login Invalid username or password (sid: f6JELPmcVEG0UdPRYpmgauZW-HzFTxQ6)
+01/03/2022, 15:23:17 - DEBUG - auth.service - signup with username: Abir, fullname: Abir (sid: f6JELPmcVEG0UdPRYpmgauZW-HzFTxQ6)
+01/03/2022, 15:23:17 - DEBUG - auth.route - new account created: {"username":"Abir","password":"$2b$10$57h9qZ/mV3G1ykQLaNlpSuUehDVhpDZNTbY0r.tfETVnEbO9r.l1C","fullname":"Abir","waps":[],"_id":"621e1e45d9a67063fc33d9ec"} (sid: f6JELPmcVEG0UdPRYpmgauZW-HzFTxQ6)
+01/03/2022, 15:23:17 - DEBUG - auth.service - login with username: Abir (sid: f6JELPmcVEG0UdPRYpmgauZW-HzFTxQ6)
+01/03/2022, 15:23:31 - INFO - Req from: Abir (sid: f6JELPmcVEG0UdPRYpmgauZW-HzFTxQ6)
+08/03/2022, 14:13:38 - INFO - Server is running on port: 3000 
+08/03/2022, 15:17:41 - INFO - Server is running on port: 3000 
+=======
+>>>>>>> d1ab84fbbfe47fd8ce58d50ad7f5809952085827
+>>>>>>> 6048da8829320e60ec815d4d859f79e0af013d61

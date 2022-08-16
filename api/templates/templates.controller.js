@@ -2,7 +2,10 @@ const templateService = require('./templates-service.js');
 const logger = require('../../services/logger.service');
 const utilService = require('../../services/utilService.js');
 const wapService = require('../wap/wap-service.js');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6048da8829320e60ec815d4d859f79e0af013d61
 //add updateCmp removeCmp addCmp copyCmp, removeEl ?getEmptyTemplate
 
 //template List
